@@ -12,6 +12,7 @@ Custom skills, workflows, and rules for Claude Code and Gemini CLI (Antigravity)
 | [adk](adk/) | Build AI agents using Google's Agent Development Kit (ADK) |
 | [agent-engine](agent-engine/) | Deploy and manage AI agents on Vertex AI Agent Engine |
 | [agent-development](agent-development/) | Create agents, write subagents, generate agent frontmatter |
+| [gemini-enterprise](gemini-enterprise/) | Work with Google's Gemini Enterprise (Discovery Engine API) for enterprise search, conversational AI, Model Armor, and external agent registration |
 
 ### Diagrams & Visualization
 

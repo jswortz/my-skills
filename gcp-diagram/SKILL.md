@@ -47,32 +47,139 @@ Try the PaperBanana MCP tool first (`mcp__paperbanana__generate_diagram`). If un
 from google import genai
 from google.genai import types
 
-client = genai.Client(vertexai=True, project=PROJECT_ID, location="us-central1")
-response = client.models.generate_content(
-    model="gemini-3-pro-image-preview",  # fallback: "gemini-2.5-flash-image"
-    contents=prompt,
-    config=types.GenerateContentConfig(response_modalities=["IMAGE", "TEXT"]),
-)
-for part in response.candidates[0].content.parts:
-    if part.inline_data:
-        with open(output_path, "wb") as f:
-            f.write(part.inline_data.data)
+## gemini-3 requires global endpoint; gemini-2.5-flash-image uses us-central1
+models = [
+    ("gemini-3-pro-image-preview", "global"),
+    ("gemini-2.5-flash-image", "us-central1"),
+]
+for model, location in models:
+    try:
+        client = genai.Client(vertexai=True, project=PROJECT_ID, location=location)
+        response = client.models.generate_content(
+            model=model,
+            contents=prompt,
+            config=types.GenerateContentConfig(response_modalities=["IMAGE", "TEXT"]),
+        )
+        for part in response.candidates[0].content.parts:
+            if part.inline_data:
+                with open(output_path, "wb") as f:
+                    f.write(part.inline_data.data)
+                break
+        break
+    except Exception:
+        continue  # try fallback
 ```
 
-Model priority: `gemini-3-pro-image-preview` > `gemini-2.5-flash-image`. Fall back on 404.
+**Model priority:** `gemini-3-pro-image-preview` (global endpoint) > `gemini-2.5-flash-image` (us-central1). Fall back automatically.
 
-### 4. Review
+**IMPORTANT:** `gemini-3-*` models require `location="global"`. Using a regional endpoint (e.g., `us-central1`) will return 404.
 
-Verify before delivering:
-- All components labeled correctly
-- Connections directional with protocols noted
-- Colors consistent with GCP brand conventions
-- **Spelling**: Double-check every label, service name, and annotation for typos. Compare against official GCP product names (e.g., "BigQuery" not "Big Query", "Cloud Run" not "CloudRun", "Vertex AI" not "VertexAI"). Read every word in the prompt one more time before generating.
-- Text readable at expected display size
-- Layout balanced, no overlapping elements
-- All shapes are rounded rectangles, circles, or ellipses — never hexagons
+### 4. Overlay Official GCP Icons
 
-Regenerate with refined prompt if any issues found.
+Gemini image generation cannot accurately reproduce trademarked GCP product logos. After generating, replace the AI-approximated icons with official ones using [scripts/overlay_icons.py](scripts/overlay_icons.py).
+
+**113 official GCP product icons** + **21 official GCP category icons** are bundled in [assets/icons/](assets/icons/) (PNG, RGBA).
+
+Category icons sourced from [services.google.com/fh/files/misc/category-icons.zip](https://services.google.com/fh/files/misc/category-icons.zip). SVGs also available in `assets/icons/categories/svg/`.
+
+#### Step-by-step
+
+1. Read the generated diagram to identify GCP product icon locations (x, y coordinates)
+2. Run the overlay script:
+
+```python
+import sys
+sys.path.insert(0, "<skill_dir>/scripts")
+from overlay_icons import overlay_icons
+
+overlay_icons("diagram.png", "diagram_final.png", [
+    {"product": "BigQuery", "x": 400, "y": 200, "size": 48},
+    {"product": "Vertex AI", "x": 200, "y": 100, "size": 48},
+    {"product": "Cloud Run", "x": 600, "y": 300, "size": 48},
+    {"product": "Cloud Storage", "x": 400, "y": 400, "size": 48},
+])
+```
+
+Or via CLI:
+```bash
+python scripts/overlay_icons.py diagram.png diagram_final.png \
+    --icons "BigQuery:400,200 Vertex\ AI:200,100 Cloud\ Run:600,300" --size 48
+```
+
+#### Finding coordinates
+
+Open the generated diagram with `Read` tool to visually identify where each GCP product icon should be placed. Estimate x,y pixel coordinates for the center of each product icon box.
+
+#### Available icon categories
+
+| Category | Products |
+|----------|----------|
+| analytics | BigQuery, Composer, Dataflow, Data Fusion, Dataproc, Looker, Pub/Sub |
+| compute | App Engine, Compute Engine, Cloud Functions, Cloud Run, GKE, GPU |
+| database | Bigtable, Datastore, Firestore, Memorystore, Cloud SQL, Spanner |
+| ml | Vertex AI, AI Platform, AutoML, Dialogflow, TPU, Vision API |
+| network | Cloud Armor, CDN, DNS, Load Balancing, VPC, VPN, Service Mesh |
+| security | IAM, IAP, KMS, Secret Manager, SCC, Certificate Manager |
+| storage | Cloud Storage, Filestore, Persistent Disk |
+| devtools | Cloud Build, Cloud Shell, Container Registry, Scheduler, Tasks |
+| api | API Gateway, Apigee, Endpoints |
+
+Run `python scripts/overlay_icons.py --list` for the full mapping.
+
+### 5. Verify Branding & Spelling (MANDATORY)
+
+**This step is required before delivering any diagram. Do NOT skip.**
+
+#### Branding Checklist
+
+- [ ] Colors match GCP brand conventions from [references/gcp-brand.md](references/gcp-brand.md)
+  - Compute/Agents: Green (#34A853)
+  - Data/Analytics: Orange/Yellow (#F9AB00)
+  - AI/ML: Purple (#A142F4)
+  - Storage: Yellow (#FBBC05)
+  - Networking: Teal (#12B5CB)
+  - Security: Red (#EA4335)
+  - Search/Discovery Engine: Blue (#4285F4)
+- [ ] Background is clean white (#FFFFFF)
+- [ ] All shapes are rounded rectangles, circles, or ellipses — **never hexagons**
+- [ ] No 3D effects, shadows, or gradients on service boxes
+- [ ] Google Cloud logo watermark at bottom left
+- [ ] Official GCP product icons overlaid via Step 4 (not AI-generated approximations)
+
+#### Spelling Checklist
+
+**Read every label in the diagram and compare against official GCP product names:**
+
+| Correct | Common Mistakes |
+|---------|-----------------|
+| BigQuery | Big Query, Bigquery, BQ |
+| Cloud Run | CloudRun, Cloud run |
+| Vertex AI | VertexAI, Vertex.AI, Vertex ai |
+| Cloud Storage | CloudStorage, GCS (ok in code, not in diagrams) |
+| Pub/Sub | PubSub, Pub Sub |
+| Cloud SQL | CloudSQL |
+| Kubernetes Engine | Kubernete Engine, K8s Engine |
+| Discovery Engine | DiscoveryEngine |
+| Agent Engine | AgentEngine |
+| Model Armor | ModelArmor |
+| Gemini | Gemni, Gemnini |
+| Imagen | ImageGen, Image Gen |
+| Memory Bank | MemoryBank |
+| OpenTelemetry | Open Telemetry |
+
+- [ ] Every GCP service name matches official spelling (check table above)
+- [ ] Every custom label (agent names, data store names, dataset names) is spelled correctly
+- [ ] Acronyms are consistent (e.g., don't mix "BQ" and "BigQuery" in same diagram)
+- [ ] Resource IDs and region names match actual deployed values
+
+#### Layout & Readability
+
+- [ ] All components labeled correctly
+- [ ] Connections directional with protocols noted
+- [ ] Text readable at expected display size
+- [ ] Layout balanced, no overlapping elements
+
+**If any check fails, regenerate with a refined prompt. Do not deliver diagrams with branding or spelling errors.**
 
 ## Prompt Tips
 
@@ -81,10 +188,13 @@ Regenerate with refined prompt if any issues found.
 - Name every connection with its protocol
 - Add "landscape orientation" for wide architectures
 - Include resource IDs and regions for deployed resources
+- Add "leave a blank square placeholder where each GCP product icon would go" to make overlay easier
 
 ## References
 
 - **GCP brand colors, typography, icons**: [references/gcp-brand.md](references/gcp-brand.md)
 - **Prompt templates by diagram type**: [references/templates.md](references/templates.md)
+- **Official GCP icon assets (113 PNGs)**: [assets/icons/](assets/icons/) — bundled from the `diagrams` library
+- **Icon overlay script**: [scripts/overlay_icons.py](scripts/overlay_icons.py)
 - **GCP Product Icons PDF**: https://services.google.com/fh/files/misc/google-cloud-product-icons.pdf
 - **GCP Icons Gallery**: https://cloud.google.com/icons
