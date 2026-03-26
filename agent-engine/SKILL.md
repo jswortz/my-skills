@@ -506,6 +506,16 @@ client.agent_engines.memories.generate(
 )
 ```
 
+### Critic Agent Pattern (Memory Persistence)
+Before persisting generated insights or facts to the Memory Bank, use a "Critic Agent" pattern to evaluate candidates. Score insights based on:
+1. **Novelty**
+2. **Relevance**
+3. **Impact**
+4. **Actionability**
+5. **Specificity**
+
+Only write memories/insights that exceed a specific `CRITIC_SURVIVAL_THRESHOLD` (e.g., >= 0.85) to prevent Memory Bank pollution and maintain high signal-to-noise ratio.
+
 ### Generate from pre-extracted facts:
 
 ```python

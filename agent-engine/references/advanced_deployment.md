@@ -572,4 +572,30 @@ parent = Agent(
 
 ---
 
-*Last Updated: 2026-01-27*
+---
+
+## Agent Engine Platform Bugs & Workarounds (2026-03-15)
+
+### Sub-Agent Events Don't Propagate from BaseAgent
+
+When a BaseAgent orchestrator calls `target.run_async(ctx)` on a sub-agent, the async generator returns **0 events** on Agent Engine. This works correctly locally. The `_run_agent_and_capture()` pattern captures empty text as a result.
+
+**Workaround**: Use direct `genai.Client(vertexai=True).models.generate_content()` calls instead of sub-agents for critical pipeline stages. This bypasses ADK's agent execution entirely.
+
+**Limitation**: Direct model calls cannot use ADK tools. For agents that need tools, either parse tool calls manually from the response or accept intermittent failures on AE.
+
+### Dict State Merging (Not Replacing)
+
+AE **merges** dict values in `state_delta` rather than replacing them. Setting a parent dict to `{}` does NOT clear nested keys from prior waves. Always explicitly null nested keys you want to clear.
+
+### google_search Grounding Tool Incompatibilities
+
+- Returns 0 events on `gemini-3-flash-preview` (use `gemini-2.0-flash`)
+- Cannot coexist with non-search tools: "Multiple tools are supported only when they are all search tools"
+- Returns 0 events when used as a sub-agent tool on AE (separate from the sub-agent propagation bug)
+
+### Wave Budget Ordering
+
+AE waves have ~60s budget. In stage handlers, always run the **critical state-persisting operation first**, then optional operations (logging, analytics) after. If an optional operation consumes the budget, the critical write never happens, causing infinite re-entry loops.
+
+*Last Updated: 2026-03-15*

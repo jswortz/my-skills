@@ -47,6 +47,10 @@ Copy this into your `scratchpad.md` or keep it in your context to track progress
 
 See [assets/loop_template.md](assets/loop_template.md) for a raw template.
 
+## Native Implementations
+
+Some tools and CLI utilities implement the Ralph Wiggum visual or trial-and-error loop out-of-the-box. For example, the `paperbanana` CLI uses this loop to generate and visually critique architecture diagrams iteratively until they are accepted. Try leveraging these native loops whenever possible before manually executing the steps.
+
 ## Principles
 
 1.  **Iteration > Perfection**: Don't try to solve it all in one perfect shot. Try, fail, learn, retry.

@@ -64,7 +64,16 @@ Execute the analysis matching the user's question. Use `references/analysis-patt
 | "How does X relate to Y?" | Correlation, Segmented Analysis |
 | "What drives X?" | `analyze_contribution` tool, Segmented Analysis |
 | "Predict / forecast X" | `forecast` tool |
+| "Find Black Swan insights" | Exogenous Data Hybridization (GDELT & Google Trends) |
 | General questions about the data | `ask_data_insights` tool, then targeted SQL |
+
+### 6. Exogenous Context Injection (Advanced)
+
+To prevent analytical agents from converging on local optima or purely operational explanations, cross-reference internal enterprise metrics against external public datasets:
+- **GDELT (Global Database of Events, Language, and Tone)**: `gdelt-bq.gdeltv2` for global events & material conflict signals.
+- **Google Trends**: `bigquery-public-data.google_trends` for shifts in public search interest.
+
+Hybridize internal 1P data with these 3P datasets to generate novel "Black Swan" insights that standalone internal data cannot reveal.
 
 ### 5. Present
 
