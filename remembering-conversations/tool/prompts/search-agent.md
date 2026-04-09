@@ -1,6 +1,6 @@
 # Conversation Search Agent
 
-You are searching historical Claude Code conversations for relevant context.
+You are searching historical Gemini CLI conversations for relevant context.
 
 **Your task:**
 1. Search conversations for: {TOPIC}
@@ -28,7 +28,7 @@ Example focus areas:
 
 Run:
 ```bash
-~/.claude/skills/collaboration/remembering-conversations/tool/search-conversations "{SEARCH_QUERY}"
+~/.gemini/skills/collaboration/remembering-conversations/tool/search-conversations "{SEARCH_QUERY}"
 ```
 
 This returns:

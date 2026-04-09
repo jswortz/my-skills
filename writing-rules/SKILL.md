@@ -1,14 +1,13 @@
 ---
 name: Writing Hookify Rules
 description: This skill should be used when the user asks to "create a hookify rule", "write a hook rule", "configure hookify", "add a hookify rule", or needs guidance on hookify rule syntax and patterns.
-version: 0.1.0
 ---
 
 # Writing Hookify Rules
 
 ## Overview
 
-Hookify rules are markdown files with YAML frontmatter that define patterns to watch for and messages to show when those patterns match. Rules are stored in `.claude/hookify.{rule-name}.local.md` files.
+Hookify rules are markdown files with YAML frontmatter that define patterns to watch for and messages to show when those patterns match. Rules are stored in `.gemini/hookify.{rule-name}.local.md` files.
 
 ## Rule File Format
 
@@ -22,7 +21,7 @@ event: bash|file|stop|prompt|all
 pattern: regex-pattern-here
 ---
 
-Message to show Claude when this rule triggers.
+Message to show Gemini when this rule triggers.
 Can include markdown formatting, warnings, suggestions, etc.
 ```
 
@@ -99,7 +98,7 @@ You're adding an API key to a .env file. Ensure this file is in .gitignore!
 
 ## Message Body
 
-The markdown content after frontmatter is shown to Claude when the rule triggers.
+The markdown content after frontmatter is shown to Gemini when the rule triggers.
 
 **Good messages:**
 - Explain what was detected
@@ -282,9 +281,9 @@ Better: `rm\s+-rf`
 
 ## File Organization
 
-**Location:** All rules in `.claude/` directory
-**Naming:** `.claude/hookify.{descriptive-name}.local.md`
-**Gitignore:** Add `.claude/*.local.md` to `.gitignore`
+**Location:** All rules in `.gemini/` directory
+**Naming:** `.gemini/hookify.{descriptive-name}.local.md`
+**Gitignore:** Add `.gemini/*.local.md` to `.gitignore`
 
 **Good names:**
 - `hookify.dangerous-rm.local.md`
@@ -305,7 +304,7 @@ Better: `rm\s+-rf`
 2. Determine which tool is involved (Bash, Edit, etc.)
 3. Choose event type (bash, file, stop, etc.)
 4. Write regex pattern
-5. Create `.claude/hookify.{name}.local.md` file in project root
+5. Create `.gemini/hookify.{name}.local.md` file in project root
 6. Test immediately - rules are read dynamically on next tool use
 
 ### Refining a Rule
@@ -321,7 +320,7 @@ Better: `rm\s+-rf`
 
 ## Examples
 
-See `${CLAUDE_PLUGIN_ROOT}/examples/` for complete examples:
+See `${GEMINI_PLUGIN_ROOT}/examples/` for complete examples:
 - `dangerous-rm.local.md` - Block dangerous rm commands
 - `console-log-warning.local.md` - Warn about console.log
 - `sensitive-files-warning.local.md` - Warn about editing .env files

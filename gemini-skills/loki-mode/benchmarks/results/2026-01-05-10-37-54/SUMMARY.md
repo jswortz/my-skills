@@ -22,11 +22,11 @@ This mirrors real-world software development more accurately than single-agent a
 # Setup only (download datasets)
 ./benchmarks/run-benchmarks.sh all
 
-# Execute with Claude
+# Execute with Gemini
 ./benchmarks/run-benchmarks.sh humaneval --execute
 ./benchmarks/run-benchmarks.sh humaneval --execute --limit 10  # First 10 only
 ./benchmarks/run-benchmarks.sh swebench --execute --limit 5    # First 5 only
 
 # Use different model
-./benchmarks/run-benchmarks.sh humaneval --execute --model opus
+./benchmarks/run-benchmarks.sh humaneval --execute --model gemini-1.5-pro
 ```

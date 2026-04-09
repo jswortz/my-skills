@@ -1,6 +1,6 @@
 # MCP Integration Reference
 
-Model Context Protocol (MCP) servers extend Claude Code's capabilities with specialized tools.
+Model Context Protocol (MCP) servers extend Gemini CLI's capabilities with specialized tools.
 
 ---
 
@@ -21,7 +21,7 @@ Model Context Protocol (MCP) servers extend Claude Code's capabilities with spec
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@anthropic-ai/playwright-mcp"]
+      "args": ["@gemini-ai/playwright-mcp"]
     }
   }
 }
@@ -60,14 +60,14 @@ Model Context Protocol (MCP) servers extend Claude Code's capabilities with spec
   "mcpServers": {
     "parallel-search": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/parallel-search-mcp"],
+      "args": ["-y", "@gemini-ai/parallel-search-mcp"],
       "env": {
         "PARALLEL_API_KEY": "your-api-key"
       }
     },
     "parallel-task": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/parallel-task-mcp"],
+      "args": ["-y", "@gemini-ai/parallel-task-mcp"],
       "env": {
         "PARALLEL_API_KEY": "your-api-key"
       }
@@ -95,10 +95,10 @@ Model Context Protocol (MCP) servers extend Claude Code's capabilities with spec
 
 ## MCP Configuration Location
 
-Claude Code reads MCP configuration from:
+Gemini CLI reads MCP configuration from:
 
-1. **Project-level:** `.claude/mcp.json` (recommended for project-specific tools)
-2. **User-level:** `~/.claude/mcp.json` (for global tools)
+1. **Project-level:** `.gemini/mcp.json` (recommended for project-specific tools)
+2. **User-level:** `~/.gemini/mcp.json` (for global tools)
 
 Example full configuration:
 ```json
@@ -106,11 +106,11 @@ Example full configuration:
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@anthropic-ai/playwright-mcp"]
+      "args": ["@gemini-ai/playwright-mcp"]
     },
     "parallel-search": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/parallel-search-mcp"],
+      "args": ["-y", "@gemini-ai/parallel-search-mcp"],
       "env": {
         "PARALLEL_API_KEY": "${PARALLEL_API_KEY}"
       }
@@ -123,13 +123,13 @@ Example full configuration:
 
 ## Using MCP Tools in Loki Mode
 
-MCP tools are automatically available to Claude Code when configured. The orchestrator can dispatch agents that use these tools:
+MCP tools are automatically available to Gemini CLI when configured. The orchestrator can dispatch agents that use these tools:
 
 ```python
 # Agent using Playwright for E2E verification
 Task(
     subagent_type="general-purpose",
-    model="sonnet",
+    model="gemini-3-flash-preview",
     description="Verify login feature visually",
     prompt="""
     Use Playwright MCP to:
@@ -144,7 +144,7 @@ Task(
 # Agent using Parallel AI for research
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Research competitor pricing",
     prompt="""
     Use Parallel AI Task API to:
@@ -161,8 +161,8 @@ Task(
 
 ## When NOT to Use MCP
 
-- **Simple searches:** Claude's built-in `WebSearch` is sufficient for basic lookups
-- **Cost sensitivity:** MCP tools add API costs on top of Claude costs
+- **Simple searches:** Gemini's built-in `WebSearch` is sufficient for basic lookups
+- **Cost sensitivity:** MCP tools add API costs on top of Gemini costs
 - **Offline work:** MCP tools require network access
 
 ---
@@ -183,4 +183,4 @@ When evaluating new MCP servers for Loki Mode integration, assess:
 
 - [MCP Specification](https://modelcontextprotocol.io/)
 - [Parallel AI Documentation](https://docs.parallel.ai/)
-- [Playwright MCP](https://github.com/anthropics/anthropic-quickstarts/tree/main/mcp-playwright)
+- [Playwright MCP](https://github.com/geminis/gemini-quickstarts/tree/main/mcp-playwright)

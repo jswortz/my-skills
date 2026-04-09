@@ -300,9 +300,9 @@ async def execute_with_model_fallback(task, preferred_model):
     Based on OpenAI safety patterns.
     """
     fallback_chain = {
-        "opus": ["sonnet", "haiku"],
-        "sonnet": ["haiku", "opus"],
-        "haiku": ["sonnet"]
+        "gemini-1.5-pro": ["gemini-3-flash-preview", "gemini-1.5-flash"],
+        "gemini-3-flash-preview": ["gemini-1.5-flash", "gemini-1.5-pro"],
+        "gemini-1.5-flash": ["gemini-3-flash-preview"]
     }
 
     models_to_try = [preferred_model] + fallback_chain.get(preferred_model, [])
@@ -503,7 +503,7 @@ def parse_agents_md(content):
 
 ```
 1. AGENTS.md (closest to current file, monorepo-aware)
-2. CLAUDE.md (Claude-specific instructions)
+2. GEMINI.md (Gemini-specific instructions)
 3. .loki/CONTINUITY.md (session state)
 4. Package-level documentation
 5. README.md (general project info)

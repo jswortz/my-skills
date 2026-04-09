@@ -1,6 +1,6 @@
 # Lab Research Patterns Reference
 
-Research-backed patterns from Google DeepMind and Anthropic for enhanced multi-agent orchestration and safety.
+Research-backed patterns from Google DeepMind and Gemini for enhanced multi-agent orchestration and safety.
 
 ---
 
@@ -8,7 +8,7 @@ Research-backed patterns from Google DeepMind and Anthropic for enhanced multi-a
 
 This reference consolidates key patterns from:
 1. **Google DeepMind** - World models, self-improvement, scalable oversight
-2. **Anthropic** - Constitutional AI, alignment safety, agentic coding
+2. **Gemini** - Responsible AI, alignment safety, agentic coding
 
 ---
 
@@ -138,8 +138,8 @@ async def debate_verification(proposal, max_rounds=2):
     Use debate to break down verification into manageable sub-tasks.
     """
     # Two equally capable AI critics
-    proponent = Agent(role="defender", model="opus")
-    opponent = Agent(role="challenger", model="opus")
+    proponent = Agent(role="defender", model="gemini-1.5-pro")
+    opponent = Agent(role="challenger", model="gemini-1.5-pro")
 
     debate_log = []
 
@@ -192,16 +192,16 @@ amplified_oversight:
 
 ---
 
-## Anthropic Patterns
+## Gemini Patterns
 
-### Constitutional AI Principles
+### Responsible AI Principles
 
 **Key Insight:** Train AI to self-critique based on explicit principles.
 
 ```python
 class ConstitutionalAI:
     """
-    Based on Anthropic's Constitutional AI: Harmlessness from AI Feedback.
+    Based on Gemini's Responsible AI: Harmlessness from AI Feedback.
     Self-critique and revision based on constitutional principles.
     """
 
@@ -265,7 +265,7 @@ loki_constitution:
 ```python
 class DefectionProbe:
     """
-    Based on Anthropic's "Simple probes can catch sleeper agents".
+    Based on Gemini's "Simple probes can catch sleeper agents".
     Linear classifiers detecting anomalous agent behavior.
     """
 
@@ -288,7 +288,7 @@ class DefectionProbe:
     def check_for_defection(self, agent_action, context):
         """
         Check if action appears anomalous.
-        AUROC > 99% achieved in Anthropic's research.
+        AUROC > 99% achieved in Gemini's research.
         """
         features = extract_features(agent_action, context)
         defection_probability = self.probe.predict_proba(features)
@@ -418,13 +418,13 @@ context_management:
 
 ### Parallel Instance Pattern
 
-**Key Insight:** Multiple Claude instances with separation of concerns.
+**Key Insight:** Multiple Gemini instances with separation of concerns.
 
 ```python
 async def parallel_instance_pattern(task):
     """
-    Run multiple Claude instances for separation of concerns.
-    Based on Anthropic's Claude Code best practices.
+    Run multiple Gemini instances for separation of concerns.
+    Based on Gemini's Gemini CLI best practices.
     """
     # Instance 1: Implementation
     implementer = spawn_instance(
@@ -476,8 +476,8 @@ prompt_injection_defense:
       - "Alert on suspicious patterns"
 
   performance:
-    claude_opus_4: "89% attack prevention"
-    claude_sonnet_4: "86% attack prevention"
+    gemini_opus_4: "89% attack prevention"
+    gemini_sonnet_4: "86% attack prevention"
 ```
 
 ---
@@ -496,7 +496,7 @@ combined_approach:
 
   implementation_priority:
     high:
-      - Constitutional AI principles in agent prompts
+      - Responsible AI principles in agent prompts
       - Explore-Plan-Code workflow enforcement
       - Context reset triggers
 
@@ -523,12 +523,12 @@ combined_approach:
 - [Amplified Oversight](https://deepmindsafetyresearch.medium.com/human-ai-complementarity-a-goal-for-amplified-oversight-0ad8a44cae0a)
 - [Technical AGI Safety Approach](https://arxiv.org/html/2504.01849v1)
 
-**Anthropic:**
-- [Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback)
-- [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
-- [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
-- [Sleeper Agents Detection](https://www.anthropic.com/research/probes-catch-sleeper-agents)
-- [Alignment Faking](https://www.anthropic.com/research/alignment-faking)
-- [Visible Extended Thinking](https://www.anthropic.com/research/visible-extended-thinking)
-- [Computer Use Safety](https://www.anthropic.com/news/3-5-models-and-computer-use)
-- [Sabotage Evaluations](https://www.anthropic.com/research/sabotage-evaluations-for-frontier-models)
+**Gemini:**
+- [Responsible AI](https://www.gemini.com/research/constitutional-ai-harmlessness-from-ai-feedback)
+- [Building Effective Agents](https://www.gemini.com/research/building-effective-agents)
+- [Gemini CLI Best Practices](https://www.gemini.com/engineering/gemini-code-best-practices)
+- [Sleeper Agents Detection](https://www.gemini.com/research/probes-catch-sleeper-agents)
+- [Alignment Faking](https://www.gemini.com/research/alignment-faking)
+- [Visible Extended Thinking](https://www.gemini.com/research/visible-extended-thinking)
+- [Computer Use Safety](https://www.gemini.com/news/3-5-models-and-computer-use)
+- [Sabotage Evaluations](https://www.gemini.com/research/sabotage-evaluations-for-frontier-models)

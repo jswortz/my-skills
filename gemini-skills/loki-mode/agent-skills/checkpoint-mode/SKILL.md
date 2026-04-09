@@ -94,7 +94,7 @@ LOKI_CHECKPOINT_PHASES="architecture,deployment"
 
    ## Resources Used
    - 15 minutes elapsed
-   - 3 Haiku agents, 2 Sonnet agents
+   - 3 gemini-1.5-flash agents, 2 gemini-3-flash-preview agents
    - Estimated cost: $0.45
    ```
 

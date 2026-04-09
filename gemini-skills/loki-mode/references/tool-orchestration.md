@@ -108,9 +108,9 @@ ToolOrchestra achieves 70% cost reduction vs GPT-5 by explicitly optimizing for 
     "retry_reasons": ["test_failure"],
     "recovery_rate": 1.0,
     "model_usage": {
-      "haiku": {"calls": 4, "est_tokens": 12000},
-      "sonnet": {"calls": 2, "est_tokens": 8000},
-      "opus": {"calls": 1, "est_tokens": 6000}
+      "gemini-1.5-flash": {"calls": 4, "est_tokens": 12000},
+      "gemini-3-flash-preview": {"calls": 2, "est_tokens": 8000},
+      "gemini-1.5-pro": {"calls": 1, "est_tokens": 6000}
     }
   },
   "outcome": "success",
@@ -400,45 +400,45 @@ def classify_task_complexity(task):
 
 ```yaml
 # Agent allocation strategy
-# Model selection: Opus=planning, Sonnet=development, Haiku=unit tests/monitoring
+# Model selection: gemini-1.5-pro=planning, gemini-3-flash-preview=development, gemini-1.5-flash=unit tests/monitoring
 complexity_allocations:
   trivial:
     max_agents: 1
     planning: null         # No planning needed
-    development: haiku
-    testing: haiku
+    development: gemini-1.5-flash
+    testing: gemini-1.5-flash
     review: skip           # No review needed for trivial
     parallel: false
 
   simple:
     max_agents: 2
     planning: null         # No planning needed
-    development: haiku
-    testing: haiku
+    development: gemini-1.5-flash
+    testing: gemini-1.5-flash
     review: single         # One quick review
     parallel: false
 
   moderate:
     max_agents: 4
-    planning: sonnet       # Sonnet for moderate planning
-    development: sonnet
-    testing: haiku         # Unit tests always haiku
+    planning: gemini-3-flash-preview       # gemini-3-flash-preview for moderate planning
+    development: gemini-3-flash-preview
+    testing: gemini-1.5-flash         # Unit tests always gemini-1.5-flash
     review: standard       # 3 parallel reviewers
     parallel: true
 
   complex:
     max_agents: 8
-    planning: opus         # Opus ONLY for complex planning
-    development: sonnet    # Sonnet for implementation
-    testing: haiku         # Unit tests still haiku
+    planning: gemini-1.5-pro         # gemini-1.5-pro ONLY for complex planning
+    development: gemini-3-flash-preview    # gemini-3-flash-preview for implementation
+    testing: gemini-1.5-flash         # Unit tests still gemini-1.5-flash
     review: deep           # 3 reviewers + devil's advocate
     parallel: true
 
   critical:
     max_agents: 12
-    planning: opus         # Opus for critical planning
-    development: sonnet    # Sonnet for implementation
-    testing: sonnet        # Functional/E2E tests with sonnet
+    planning: gemini-1.5-pro         # gemini-1.5-pro for critical planning
+    development: gemini-3-flash-preview    # gemini-3-flash-preview for implementation
+    testing: gemini-3-flash-preview        # Functional/E2E tests with gemini-3-flash-preview
     review: exhaustive     # Multiple review rounds
     parallel: true
     human_checkpoint: true # Pause for human review
@@ -476,7 +476,7 @@ def select_agents_for_task(task, available_agents):
     # 5. Assign models based on complexity
     for agent in selected:
         if agent.role == "reviewer":
-            agent.model = "sonnet"  # Sonnet for reviews (balanced quality/cost)
+            agent.model = "gemini-3-flash-preview"  # gemini-3-flash-preview for reviews (balanced quality/cost)
         else:
             agent.model = allocation["model"]
 
@@ -629,9 +629,9 @@ Track these metrics in `.loki/metrics/dashboard.json`:
       "recovery_rate": "+5% vs previous week"
     },
     "top_performing_patterns": [
-      "Haiku for unit tests (0.95 success, 0.92 efficiency)",
+      "gemini-1.5-flash for unit tests (0.95 success, 0.92 efficiency)",
       "Explore agent for codebase search (1.0 success)",
-      "Parallel review with sonnet (0.98 accuracy)"
+      "Parallel review with gemini-3-flash-preview (0.98 accuracy)"
     ],
     "areas_for_improvement": [
       "Complex refactors taking 2x expected time",
@@ -680,7 +680,7 @@ Based on [Measurement Imbalance research (arXiv 2506.02064)](https://arxiv.org/a
 - [Adaptive Monitoring for Agentic AI (arXiv 2509.00115)](https://arxiv.org/abs/2509.00115) - AMDM algorithm
 
 **Best Practices:**
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) - Simplicity, transparency, tool engineering
+- [Gemini: Building Effective Agents](https://www.gemini.com/research/building-effective-agents) - Simplicity, transparency, tool engineering
 - [Maxim AI: Production Multi-Agent Systems](https://www.getmaxim.ai/articles/best-practices-for-building-production-ready-multi-agent-systems/) - Orchestration patterns, distributed tracing
 - [UiPath: Agent Builder Best Practices](https://www.uipath.com/blog/ai/agent-builder-best-practices) - Single-responsibility, evaluations
 - [Stanford/Harvard: Demo-to-Deployment Gap](https://www.marktechpost.com/2025/12/24/this-ai-paper-from-stanford-and-harvard-explains-why-most-agentic-ai-systems-feel-impressive-in-demos-and-then-completely-fall-apart-in-real-use/) - Tool reliability as key failure mode

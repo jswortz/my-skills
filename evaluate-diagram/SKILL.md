@@ -1,9 +1,6 @@
 ---
-user-invocable: true
-allowed-tools:
-  - mcp__paperbanana__evaluate_diagram
-  - Read
-  - "Bash(paperbanana *)"
+name: evaluate-diagram
+description: Evaluates a generated diagram against a human reference using PaperBanana's VLM-as-Judge scoring. Use when asked to evaluate, score, or compare a generated diagram with a reference image.
 ---
 
 # Evaluate Diagram

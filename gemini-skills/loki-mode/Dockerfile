@@ -6,7 +6,7 @@ FROM ubuntu:22.04
 
 LABEL maintainer="Lokesh Mure"
 LABEL version="4.1.0"
-LABEL description="Multi-agent autonomous startup system for Claude Code"
+LABEL description="Multi-agent autonomous startup system for Gemini CLI"
 
 # Prevent interactive prompts during install
 ENV DEBIAN_FRONTEND=noninteractive
@@ -45,8 +45,8 @@ COPY docs/ ./docs/
 RUN chmod +x autonomy/run.sh autonomy/loki
 
 # Set up symlinks
-RUN mkdir -p /root/.claude/skills && \
-    ln -sf /opt/loki-mode /root/.claude/skills/loki-mode && \
+RUN mkdir -p /root/.gemini/skills && \
+    ln -sf /opt/loki-mode /root/.gemini/skills/loki-mode && \
     ln -sf /opt/loki-mode/autonomy/loki /usr/local/bin/loki
 
 # Set workspace as working directory

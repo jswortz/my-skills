@@ -49,7 +49,7 @@ Explicit invocation for fix verification.
 
 ### Report Format Support
 
-- **PDF** - Read directly (Claude native support)
+- **PDF** - Read directly (Gemini native support)
 - **Markdown** - Read directly
 - **JSON** - Parsed as structured data
 - **HTML** - Text extraction
@@ -102,7 +102,7 @@ Works alongside other Trail of Bits skills:
 
 ## Installation
 
-This plugin is part of the Trail of Bits skills marketplace. Enable it in Claude Code settings.
+This plugin is part of the Trail of Bits skills marketplace. Enable it in Gemini CLI settings.
 
 ## Prerequisites
 

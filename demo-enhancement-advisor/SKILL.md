@@ -1,5 +1,10 @@
 ---
 name: demo-enhancement-advisor
+description: -- name: demo-enhancement-advisor description: Identify high-impact, low-effort improvements for grocery retail demos, brainstorm ways to showcase Goo...
+---
+
+--
+name: demo-enhancement-advisor
 description: Identify high-impact, low-effort improvements for grocery retail demos, brainstorm ways to showcase Google Cloud's agentic capabilities, and prepare for customer-facing demonstrations.
 ---
 

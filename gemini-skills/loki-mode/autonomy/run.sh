@@ -47,13 +47,13 @@
 # Autonomous Loop Controls (Ralph Wiggum Mode):
 #   LOKI_COMPLETION_PROMISE    - EXPLICIT stop condition text (default: none - runs forever)
 #                                Example: "ALL TESTS PASSING 100%"
-#                                Only stops when Claude outputs this EXACT text
+#                                Only stops when Gemini outputs this EXACT text
 #   LOKI_MAX_ITERATIONS        - Max loop iterations before exit (default: 1000)
 #   LOKI_PERPETUAL_MODE        - Ignore ALL completion signals (default: false)
 #                                Set to 'true' for truly infinite operation
 #
 # 2026 Research Enhancements:
-#   LOKI_PROMPT_REPETITION     - Enable prompt repetition for Haiku agents (default: true)
+#   LOKI_PROMPT_REPETITION     - Enable prompt repetition for gemini-1.5-flash agents (default: true)
 #                                arXiv 2512.14982v1: Improves accuracy 4-5x on structured tasks
 #   LOKI_CONFIDENCE_ROUTING    - Enable confidence-based routing (default: true)
 #                                HN Production: 4-tier routing (auto-approve, direct, supervisor, escalate)
@@ -65,13 +65,13 @@
 #   LOKI_PARALLEL_MODE         - Enable git worktree-based parallelism (default: false)
 #                                Use --parallel flag or set to 'true'
 #   LOKI_MAX_WORKTREES         - Maximum parallel worktrees (default: 5)
-#   LOKI_MAX_PARALLEL_SESSIONS - Maximum concurrent Claude sessions (default: 3)
+#   LOKI_MAX_PARALLEL_SESSIONS - Maximum concurrent Gemini sessions (default: 3)
 #   LOKI_PARALLEL_TESTING      - Run testing stream in parallel (default: true)
 #   LOKI_PARALLEL_DOCS         - Run documentation stream in parallel (default: true)
 #   LOKI_PARALLEL_BLOG         - Run blog stream if site has blog (default: false)
 #   LOKI_AUTO_MERGE            - Auto-merge completed features (default: true)
 #
-# Complexity Tiers (Auto-Claude pattern):
+# Complexity Tiers (Auto-Gemini pattern):
 #   LOKI_COMPLEXITY            - Force complexity tier (default: auto)
 #                                Options: auto, simple, standard, complex
 #   Simple (3 phases):   1-2 files, single service, UI fixes, text changes
@@ -93,7 +93,7 @@
 #   LOKI_NOTIFICATIONS   - Enable desktop notifications (default: true)
 #   LOKI_NOTIFICATION_SOUND - Play sound with notifications (default: true)
 #
-# Human Intervention (Auto-Claude pattern):
+# Human Intervention (Auto-Gemini pattern):
 #   PAUSE file:          touch .loki/PAUSE - pauses after current session
 #   HUMAN_INPUT.md:      echo "instructions" > .loki/HUMAN_INPUT.md
 #   STOP file:           touch .loki/STOP - stops immediately
@@ -441,7 +441,7 @@ PROMPT_REPETITION=${LOKI_PROMPT_REPETITION:-true}
 CONFIDENCE_ROUTING=${LOKI_CONFIDENCE_ROUTING:-true}
 AUTONOMY_MODE=${LOKI_AUTONOMY_MODE:-perpetual}  # perpetual|checkpoint|supervised
 
-# Proactive Context Management (OpenCode/Sisyphus pattern, validated by Opus)
+# Proactive Context Management (OpenCode/Sisyphus pattern, validated by gemini-1.5-pro)
 COMPACTION_INTERVAL=${LOKI_COMPACTION_INTERVAL:-25}  # Suggest compaction every N iterations
 
 # Parallel Workflows (Git Worktrees)
@@ -453,7 +453,7 @@ PARALLEL_DOCS=${LOKI_PARALLEL_DOCS:-true}
 PARALLEL_BLOG=${LOKI_PARALLEL_BLOG:-false}
 AUTO_MERGE=${LOKI_AUTO_MERGE:-true}
 
-# Complexity Tiers (Auto-Claude pattern)
+# Complexity Tiers (Auto-Gemini pattern)
 # auto = detect from PRD/codebase, simple = 3 phases, standard = 6 phases, complex = 8 phases
 COMPLEXITY_TIER=${LOKI_COMPLEXITY:-auto}
 DETECTED_COMPLEXITY=""
@@ -497,7 +497,7 @@ log_error() { echo -e "${RED}[ERROR]${NC} $*"; }
 log_step() { echo -e "${CYAN}[STEP]${NC} $*"; }
 
 #===============================================================================
-# Complexity Tier Detection (Auto-Claude pattern)
+# Complexity Tier Detection (Auto-Gemini pattern)
 #===============================================================================
 
 # Detect project complexity from PRD and codebase
@@ -1148,7 +1148,7 @@ remove_worktree() {
 
     log_step "Removing worktree: $stream_name"
 
-    # Kill any running Claude session
+    # Kill any running Gemini session
     local pid="${WORKTREE_PIDS[$stream_name]:-}"
     if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
         kill "$pid" 2>/dev/null || true
@@ -1165,7 +1165,7 @@ remove_worktree() {
     log_info "Removed worktree: $stream_name"
 }
 
-# Spawn a Claude session in a worktree
+# Spawn a Gemini session in a worktree
 spawn_worktree_session() {
     local stream_name="$1"
     local task_prompt="$2"
@@ -1192,11 +1192,11 @@ spawn_worktree_session() {
     local log_file="$worktree_path/.loki/logs/session-${stream_name}.log"
     mkdir -p "$(dirname "$log_file")"
 
-    log_step "Spawning Claude session: $stream_name"
+    log_step "Spawning Gemini session: $stream_name"
 
     (
         cd "$worktree_path"
-        claude --dangerously-skip-permissions \
+        gemini --dangerously-skip-permissions \
             -p "Loki Mode: $task_prompt. Read .loki/CONTINUITY.md for context." \
             >> "$log_file" 2>&1
     ) &
@@ -1246,7 +1246,7 @@ check_merge_queue() {
     done
 }
 
-# AI-powered conflict resolution (inspired by Auto-Claude)
+# AI-powered conflict resolution (inspired by Auto-Gemini)
 resolve_conflicts_with_ai() {
     local feature="$1"
     local conflict_files=$(git diff --name-only --diff-filter=U 2>/dev/null)
@@ -1263,8 +1263,8 @@ resolve_conflicts_with_ai() {
         # Get conflict markers
         local conflict_content=$(cat "$file")
 
-        # Use Claude to resolve conflict
-        local resolution=$(claude --dangerously-skip-permissions -p "
+        # Use Gemini to resolve conflict
+        local resolution=$(gemini --dangerously-skip-permissions -p "
 You are resolving a git merge conflict. The file below contains conflict markers.
 Your task is to merge both changes intelligently, preserving functionality from both sides.
 
@@ -1478,15 +1478,15 @@ check_prerequisites() {
 
     local missing=()
 
-    # Check Claude Code CLI
-    log_step "Checking Claude Code CLI..."
-    if command -v claude &> /dev/null; then
-        local version=$(claude --version 2>/dev/null | head -1 || echo "unknown")
-        log_info "Claude Code CLI: $version"
+    # Check Gemini CLI CLI
+    log_step "Checking Gemini CLI CLI..."
+    if command -v gemini &> /dev/null; then
+        local version=$(gemini --version 2>/dev/null | head -1 || echo "unknown")
+        log_info "Gemini CLI CLI: $version"
     else
-        missing+=("claude")
-        log_error "Claude Code CLI not found"
-        log_info "Install: https://claude.ai/code or npm install -g @anthropic-ai/claude-code"
+        missing+=("gemini")
+        log_error "Gemini CLI CLI not found"
+        log_info "Install: https://gemini.ai/code or npm install -g @gemini-ai/gemini-code"
     fi
 
     # Check Python 3
@@ -1561,8 +1561,8 @@ check_skill_installed() {
     log_header "Checking Loki Mode Skill"
 
     local skill_locations=(
-        "$HOME/.claude/skills/loki-mode/SKILL.md"
-        ".claude/skills/loki-mode/SKILL.md"
+        "$HOME/.gemini/skills/loki-mode/SKILL.md"
+        ".gemini/skills/loki-mode/SKILL.md"
         "$PROJECT_DIR/SKILL.md"
     )
 
@@ -1824,7 +1824,7 @@ stop_status_monitor() {
 #===============================================================================
 
 generate_dashboard() {
-    # Copy dashboard from skill installation (v4.0.0 with Anthropic design language)
+    # Copy dashboard from skill installation (v4.0.0 with Gemini design language)
     local skill_dashboard="$SCRIPT_DIR/.loki/dashboard/index.html"
     if [ -f "$skill_dashboard" ]; then
         cp "$skill_dashboard" .loki/dashboard/index.html
@@ -1947,15 +1947,15 @@ generate_dashboard() {
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .agent-card .model-badge.sonnet {
+        .agent-card .model-badge.gemini-3-flash-preview {
             background: #E8F0FD;
             color: #5B8DEF;
         }
-        .agent-card .model-badge.haiku {
+        .agent-card .model-badge.gemini-1.5-flash {
             background: #FFF4E6;
             color: #F59E0B;
         }
-        .agent-card .model-badge.opus {
+        .agent-card .model-badge.gemini-1.5-pro {
             background: #F3E8FF;
             color: #9B6DD6;
         }
@@ -2133,7 +2133,7 @@ generate_dashboard() {
         <div class="column failed"><h2>Failed <span class="count" id="failed-badge">0</span></h2><div id="failed-tasks"></div></div>
     </div>
     <div class="updated" id="updated">Last updated: -</div>
-    <div class="powered-by">Powered by <span>Claude</span></div>
+    <div class="powered-by">Powered by <span>Gemini</span></div>
     <button class="refresh" onclick="loadData()">Refresh</button>
     <script>
         async function loadJSON(path) {
@@ -2147,11 +2147,11 @@ generate_dashboard() {
             } catch { return []; }
         }
         function getModelClass(model) {
-            if (!model) return 'sonnet';
+            if (!model) return 'gemini-3-flash-preview';
             const m = model.toLowerCase();
-            if (m.includes('haiku')) return 'haiku';
-            if (m.includes('opus')) return 'opus';
-            return 'sonnet';
+            if (m.includes('gemini-1.5-flash')) return 'gemini-1.5-flash';
+            if (m.includes('gemini-1.5-pro')) return 'gemini-1.5-pro';
+            return 'gemini-3-flash-preview';
         }
         function formatDuration(isoDate) {
             if (!isoDate) return 'Unknown';
@@ -2164,7 +2164,7 @@ generate_dashboard() {
         }
         function renderAgent(agent) {
             const modelClass = getModelClass(agent.model);
-            const modelName = agent.model || 'Sonnet 4.5';
+            const modelName = agent.model || 'gemini-3-flash-preview 4.5';
             const agentType = agent.agent_type || 'general-purpose';
             const status = agent.status === 'completed' ? 'completed' : 'active';
             const currentTask = agent.current_task || (agent.tasks_completed && agent.tasks_completed.length > 0
@@ -3003,7 +3003,7 @@ run_autonomous() {
     log_info "Base wait: ${BASE_WAIT}s"
     log_info "Max wait: ${MAX_WAIT}s"
     log_info "Autonomy mode: $AUTONOMY_MODE"
-    log_info "Prompt repetition (Haiku): $PROMPT_REPETITION"
+    log_info "Prompt repetition (gemini-1.5-flash): $PROMPT_REPETITION"
     log_info "Confidence routing: $CONFIDENCE_ROUTING"
     echo ""
 
@@ -3035,13 +3035,13 @@ run_autonomous() {
 
         save_state $retry "running" 0
 
-        # Run Claude Code with live output
+        # Run Gemini CLI with live output
         local start_time=$(date +%s)
         local log_file=".loki/logs/autonomy-$(date +%Y%m%d).log"
 
         echo ""
         echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-        echo -e "${CYAN}  CLAUDE CODE OUTPUT (live)${NC}"
+        echo -e "${CYAN}  Gemini CLI OUTPUT (live)${NC}"
         echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
         echo ""
 
@@ -3050,9 +3050,9 @@ run_autonomous() {
         echo "=== Prompt: $prompt ===" >> "$log_file"
 
         set +e
-        # Run Claude with stream-json for real-time output
+        # Run Gemini with stream-json for real-time output
         # Parse JSON stream, display formatted output, and track agents
-        claude --dangerously-skip-permissions -p "$prompt" \
+        gemini --dangerously-skip-permissions -p "$prompt" \
             --output-format stream-json --verbose 2>&1 | \
             tee -a "$log_file" | \
             python3 -u -c '
@@ -3082,7 +3082,7 @@ def init_orchestrator():
         "agent_id": orchestrator_id,
         "tool_id": orchestrator_id,
         "agent_type": "orchestrator",
-        "model": "sonnet",
+        "model": "gemini-3-flash-preview",
         "current_task": "Initializing...",
         "status": "active",
         "spawned_at": session_start,
@@ -3181,7 +3181,7 @@ def process_stream():
                         if tool == "Task":
                             agent_type = tool_input.get("subagent_type", "general-purpose")
                             description = tool_input.get("description", "")
-                            model = tool_input.get("model", "sonnet")
+                            model = tool_input.get("model", "gemini-3-flash-preview")
 
                             agent_info = {
                                 "agent_id": f"agent-{tool_id[:8]}",
@@ -3269,7 +3269,7 @@ if __name__ == "__main__":
         local end_time=$(date +%s)
         local duration=$((end_time - start_time))
 
-        log_info "Claude exited with code $exit_code after ${duration}s"
+        log_info "Gemini exited with code $exit_code after ${duration}s"
         save_state $retry "exited" $exit_code
 
         # Check for success - ONLY stop on explicit completion promise
@@ -3292,9 +3292,9 @@ if __name__ == "__main__":
                 return 0
             fi
 
-            # Warn if Claude says it's "done" but no explicit promise
+            # Warn if Gemini says it's "done" but no explicit promise
             if is_completed; then
-                log_warn "Claude claims completion, but no explicit promise fulfilled."
+                log_warn "Gemini claims completion, but no explicit promise fulfilled."
                 log_warn "Projects are never truly complete - there are always improvements!"
             fi
 
@@ -3347,7 +3347,7 @@ if __name__ == "__main__":
 }
 
 #===============================================================================
-# Human Intervention Mechanism (Auto-Claude pattern)
+# Human Intervention Mechanism (Auto-Gemini pattern)
 #===============================================================================
 
 # Track interrupt state for Ctrl+C pause/exit behavior

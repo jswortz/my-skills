@@ -6,7 +6,7 @@ Complete narration for Loki Mode demo video.
 
 ## Introduction (0:00 - 0:30)
 
-> Welcome to Loki Mode - a multi-agent autonomous startup system for Claude Code.
+> Welcome to Loki Mode - a multi-agent autonomous startup system for Gemini CLI.
 >
 > Loki Mode takes your product requirements document and transforms it into a fully functioning application - with zero human intervention.
 >
@@ -16,9 +16,9 @@ Complete narration for Loki Mode demo video.
 
 ## Setup (0:30 - 1:00)
 
-> First, we launch Claude Code with the dangerously-skip-permissions flag. This allows Loki Mode to run autonomously without asking for confirmation at every step.
+> First, we launch Gemini CLI with the dangerously-skip-permissions flag. This allows Loki Mode to run autonomously without asking for confirmation at every step.
 >
-> [Show terminal: `claude --dangerously-skip-permissions`]
+> [Show terminal: `gemini --dangerously-skip-permissions`]
 >
 > Now we invoke Loki Mode with our PRD.
 
@@ -108,9 +108,9 @@ Complete narration for Loki Mode demo video.
 
 > Pay attention to the model selection.
 >
-> Simple tasks like running tests use Haiku - fast and cost-effective.
-> Standard implementation uses Sonnet - the default workhorse.
-> Complex decisions like architecture use Opus - for deep analysis.
+> Simple tasks like running tests use gemini-1.5-flash - fast and cost-effective.
+> Standard implementation uses gemini-3-flash-preview - the default workhorse.
+> Complex decisions like architecture use gemini-1.5-pro - for deep analysis.
 >
 > This intelligent routing optimizes both speed and quality.
 
@@ -214,7 +214,7 @@ Complete narration for Loki Mode demo video.
 
 > Loki Mode is available now on GitHub.
 >
-> Install it as a Claude Code skill and start building.
+> Install it as a Gemini CLI skill and start building.
 >
 > Remember to use the dangerously-skip-permissions flag for full autonomy.
 >

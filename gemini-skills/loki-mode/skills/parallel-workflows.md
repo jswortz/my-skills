@@ -1,13 +1,13 @@
 # Parallel Workflows with Git Worktrees
 
-> **Research basis:** Claude Code git worktrees pattern, Anthropic "One Feature at a Time" harness, HN production patterns on context isolation.
+> **Research basis:** Gemini CLI git worktrees pattern, Gemini "One Feature at a Time" harness, HN production patterns on context isolation.
 
 ---
 
 ## Why Worktree-Based Parallelism
 
 **The Problem:**
-- Single Claude session = sequential work
+- Single Gemini session = sequential work
 - Feature A blocks Feature B
 - Testing waits for development to finish
 - Documentation waits for everything
@@ -15,17 +15,17 @@
 
 **The Solution:**
 - Git worktrees = isolated working directories
-- Multiple Claude sessions = true parallelism
+- Multiple Gemini sessions = true parallelism
 - Each stream has fresh context
 - Work merges back when complete
 
 ```
 Main Worktree (orchestrator)
     |
-    +-- ../project-feature-auth (Claude session 1)
-    +-- ../project-feature-api (Claude session 2)
-    +-- ../project-testing (Claude session 3)
-    +-- ../project-docs (Claude session 4)
+    +-- ../project-feature-auth (Gemini session 1)
+    +-- ../project-feature-api (Gemini session 2)
+    +-- ../project-testing (Gemini session 3)
+    +-- ../project-docs (Gemini session 4)
 ```
 
 ---
@@ -103,7 +103,7 @@ orchestrator_workflow:
 
   2_spawn:
     - Create worktrees for independent features
-    - Launch Claude session per worktree
+    - Launch Gemini session per worktree
     - Start testing worktree (tracks main)
 
   3_coordinate:
@@ -126,22 +126,22 @@ orchestrator_workflow:
 
 ---
 
-## Claude Session Per Worktree
+## Gemini Session Per Worktree
 
-Each worktree runs an independent Claude session:
+Each worktree runs an independent Gemini session:
 
 ```bash
 # Feature development session
 cd ../project-feature-auth
-claude --dangerously-skip-permissions -p "Loki Mode: Implement user authentication. Read .loki/CONTINUITY.md for context."
+gemini --dangerously-skip-permissions -p "Loki Mode: Implement user authentication. Read .loki/CONTINUITY.md for context."
 
 # Testing session (continuous)
 cd ../project-testing
-claude --dangerously-skip-permissions -p "Loki Mode: Run all tests. Watch for changes. Report failures to .loki/state/test-results.json"
+gemini --dangerously-skip-permissions -p "Loki Mode: Run all tests. Watch for changes. Report failures to .loki/state/test-results.json"
 
 # Documentation session
 cd ../project-docs
-claude --dangerously-skip-permissions -p "Loki Mode: Update documentation for recent changes. Check git log for what changed."
+gemini --dangerously-skip-permissions -p "Loki Mode: Update documentation for recent changes. Check git log for what changed."
 ```
 
 ---
@@ -228,17 +228,17 @@ test_parallelization:
   unit_tests:
     worktree: "../project-testing"
     command: "npm test -- --parallel"
-    model: haiku  # Fast, cheap
+    model: gemini-1.5-flash  # Fast, cheap
 
   integration_tests:
     worktree: "../project-testing"
     command: "npm run test:integration"
-    model: sonnet  # More complex
+    model: gemini-3-flash-preview  # More complex
 
   e2e_tests:
     worktree: "../project-e2e"
     command: "npx playwright test"
-    model: sonnet  # Browser automation
+    model: gemini-3-flash-preview  # Browser automation
 
   # All can run simultaneously in different worktrees
 ```
@@ -294,13 +294,13 @@ blog_workflow:
       "path": "/path/to/project",
       "branch": "main",
       "status": "orchestrating",
-      "claude_pid": null
+      "gemini_pid": null
     },
     "feature-auth": {
       "path": "/path/to/project-feature-auth",
       "branch": "feature/auth",
       "status": "in_progress",
-      "claude_pid": 12345,
+      "gemini_pid": 12345,
       "started_at": "2026-01-19T10:00:00Z",
       "task": "Implement user authentication"
     },
@@ -308,7 +308,7 @@ blog_workflow:
       "path": "/path/to/project-testing",
       "branch": "main",
       "status": "watching",
-      "claude_pid": 12346,
+      "gemini_pid": 12346,
       "last_run": "2026-01-19T10:15:00Z"
     }
   },
@@ -358,10 +358,10 @@ for feature in "${features[@]}"; do
     (cd "$worktree_path" && npm install 2>/dev/null)
   fi
 
-  # Launch Claude session in background
+  # Launch Gemini session in background
   (
     cd "$worktree_path"
-    claude --dangerously-skip-permissions \
+    gemini --dangerously-skip-permissions \
       -p "Loki Mode: Implement ${feature}. Check .loki/CONTINUITY.md for context." \
       >> ".loki/logs/session-${feature}.log" 2>&1
   ) &
@@ -505,7 +505,7 @@ conflict_strategy:
 ```yaml
 resource_limits:
   max_worktrees: 5  # More = more disk space
-  max_claude_sessions: 3  # API rate limits
+  max_gemini_sessions: 3  # API rate limits
   max_parallel_agents: 10  # Per session
 ```
 
@@ -516,7 +516,7 @@ resource_limits:
 | Existing Pattern | Worktree Enhancement |
 |------------------|---------------------|
 | 3 parallel reviewers | Run in testing worktree |
-| Haiku parallelization | Within each worktree session |
+| gemini-1.5-flash parallelization | Within each worktree session |
 | Batch API | Batch across all worktrees |
 | Context management | Fresh context per worktree |
 | CONTINUITY.md | Per-worktree continuity |

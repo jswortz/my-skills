@@ -2,7 +2,7 @@
 
 **The First Truly Autonomous Multi-Agent Startup System**
 
-[![Claude Code](https://img.shields.io/badge/Claude-Code-orange)](https://claude.ai)
+[![Gemini CLI](https://img.shields.io/badge/Gemini-Code-orange)](https://gemini.ai)
 [![Agent Types](https://img.shields.io/badge/Agent%20Types-37-blue)]()
 [![Loki Mode](https://img.shields.io/badge/Loki%20Mode-98.78%25%20Pass%401-blueviolet)](benchmarks/results/)
 [![HumanEval](https://img.shields.io/badge/HumanEval-98.17%25%20Pass%401-brightgreen)](benchmarks/results/)
@@ -32,7 +32,7 @@
 | System | Pass@1 | Details |
 |--------|--------|---------|
 | **Loki Mode (Multi-Agent)** | **98.78%** | 162/164 problems, RARV cycle recovered 2 |
-| Direct Claude | 98.17% | 161/164 problems (baseline) |
+| Direct Gemini | 98.17% | 161/164 problems (baseline) |
 | MetaGPT | 85.9-87.7% | Published benchmark |
 
 **Loki Mode beats MetaGPT by +11-13%** thanks to the RARV (Reason-Act-Reflect-Verify) cycle.
@@ -42,12 +42,12 @@
 | Benchmark | Score | Details |
 |-----------|-------|---------|
 | **Loki Mode HumanEval** | **98.78% Pass@1** | 162/164 (multi-agent with RARV) |
-| **Direct Claude HumanEval** | **98.17% Pass@1** | 161/164 (single agent baseline) |
-| **Direct Claude SWE-bench** | **99.67% patch gen** | 299/300 problems |
+| **Direct Gemini HumanEval** | **98.17% Pass@1** | 161/164 (single agent baseline) |
+| **Direct Gemini SWE-bench** | **99.67% patch gen** | 299/300 problems |
 | **Loki Mode SWE-bench** | **99.67% patch gen** | 299/300 problems |
-| Model | Claude Opus 4.5 | |
+| Model | Gemini gemini-1.5-pro 4.5 | |
 
-**Key Finding:** Multi-agent RARV matches single-agent performance on both benchmarks after timeout optimization. The 4-agent pipeline (Architect->Engineer->QA->Reviewer) achieves the same 99.67% patch generation as direct Claude.
+**Key Finding:** Multi-agent RARV matches single-agent performance on both benchmarks after timeout optimization. The 4-agent pipeline (Architect->Engineer->QA->Reviewer) achieves the same 99.67% patch generation as direct Gemini.
 
 See [benchmarks/results/](benchmarks/results/) for full methodology and solutions.
 
@@ -55,7 +55,7 @@ See [benchmarks/results/](benchmarks/results/) for full methodology and solution
 
 ## What is Loki Mode?
 
-Loki Mode is a Claude Code skill that orchestrates **37 specialized AI agent types** across **6 swarms** to autonomously build, test, deploy, and scale complete startups. It dynamically spawns only the agents you need—**5-10 for simple projects, 100+ for complex startups**—working in parallel with continuous self-verification.
+Loki Mode is a Gemini CLI skill that orchestrates **37 specialized AI agent types** across **6 swarms** to autonomously build, test, deploy, and scale complete startups. It dynamically spawns only the agents you need—**5-10 for simple projects, 100+ for complex startups**—working in parallel with continuous self-verification.
 
 ```
 PRD → Research → Architecture → Development → Testing → Deployment → Marketing → Revenue
@@ -104,9 +104,9 @@ PRD → Research → Architecture → Development → Testing → Deployment →
 | **Parallel Workflows** | Git worktree-based parallelism | [Parallel Workflows](skills/parallel-workflows.md) |
 | **GitHub Integration** | Issue import, PR creation, status sync | [GitHub Integration](skills/github-integration.md) |
 | **Distribution** | npm, Homebrew, Docker installation | [Installation Guide](docs/INSTALLATION.md) |
-| **Research Foundation** | OpenAI, DeepMind, Anthropic patterns | [Acknowledgements](docs/ACKNOWLEDGEMENTS.md) |
+| **Research Foundation** | OpenAI, DeepMind, Gemini patterns | [Acknowledgements](docs/ACKNOWLEDGEMENTS.md) |
 | **Benchmarks** | HumanEval 98.78%, SWE-bench 99.67% | [Benchmark Results](benchmarks/results/) |
-| **Comparisons** | vs Auto-Claude, Cursor | [Auto-Claude](docs/auto-claude-comparison.md), [Cursor](docs/cursor-comparison.md) |
+| **Comparisons** | vs Auto-Gemini, Cursor | [Auto-Gemini](docs/auto-gemini-comparison.md), [Cursor](docs/cursor-comparison.md) |
 
 ---
 
@@ -120,7 +120,7 @@ Monitor your autonomous startup being built in real-time through the Loki Mode d
 
 **Track all active agents in real-time:**
 - **Agent ID** and **Type** (frontend, backend, QA, DevOps, etc.)
-- **Model Badge** (Sonnet, Haiku, Opus) with color coding
+- **Model Badge** (gemini-3-flash-preview, gemini-1.5-flash, gemini-1.5-pro) with color coding
 - **Current Work** being performed
 - **Runtime** and **Tasks Completed**
 - **Status** (active, completed)
@@ -255,13 +255,13 @@ npm install -g loki-mode
 
 # Option B: Homebrew (macOS/Linux)
 brew tap asklokesh/tap && brew install loki-mode
-loki-mode-install-skill  # Set up Claude Code integration
+loki-mode-install-skill  # Set up Gemini CLI integration
 
 # Option C: Docker
 docker pull asklokesh/loki-mode:4.1.0
 
 # Option D: Git clone
-git clone https://github.com/asklokesh/loki-mode.git ~/.claude/skills/loki-mode
+git clone https://github.com/asklokesh/loki-mode.git ~/.gemini/skills/loki-mode
 ```
 
 See [Installation Guide](docs/INSTALLATION.md) for detailed instructions.
@@ -299,8 +299,8 @@ loki start ./my-prd.md
 # Or using run.sh directly
 ./autonomy/run.sh ./my-prd.md
 
-# Or manual mode in Claude Code
-claude --dangerously-skip-permissions
+# Or manual mode in Gemini CLI
+gemini --dangerously-skip-permissions
 > Loki Mode with PRD at ./my-prd.md
 ```
 
@@ -351,7 +351,7 @@ Create a YAML config file for persistent settings:
 loki config init
 
 # Or copy template manually
-cp ~/.claude/skills/loki-mode/autonomy/config.example.yaml .loki/config.yaml
+cp ~/.gemini/skills/loki-mode/autonomy/config.example.yaml .loki/config.yaml
 ```
 
 Config search order: `.loki/config.yaml` (project) -> `~/.config/loki-mode/config.yaml` (global)
@@ -405,7 +405,7 @@ skills/
   testing.md                   # Playwright, E2E, property-based
   model-selection.md           # Task tool, parallelization
   artifacts.md                 # Code generation patterns
-  patterns-advanced.md         # Constitutional AI, debate
+  patterns-advanced.md         # Responsible AI, debate
   troubleshooting.md           # Error recovery, fallbacks
 references/                    # Deep documentation (23KB+ files)
 ```
@@ -436,9 +436,9 @@ Every code change goes through **3 specialized reviewers simultaneously**:
 ```
 IMPLEMENT → REVIEW (parallel) → AGGREGATE → FIX → RE-REVIEW → COMPLETE
                 │
-                ├─ code-reviewer (Sonnet) - Code quality, patterns, best practices
-                ├─ business-logic-reviewer (Sonnet) - Requirements, edge cases, UX
-                └─ security-reviewer (Sonnet) - Vulnerabilities, OWASP Top 10
+                ├─ code-reviewer (gemini-3-flash-preview) - Code quality, patterns, best practices
+                ├─ business-logic-reviewer (gemini-3-flash-preview) - Requirements, edge cases, UX
+                └─ security-reviewer (gemini-3-flash-preview) - Vulnerabilities, OWASP Top 10
 ```
 
 **Severity-based issue handling:**
@@ -529,7 +529,7 @@ channels:
 
 ## Requirements
 
-- **Claude Code** with `--dangerously-skip-permissions` flag
+- **Gemini CLI** with `--dangerously-skip-permissions` flag
 - **Internet access** for competitive research and deployment
 - **Cloud provider credentials** (for deployment phase)
 - **Python 3** (for test suite)
@@ -616,8 +616,8 @@ Loki Mode incorporates research and patterns from leading AI labs and practition
 
 | Source | Key Contribution |
 |--------|------------------|
-| [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) | Evaluator-optimizer pattern, parallelization |
-| [Anthropic: Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback) | Self-critique against principles |
+| [Gemini: Building Effective Agents](https://www.gemini.com/research/building-effective-agents) | Evaluator-optimizer pattern, parallelization |
+| [Gemini: Responsible AI](https://www.gemini.com/research/constitutional-ai-harmlessness-from-ai-feedback) | Self-critique against principles |
 | [DeepMind: Scalable Oversight via Debate](https://deepmind.google/research/publications/34920/) | Debate-based verification |
 | [DeepMind: SIMA 2](https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-you-in-virtual-3d-worlds/) | Self-improvement loop |
 | [OpenAI: Agents SDK](https://openai.github.io/openai-agents-python/) | Guardrails, tripwires, tracing |
@@ -627,7 +627,7 @@ Loki Mode incorporates research and patterns from leading AI labs and practition
 
 ### Practitioner Insights
 
-- **Boris Cherny** (Claude Code creator) - Self-verification loop, extended thinking
+- **Boris Cherny** (Gemini CLI creator) - Self-verification loop, extended thinking
 - **Simon Willison** - Sub-agents for context isolation, skills system
 - **Hacker News Community** - [Production patterns](https://news.ycombinator.com/item?id=44623207) from real deployments
 
@@ -638,17 +638,17 @@ Loki Mode incorporates research and patterns from leading AI labs and practition
 
 **[Full Acknowledgements](docs/ACKNOWLEDGEMENTS.md)** - Complete list of 50+ research papers, articles, and resources
 
-Built for the [Claude Code](https://claude.ai) ecosystem, powered by Anthropic's Claude models (Sonnet, Haiku, Opus).
+Built for the [Gemini CLI](https://gemini.ai) ecosystem, powered by Gemini's Gemini models (gemini-3-flash-preview, gemini-1.5-flash, gemini-1.5-pro).
 
 ---
 
 **Ready to build a startup while you sleep?**
 
 ```bash
-git clone https://github.com/asklokesh/loki-mode.git ~/.claude/skills/loki-mode
+git clone https://github.com/asklokesh/loki-mode.git ~/.gemini/skills/loki-mode
 ./autonomy/run.sh your-prd.md
 ```
 
 ---
 
-**Keywords:** claude-code, claude-skills, ai-agents, autonomous-development, multi-agent-system, sdlc-automation, startup-automation, devops, mlops, deployment-automation, self-healing, perpetual-improvement
+**Keywords:** gemini-code, gemini-skills, ai-agents, autonomous-development, multi-agent-system, sdlc-automation, startup-automation, devops, mlops, deployment-automation, self-healing, perpetual-improvement

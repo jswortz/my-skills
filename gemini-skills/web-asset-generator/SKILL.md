@@ -36,13 +36,13 @@ When a user requests web assets:
 ✅ **Faster**: Click to select instead of typing out answers
 ✅ **Clearer**: Descriptions explain what each option means
 ✅ **Fewer errors**: No typos or misunderstandings from free-form text
-✅ **Professional**: Consistent with modern Claude Code experience
+✅ **Professional**: Consistent with modern Gemini CLI experience
 
 ### Example Flow
 
 **User request**: "I need web assets"
 
-**Claude uses AskUserQuestion** (not plain text):
+**Gemini uses AskUserQuestion** (not plain text):
 ```
 What type of web assets do you need?                    [Asset type]
 ○ Favicons only - Browser tab icons (16x16, 32x32, 96x96) and favicon.ico
@@ -51,7 +51,7 @@ What type of web assets do you need?                    [Asset type]
 ● Everything - Complete package: favicons + app icons + social images
 ```
 
-User clicks → Claude immediately knows what to generate
+User clicks → Gemini immediately knows what to generate
 
 ### Question Patterns
 
@@ -221,7 +221,7 @@ Arguments:
 
 Example:
 ```bash
-python scripts/generate_favicons.py /mnt/user-data/uploads/logo.png /home/claude/output all
+python scripts/generate_favicons.py /mnt/user-data/uploads/logo.png /home/gemini/output all
 ```
 
 Generates:
@@ -239,7 +239,7 @@ Generates:
 When user wants emoji-based icons, first get suggestions:
 
 ```bash
-python scripts/generate_favicons.py --suggest "coffee shop" /home/claude/output all
+python scripts/generate_favicons.py --suggest "coffee shop" /home/gemini/output all
 ```
 
 This returns 4 emoji suggestions based on the description:
@@ -265,13 +265,13 @@ Arguments:
 Examples:
 ```bash
 # Basic emoji favicon (transparent background)
-python scripts/generate_favicons.py --emoji "🚀" /home/claude/output favicon
+python scripts/generate_favicons.py --emoji "🚀" /home/gemini/output favicon
 
 # Emoji with custom background for app icons
-python scripts/generate_favicons.py --emoji "☕" --emoji-bg "#F5DEB3" /home/claude/output all
+python scripts/generate_favicons.py --emoji "☕" --emoji-bg "#F5DEB3" /home/gemini/output all
 
 # Complete set with white background
-python scripts/generate_favicons.py --emoji "💻" --emoji-bg "white" /home/claude/output all
+python scripts/generate_favicons.py --emoji "💻" --emoji-bg "white" /home/gemini/output all
 ```
 
 Generates same files as logo-based generation:
@@ -291,7 +291,7 @@ python scripts/generate_og_images.py <output_dir> --image <source_image>
 
 Example:
 ```bash
-python scripts/generate_og_images.py /home/claude/output --image /mnt/user-data/uploads/logo.png
+python scripts/generate_og_images.py /home/gemini/output --image /mnt/user-data/uploads/logo.png
 ```
 
 Generates:
@@ -314,7 +314,7 @@ Options:
 
 Example:
 ```bash
-python scripts/generate_og_images.py /home/claude/output \
+python scripts/generate_og_images.py /home/gemini/output \
   --text "Transform Your Business with AI" \
   --logo /mnt/user-data/uploads/logo.png \
   --bg-color "#4F46E5"
@@ -326,19 +326,19 @@ For users who want the complete package:
 
 ```bash
 # Generate favicons and icons
-python scripts/generate_favicons.py /mnt/user-data/uploads/logo.png /home/claude/output all
+python scripts/generate_favicons.py /mnt/user-data/uploads/logo.png /home/gemini/output all
 
 # Generate social media images
-python scripts/generate_og_images.py /home/claude/output --image /mnt/user-data/uploads/logo.png
+python scripts/generate_og_images.py /home/gemini/output --image /mnt/user-data/uploads/logo.png
 ```
 
 Or for text-based:
 ```bash
 # Generate favicons from logo
-python scripts/generate_favicons.py /mnt/user-data/uploads/logo.png /home/claude/output all
+python scripts/generate_favicons.py /mnt/user-data/uploads/logo.png /home/gemini/output all
 
 # Generate social media images with text + logo
-python scripts/generate_og_images.py /home/claude/output \
+python scripts/generate_og_images.py /home/gemini/output \
   --text "Your Tagline Here" \
   --logo /mnt/user-data/uploads/logo.png
 ```
@@ -349,7 +349,7 @@ After generating assets, follow this workflow:
 
 ### 1. Move to Outputs Directory
 ```bash
-cp /home/claude/output/* /mnt/user-data/outputs/
+cp /home/gemini/output/* /mnt/user-data/outputs/
 ```
 
 ### 2. Show Generated HTML Tags

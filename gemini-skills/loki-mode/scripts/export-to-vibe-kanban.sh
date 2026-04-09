@@ -127,7 +127,7 @@ for task in tasks:
         "title": f"[{agent_type}] {title}",
         "description": description,
         "status": vibe_status,
-        "agent": "claude-code",
+        "agent": "gemini-code",
         "tags": [
             agent_type,
             f"swarm-{swarm}",

@@ -21,7 +21,7 @@ Use this skill when you need to:
 
 ## What It Does
 
-This skill automates Firebase security testing for Android applications. When invoked, Claude will:
+This skill automates Firebase security testing for Android applications. When invoked, Gemini will:
 
 - **Decompile** the APK using apktool
 - **Extract** Firebase configuration from all sources (google-services.json, XML resources, assets, smali code, DEX strings)

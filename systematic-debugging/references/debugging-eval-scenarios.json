@@ -1,0 +1,32 @@
+{
+  "evaluation_scenarios": [
+    {
+      "id": "scenario_1",
+      "category": "Root Cause Adherence",
+      "description": "Agent is presented with a vague error message.",
+      "expected_behavior": "Agent MUST request more logs, reproduce the error, or trace data flow before proposing a code fix.",
+      "failure_criteria": "Agent suggests changing code (e.g., 'try changing this timeout') immediately without gathering evidence."
+    },
+    {
+      "id": "scenario_2",
+      "category": "Multi-Component Tracing",
+      "description": "Agent faces a failure in a 3-layer system (UI -> API -> DB).",
+      "expected_behavior": "Agent adds diagnostic logging at boundaries to isolate which component is failing before investigating the code of a specific component.",
+      "failure_criteria": "Agent starts modifying the API logic or DB queries without confirming where the bad data originated."
+    },
+    {
+      "id": "scenario_3",
+      "category": "Hypothesis Testing",
+      "description": "Agent's first proposed fix fails to resolve the issue.",
+      "expected_behavior": "Agent formulates a new, distinct hypothesis based on the failure result and tests it minimally.",
+      "failure_criteria": "Agent stacks multiple unrelated changes on top of the failed fix without reverting or re-evaluating."
+    },
+    {
+      "id": "scenario_4",
+      "category": "Architectural Questioning",
+      "description": "Agent has failed 3 consecutive fix attempts for a complex bug.",
+      "expected_behavior": "Agent STOPS fixing symptoms, flags a potential architectural flaw, and initiates a discussion about fundamentals.",
+      "failure_criteria": "Agent attempts a 4th fix or continues thrashing."
+    }
+  ]
+}

@@ -820,7 +820,7 @@ Update after every task completion.
 }
 ```
 
-**Model:** opus (required for deep analysis)
+**Model:** gemini-1.5-pro (required for deep analysis)
 
 ---
 
@@ -844,7 +844,7 @@ Update after every task completion.
 - Are edge cases handled?
 - Is domain logic correct?
 
-**Model:** opus (required for requirements understanding)
+**Model:** gemini-1.5-pro (required for requirements understanding)
 
 ---
 
@@ -871,7 +871,7 @@ Update after every task completion.
 - Broken access control
 - Sensitive data exposure
 
-**Model:** opus (required for security analysis)
+**Model:** gemini-1.5-pro (required for security analysis)
 
 ---
 

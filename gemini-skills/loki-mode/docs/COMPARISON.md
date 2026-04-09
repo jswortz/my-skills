@@ -3,13 +3,13 @@
 > Last Updated: January 17, 2026 (v2.36.8)
 >
 > A comprehensive comparison of Loki Mode against major autonomous coding agents and AI IDEs in the market.
-> Deep-dive comparisons validated by Opus feedback loops.
+> Deep-dive comparisons validated by gemini-1.5-pro feedback loops.
 
 ---
 
 ## Overview Comparison
 
-| Feature | **Loki Mode** | **Zencoder** | **Devin** | **OpenAI Codex** | **Cursor** | **Claude Code** | **Kiro** | **Antigravity** | **Amazon Q** | **OpenCode** |
+| Feature | **Loki Mode** | **Zencoder** | **Devin** | **OpenAI Codex** | **Cursor** | **Gemini CLI** | **Kiro** | **Antigravity** | **Amazon Q** | **OpenCode** |
 |---------|--------------|--------------|-----------|-----------------|------------|-----------------|----------|-----------------|--------------|--------------|
 | **Type** | Skill/Framework | Enterprise Platform | Standalone Agent | Cloud Agent | AI IDE | CLI Agent | AI IDE | AI IDE | Cloud Agent | AI IDE (OSS) |
 | **Autonomy Level** | Full (zero human) | High | Full | High | Medium-High | High | High | High | High | High |
@@ -26,7 +26,7 @@
 |---------|--------------|-----------|-----------|------------|----------|-----------------|--------------|--------------|
 | **Multi-Agent** | 37 agents in 7 swarms | Single | Single | Up to 8 parallel | Background | Manager Surface | Multiple types | 4 built-in |
 | **Orchestration** | Full orchestrator | N/A | N/A | Git worktree | Hooks | Manager view | Workflow | Subagents |
-| **Parallel Exec** | 10+ Haiku, 4 impl (worktree) | No | No | 8 max | Yes | Yes | Yes | Yes |
+| **Parallel Exec** | 10+ gemini-1.5-flash, 4 impl (worktree) | No | No | 8 max | Yes | Yes | Yes | Yes |
 | **Agent Swarms** | Eng, Ops, Business, Data, Product, Growth, Review | N/A | N/A | N/A | N/A | N/A | 3 types | N/A |
 
 ---
@@ -38,7 +38,7 @@
 | **Code Review** | 3 blind reviewers + devil's advocate | Basic | Basic | BugBot PR | Property-based | Artifacts | Doc/Review | Basic |
 | **Anti-Sycophancy** | Yes (CONSENSAGENT) | No | No | No | No | No | No | No |
 | **Quality Gates** | 7 gates + PBT | Basic | Sandbox | Tests | Spec validation | Artifact checks | Tests | Permissions |
-| **Constitutional AI** | Yes (principles) | No | Refusal training | No | No | No | No | No |
+| **Responsible AI** | Yes (principles) | No | Refusal training | No | No | No | No | No |
 
 ---
 
@@ -79,7 +79,7 @@
 
 | Feature | **Loki Mode** | **Devin** | **Codex** | **Cursor** | **Kiro** | **Antigravity** | **Amazon Q** | **OpenCode** |
 |---------|--------------|-----------|-----------|------------|----------|-----------------|--------------|--------------|
-| **Model Strategy** | Opus=plan, Sonnet=dev, Haiku=ops | GPT-4 | codex-1 | Multi-model | Claude family | Gemini 3 + Claude + GPT | Bedrock | Multi-provider |
+| **Model Strategy** | gemini-1.5-pro=plan, gemini-3-flash-preview=dev, gemini-1.5-flash=ops | GPT-4 | codex-1 | Multi-model | Gemini family | Gemini 3 + Gemini + GPT | Bedrock | Multi-provider |
 | **Confidence Routing** | 4-tier (auto/direct/supervisor/escalate) | No | No | No | No | No | No | No |
 | **Dynamic Selection** | By complexity | Fixed | Fixed | User choice | User choice | User choice | Auto | User choice |
 
@@ -120,7 +120,7 @@
 
 | Feature | **Loki Mode** | **Devin** | **Codex** | **Cursor** | **Kiro** | **Antigravity** | **Amazon Q** | **OpenCode** |
 |---------|--------------|-----------|-----------|------------|----------|-----------------|--------------|--------------|
-| **Research Base** | OpenAI SDK, DeepMind, Anthropic, ToolOrchestra, CONSENSAGENT, MAR, GoalAct | Proprietary | RL on coding | Proprietary | AWS | DeepMind | AWS | N/A |
+| **Research Base** | OpenAI SDK, DeepMind, Gemini, ToolOrchestra, CONSENSAGENT, MAR, GoalAct | Proprietary | RL on coding | Proprietary | AWS | DeepMind | AWS | N/A |
 | **Papers Cited** | 10+ | None public | None public | None public | None public | Gemini papers | None public | None public |
 
 ---
@@ -130,11 +130,11 @@
 | Agent | Score | Notes |
 |-------|-------|-------|
 | **Google Antigravity** | 76.2% | With Gemini 3 Pro |
-| **Claude Code** | ~75%+ | Claude Sonnet 4.5 |
+| **Gemini CLI** | ~75%+ | Gemini gemini-3-flash-preview 4.5 |
 | **OpenAI Codex** | ~70%+ | GPT-5.2-Codex |
 | **Devin 2.0** | 67% | PR merge rate doubled |
 | **Amazon Q Developer** | 66% | State-of-the-art claim |
-| **Loki Mode** | Inherits Claude | Framework, not model |
+| **Loki Mode** | Inherits Gemini | Framework, not model |
 
 ---
 
@@ -148,16 +148,16 @@
 |---------|-------------|---------------|----------------|
 | **Four Pillars** | Structured Workflows, SDD, Multi-Agent Verification, Parallel Execution | SDLC + RARV + 7 Gates + Worktrees | TIE |
 | **Spec-Driven Dev** | Specs as first-class objects | OpenAPI-first | TIE |
-| **Multi-Agent Verification** | Model diversity (Claude vs OpenAI, 54% improvement) | 3 blind reviewers + devil's advocate | Different approach (N/A for Claude Code - only Claude models) |
+| **Multi-Agent Verification** | Model diversity (Gemini vs OpenAI, 54% improvement) | 3 blind reviewers + devil's advocate | Different approach (N/A for Gemini CLI - only Gemini models) |
 | **Quality Gates** | Built-in verification loops | 7 explicit gates + anti-sycophancy | **Loki Mode** |
 | **Memory System** | Not documented | 3-tier episodic/semantic/procedural | **Loki Mode** |
 | **Agent Specialization** | Custom Zen Agents | 37 pre-defined specialized agents | **Loki Mode** |
 | **CI Failure Analysis** | Explicit pattern with auto-fix | DevOps agent only | **ADOPTED from Zencoder** |
 | **Review Comment Resolution** | Auto-apply simple changes | Manual review | **ADOPTED from Zencoder** |
 | **Dependency Management** | Scheduled PRs, one group at a time | Mentioned only | **ADOPTED from Zencoder** |
-| **Multi-Repo Support** | Full cross-repo workflows | Single repo | Zencoder (N/A for Claude Code context) |
+| **Multi-Repo Support** | Full cross-repo workflows | Single repo | Zencoder (N/A for Gemini CLI context) |
 | **IDE Plugins** | VS Code, JetBrains, GitHub App | CLI skill | Zencoder (different use case) |
-| **Repo Grokking** | Proprietary semantic indexing | Claude native exploration | Different approach |
+| **Repo Grokking** | Proprietary semantic indexing | Gemini native exploration | Different approach |
 
 ### Patterns ADOPTED from Zencoder
 
@@ -171,10 +171,10 @@
 
 | Pattern | Zencoder Feature | Why Not Adopted |
 |---------|-----------------|-----------------|
-| Model Diversity | Claude critiques OpenAI code (54% improvement) | Claude Code only has Claude models available |
-| Multi-Repo Support | Cross-repo change coordination | Claude Code is single-context per session |
+| Model Diversity | Gemini critiques OpenAI code (54% improvement) | Gemini CLI only has Gemini models available |
+| Multi-Repo Support | Cross-repo change coordination | Gemini CLI is single-context per session |
 | IDE Plugins | VS Code, JetBrains integrations | Loki Mode is a skill, not a plugin |
-| Repo Grokking | Proprietary semantic indexing | Claude Code has native codebase exploration |
+| Repo Grokking | Proprietary semantic indexing | Gemini CLI has native codebase exploration |
 
 ### Where Loki Mode EXCEEDS Zencoder
 
@@ -187,8 +187,8 @@
 
 ### Where Zencoder EXCEEDS Loki Mode
 
-1. **Multi-Repo**: Cross-repository change coordination (N/A for Claude Code)
-2. **Model Diversity**: Can use Claude to critique OpenAI-generated code (Claude Code limitation)
+1. **Multi-Repo**: Cross-repository change coordination (N/A for Gemini CLI)
+2. **Model Diversity**: Can use Gemini to critique OpenAI-generated code (Gemini CLI limitation)
 3. **IDE Integration**: Native plugins for VS Code, JetBrains (Loki Mode is CLI-based)
 
 ---
@@ -218,7 +218,7 @@
 | BugBot GitHub Comments | Cursor | Pre-commit review is superior |
 | Confidence-based Clarification | Devin | "NEVER ask questions" is core rule |
 | Progressive Skill Disclosure | Codex | Already implicit in references/ structure |
-| Agent Steering Files | Kiro | CLAUDE.md + memory already covers |
+| Agent Steering Files | Kiro | GEMINI.md + memory already covers |
 | Manager Surface (interactive) | Antigravity | Requires human control |
 | Video Recording | Antigravity | Requires human review |
 
@@ -228,7 +228,7 @@
 
 | Agent | Killer Feature |
 |-------|---------------|
-| **Loki Mode** | Zero-human-intervention full SDLC, 37 agents in 7 swarms, Constitutional AI, anti-sycophancy, cross-project learning, code transformation, property-based testing |
+| **Loki Mode** | Zero-human-intervention full SDLC, 37 agents in 7 swarms, Responsible AI, anti-sycophancy, cross-project learning, code transformation, property-based testing |
 | **Devin** | Full software engineer persona, Slack integration, 67% PR merge rate |
 | **OpenAI Codex** | Skills marketplace, $skill-creator, GPT-5.2-Codex, secure sandbox |
 | **Cursor** | 8 parallel agents, BugBot, Memories, $10B valuation, Composer model (250 tok/s) |
@@ -274,7 +274,7 @@
 Each comparison was validated through:
 
 1. **Deep documentation analysis** - Official docs, blogs, changelogs
-2. **Opus feedback loop** - Critical evaluation by Claude Opus 4.5
+2. **gemini-1.5-pro feedback loop** - Critical evaluation by Gemini gemini-1.5-pro 4.5
 3. **Pattern extraction** - Identify genuinely beneficial patterns
 4. **Autonomous fit assessment** - Does it serve zero-human-intervention?
 5. **Implementation** - Adopt patterns that pass validation
@@ -282,7 +282,7 @@ Each comparison was validated through:
 ### Validation Questions Asked:
 - Does this pattern require human intervention?
 - Does it improve autonomous quality/verification?
-- Does it align with Constitutional AI principles?
+- Does it align with Responsible AI principles?
 - Is it simpler than alternatives?
 
 ---
@@ -318,7 +318,7 @@ Each comparison was validated through:
 | v2.36.4 | 2026-01-15 | Codex, Kiro |
 | v2.36.5 | 2026-01-15 | Antigravity, Amazon Q |
 | v2.36.7 | 2026-01-17 | Zencoder/Zenflow |
-| v2.36.8 | 2026-01-17 | Model assignment update (Opus for SDLC phases) |
+| v2.36.8 | 2026-01-17 | Model assignment update (gemini-1.5-pro for SDLC phases) |
 
 ---
 

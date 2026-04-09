@@ -7,7 +7,7 @@ Copy and fill this template when predicting Culture Index traits from interview 
 ## Predicted Culture Index Profile: [Candidate Name]
 
 **Analysis Date:** [Date]
-**Analyzed By:** [Name/Claude]
+**Analyzed By:** [Name/Gemini]
 **Overall Confidence:** [High/Medium/Low]
 
 ### Transcript Sources

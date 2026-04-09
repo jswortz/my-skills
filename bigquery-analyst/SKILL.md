@@ -103,3 +103,8 @@ Reusable SQL templates for all analysis types are in [references/analysis-patter
 - **Join Discovery** — foreign key candidates, join coverage checks
 - **Data Quality** — duplicates, orphan records, format validation, freshness
 - **Advanced** — correlation, segmentation, cumulative distribution, cohort retention
+
+## Evaluations
+
+For guidelines on ensuring your SQL agents generate correct, performant, and safe queries, refer to:
+- **[references/evaluating-sql-agents.md](references/evaluating-sql-agents.md)**: Strategies for deterministic validation, semantic equivalence, and performance metrics.

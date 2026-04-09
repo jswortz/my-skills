@@ -145,30 +145,30 @@ judge_agent:
     - COMPLETE: "Goal achieved, finalize"
     - ESCALATE: "Human intervention required"
     - PIVOT: "Change approach, current path blocked"
-  model: haiku  # Fast decision, low cost
+  model: gemini-1.5-flash  # Fast decision, low cost
 ```
 
 ---
 
 ## Agent Execution Model
 
-**Claude Code does NOT support background processes.** Agents execute via:
+**Gemini CLI does NOT support background processes.** Agents execute via:
 
 1. **Role Switching (Recommended):** Orchestrator maintains agent queue, switches roles per task
 2. **Sequential:** Execute agents one at a time (simple, reliable)
-3. **Parallel via tmux:** Multiple Claude Code sessions (complex, faster)
+3. **Parallel via tmux:** Multiple Gemini CLI sessions (complex, faster)
 
 ```bash
 # Option 1: Sequential (simple, reliable)
 for agent in frontend backend database; do
-  claude -p "Act as $agent agent..." --dangerously-skip-permissions
+  gemini -p "Act as $agent agent..." --dangerously-skip-permissions
 done
 
 # Option 2: Parallel via tmux (complex, faster)
 tmux new-session -d -s loki-pool
 for i in {1..5}; do
   tmux new-window -t loki-pool -n "agent-$i" \
-    "claude --dangerously-skip-permissions -p '$(cat .loki/prompts/agent-$i.md)'"
+    "gemini --dangerously-skip-permissions -p '$(cat .loki/prompts/agent-$i.md)'"
 done
 
 # Option 3: Role switching (recommended)
@@ -181,13 +181,13 @@ done
 
 | Task Type | Model | Reason |
 |-----------|-------|--------|
-| Planning/Architecture | Opus | Deep reasoning for design decisions |
-| Implementation | Sonnet | Development workload |
-| Code Review | Sonnet | Balanced quality/cost |
-| Security Review | Sonnet | Balanced quality/cost |
-| Business Logic Review | Sonnet | Balanced quality/cost |
-| Documentation | Sonnet | Straightforward writing |
-| Unit tests/Quick fixes | Haiku | Fast iteration |
+| Planning/Architecture | gemini-1.5-pro | Deep reasoning for design decisions |
+| Implementation | gemini-3-flash-preview | Development workload |
+| Code Review | gemini-3-flash-preview | Balanced quality/cost |
+| Security Review | gemini-3-flash-preview | Balanced quality/cost |
+| Business Logic Review | gemini-3-flash-preview | Balanced quality/cost |
+| Documentation | gemini-3-flash-preview | Straightforward writing |
+| Unit tests/Quick fixes | gemini-1.5-flash | Fast iteration |
 
 ---
 

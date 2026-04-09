@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check that all skills are properly listed in INDEX files
 
-SKILLS_DIR="${1:-$HOME/Documents/GitHub/dotfiles/.claude/skills}"
+SKILLS_DIR="${1:-$HOME/Documents/GitHub/dotfiles/.gemini/skills}"
 
 echo "## INDEX Coverage"
 # For each category with an INDEX

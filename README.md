@@ -1,6 +1,6 @@
 # My Custom Skills
 
-Custom skills, workflows, and rules for Claude Code and Gemini CLI (Antigravity).
+Custom skills, workflows, and rules for Gemini CLI and Gemini CLI (Antigravity).
 
 ## Skills
 
@@ -22,7 +22,7 @@ Custom skills, workflows, and rules for Claude Code and Gemini CLI (Antigravity)
 | [generate-diagram](generate-diagram/) | Generate publication-quality methodology diagrams from text |
 | [generate-plot](generate-plot/) | Generate publication-quality statistical plots from JSON data |
 | [evaluate-diagram](evaluate-diagram/) | Evaluate generated diagrams against human references |
-| [claude-d3js-skill](claude-d3js-skill/) | Create interactive data visualizations using d3.js |
+| [gemini-d3js-skill](gemini-d3js-skill/) | Create interactive data visualizations using d3.js |
 
 ### Browser Automation & Testing
 
@@ -101,8 +101,8 @@ Custom skills, workflows, and rules for Claude Code and Gemini CLI (Antigravity)
 | Skill | Description |
 |-------|-------------|
 | [ask-questions-if-underspecified](ask-questions-if-underspecified/) | Ask clarifying questions for underspecified tasks |
-| [claude-in-chrome-troubleshooting](claude-in-chrome-troubleshooting/) | Troubleshoot Claude in Chrome |
-| [claude-md-improver](claude-md-improver/) | Audit and improve CLAUDE.md files |
+| [gemini-in-chrome-troubleshooting](gemini-in-chrome-troubleshooting/) | Troubleshoot Gemini in Chrome |
+| [gemini-md-improver](gemini-md-improver/) | Audit and improve GEMINI.md files |
 | [culture-index](culture-index/) | Culture index interpretation |
 | [dwarf-expert](dwarf-expert/) | DWARF debug format expertise |
 | [folder-sync](folder-sync/) | Keep two directories synchronized |
@@ -149,12 +149,12 @@ Gemini CLI rules in [`rules/GEMINI.md`](rules/GEMINI.md).
 
 ## Installation
 
-### Claude Code Skills
+### Gemini CLI Skills
 
-Copy individual skill directories into `~/.claude/skills/`:
+Copy individual skill directories into `~/.gemini/skills/`:
 
 ```bash
-cp -r <skill-name> ~/.claude/skills/
+cp -r <skill-name> ~/.gemini/skills/
 ```
 
 ### Gemini CLI Workflows

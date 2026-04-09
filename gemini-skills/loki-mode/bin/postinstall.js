@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Loki Mode postinstall script
- * Sets up the Claude Code skill symlink
+ * Sets up the Gemini CLI skill symlink
  */
 
 const fs = require('fs');
@@ -9,7 +9,7 @@ const path = require('path');
 const os = require('os');
 
 const homeDir = os.homedir();
-const skillDir = path.join(homeDir, '.claude', 'skills', 'loki-mode');
+const skillDir = path.join(homeDir, '.gemini', 'skills', 'loki-mode');
 const packageDir = path.join(__dirname, '..');
 
 console.log('');
@@ -54,7 +54,7 @@ console.log('  loki start [PRD]    - Start Loki Mode');
 console.log('  loki status         - Check status');
 console.log('  loki --help         - Show all commands');
 console.log('');
-console.log('Or in Claude Code:');
-console.log('  claude --dangerously-skip-permissions');
+console.log('Or in Gemini CLI:');
+console.log('  gemini --dangerously-skip-permissions');
 console.log('  Then say: "Loki Mode"');
 console.log('');

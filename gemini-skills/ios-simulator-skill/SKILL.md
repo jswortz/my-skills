@@ -204,7 +204,7 @@ All scripts support `--help` for detailed options and `--json` for machine-reada
 
 - **SKILL.md** (this file) - Script reference and quick start
 - **README.md** - Installation and examples
-- **CLAUDE.md** - Architecture and implementation details
+- **GEMINI.md** - Architecture and implementation details
 - **references/** - Deep documentation on specific topics
 - **examples/** - Complete automation workflows
 
@@ -224,4 +224,4 @@ All scripts support `--help` for detailed options and `--json` for machine-reada
 
 ---
 
-Use these scripts directly or let Claude Code invoke them automatically when your request matches the skill description.
+Use these scripts directly or let Gemini CLI invoke them automatically when your request matches the skill description.

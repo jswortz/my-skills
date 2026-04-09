@@ -1,9 +1,6 @@
 ---
-name: Gardening Skills Wiki
-description: Maintain skills wiki health - check links, naming, cross-references, and coverage
-when_to_use: when adding, removing, or reorganizing skills, or periodically to maintain wiki health and validate links
-version: 1.1.0
-languages: bash
+name: gardening-skills-wiki
+description: Maintains skills wiki health by checking links, naming, cross-references, and coverage. Use when adding, removing, or reorganizing skills to maintain wiki health.
 ---
 
 # Gardening Skills Wiki
@@ -31,15 +28,15 @@ The skills wiki needs regular maintenance to stay healthy: links break, skills g
 
 ```bash
 # Run all checks
-~/.claude/skills/meta/gardening-skills-wiki/garden.sh
+~/.gemini/skills/meta/gardening-skills-wiki/garden.sh
 
 # Or run specific checks
-~/.claude/skills/meta/gardening-skills-wiki/check-links.sh
-~/.claude/skills/meta/gardening-skills-wiki/check-naming.sh
-~/.claude/skills/meta/gardening-skills-wiki/check-index-coverage.sh
+~/.gemini/skills/meta/gardening-skills-wiki/check-links.sh
+~/.gemini/skills/meta/gardening-skills-wiki/check-naming.sh
+~/.gemini/skills/meta/gardening-skills-wiki/check-index-coverage.sh
 
 # Analyze search gaps (what skills are missing)
-~/.claude/skills/meta/gardening-skills-wiki/analyze-search-gaps.sh
+~/.gemini/skills/meta/gardening-skills-wiki/analyze-search-gaps.sh
 ```
 
 The master script runs all checks and provides a health report.
@@ -156,7 +153,7 @@ skills/testing/condition-based-waiting
 **Fix:** Rename directory:
 
 ```bash
-cd ~/.claude/skills/testing
+cd ~/.gemini/skills/testing
 mv TestingPatterns testing-patterns
 # Update all references to old name
 ```
@@ -184,7 +181,7 @@ mv TestingPatterns testing-patterns
 **Fix:** Remove if no longer needed:
 
 ```bash
-rm -rf ~/.claude/skills/event-based-testing
+rm -rf ~/.gemini/skills/event-based-testing
 ```
 
 ## Naming Conventions
@@ -215,14 +212,14 @@ rm -rf ~/.claude/skills/event-based-testing
 
 ```bash
 # 1. Create skill
-mkdir -p ~/.claude/skills/category/new-skill
-vim ~/.claude/skills/category/new-skill/SKILL.md
+mkdir -p ~/.gemini/skills/category/new-skill
+vim ~/.gemini/skills/category/new-skill/SKILL.md
 
 # 2. Add to category INDEX
-vim ~/.claude/skills/category/INDEX.md
+vim ~/.gemini/skills/category/INDEX.md
 
 # 3. Run health check
-~/.claude/skills/meta/gardening-skills-wiki/garden.sh
+~/.gemini/skills/meta/gardening-skills-wiki/garden.sh
 
 # 4. Fix any issues reported
 ```
@@ -231,13 +228,13 @@ vim ~/.claude/skills/category/INDEX.md
 
 ```bash
 # 1. Move/rename skills
-mv ~/.claude/skills/old-category/skill ~/.claude/skills/new-category/
+mv ~/.gemini/skills/old-category/skill ~/.gemini/skills/new-category/
 
 # 2. Update all references (grep for old paths)
-grep -r "skills/gardening-skills-wiki/old-category/skill" ~/.claude/skills/
+grep -r "skills/gardening-skills-wiki/old-category/skill" ~/.gemini/skills/
 
 # 3. Run health check
-~/.claude/skills/meta/gardening-skills-wiki/garden.sh
+~/.gemini/skills/meta/gardening-skills-wiki/garden.sh
 
 # 4. Fix broken links
 ```
@@ -246,7 +243,7 @@ grep -r "skills/gardening-skills-wiki/old-category/skill" ~/.claude/skills/
 
 ```bash
 # Monthly: Run full health check
-~/.claude/skills/meta/gardening-skills-wiki/garden.sh
+~/.gemini/skills/meta/gardening-skills-wiki/garden.sh
 
 # Review and fix:
 # - ❌ errors (broken links, missing skills)
@@ -261,7 +258,7 @@ Runs all health checks and provides comprehensive report.
 
 **Usage:**
 ```bash
-~/.claude/skills/meta/gardening-skills-wiki/garden.sh [skills_dir]
+~/.gemini/skills/meta/gardening-skills-wiki/garden.sh [skills_dir]
 ```
 
 ### `check-links.sh`
@@ -318,7 +315,7 @@ Validates INDEX completeness.
 **Before committing skill changes:**
 
 ```bash
-~/.claude/skills/meta/gardening-skills-wiki/garden.sh
+~/.gemini/skills/meta/gardening-skills-wiki/garden.sh
 # Fix all ❌ errors
 # Consider fixing ⚠️  warnings
 git add .
@@ -328,13 +325,13 @@ git commit -m "Add/update skills"
 **When links feel suspicious:**
 
 ```bash
-~/.claude/skills/meta/gardening-skills-wiki/check-links.sh
+~/.gemini/skills/meta/gardening-skills-wiki/check-links.sh
 ```
 
 **When INDEX seems incomplete:**
 
 ```bash
-~/.claude/skills/meta/gardening-skills-wiki/check-index-coverage.sh
+~/.gemini/skills/meta/gardening-skills-wiki/check-index-coverage.sh
 ```
 
 ## Common Rationalizations

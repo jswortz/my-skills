@@ -4,9 +4,9 @@
 
 This document analyzes key competitors and research sources for autonomous coding systems, identifying patterns we've incorporated into Loki Mode.
 
-## Auto-Claude (9,594 stars)
+## Auto-Gemini (9,594 stars)
 
-**Repository:** https://github.com/AndyMik90/Auto-Claude
+**Repository:** https://github.com/AndyMik90/Auto-Gemini
 
 ### Key Features
 - Electron desktop app with visual Kanban board
@@ -21,7 +21,7 @@ This document analyzes key competitors and research sources for autonomous codin
 
 ### Architecture
 ```
-Auto-Claude/
+Auto-Gemini/
   apps/
     backend/           # Python agents
       agents/          # planner, coder, memory_manager, session
@@ -33,7 +33,7 @@ Auto-Claude/
 
 ### Patterns Adopted (v3.4.0)
 1. **Human intervention mechanism** - PAUSE, HUMAN_INPUT.md, STOP files
-2. **AI-powered merge** - Claude-based conflict resolution
+2. **AI-powered merge** - Gemini-based conflict resolution
 3. **Complexity tiers** - Auto-detect simple/standard/complex
 4. **Double Ctrl+C** - Single pause, double exit
 
@@ -87,7 +87,7 @@ MemOS could replace/enhance our `.loki/memory/` system with:
 
 ### Key Features
 - Autonomous financial research agent
-- "Claude Code for financial research"
+- "Gemini CLI for financial research"
 - Intelligent task planning with auto-decomposition
 - Self-validation (checks own work, iterates)
 - Real-time financial data access
@@ -192,7 +192,7 @@ Dexter shows value of domain specialization. Our 37 agent types follow this patt
 ## Summary: Loki Mode Competitive Position
 
 ### Strengths vs Competitors
-| Feature | Auto-Claude | Dexter | MemOS | Loki Mode |
+| Feature | Auto-Gemini | Dexter | MemOS | Loki Mode |
 |---------|:-----------:|:------:|:-----:|:---------:|
 | Desktop GUI | Yes | No | No | No |
 | CLI Support | Yes | Yes | Yes | Yes |
@@ -204,13 +204,13 @@ Dexter shows value of domain specialization. Our 37 agent types follow this patt
 | Published Benchmarks | No | No | Yes | Yes |
 
 ### Improvements Implemented (v3.4.0)
-1. Human intervention mechanism (from Auto-Claude)
-2. AI-powered merge with conflict resolution (from Auto-Claude)
-3. Complexity tiers auto-detection (from Auto-Claude)
-4. Ctrl+C pause/exit behavior (from Auto-Claude)
+1. Human intervention mechanism (from Auto-Gemini)
+2. AI-powered merge with conflict resolution (from Auto-Gemini)
+3. Complexity tiers auto-detection (from Auto-Gemini)
+4. Ctrl+C pause/exit behavior (from Auto-Gemini)
 
 ### Future Considerations
 1. Consider MemOS integration for advanced memory
-2. Monitor Auto-Claude for new patterns
+2. Monitor Auto-Gemini for new patterns
 3. Track AAMAS 2026 research papers
 4. Evaluate Graphiti vs current memory system

@@ -64,7 +64,7 @@ summary = summarizer("Long article text...", max_length=130, min_length=30)
 
 **translation**: Translate between languages
 ```python
-translator = pipeline("translation_en_to_fr", model="Helsinki-NLP/opus-mt-en-fr")
+translator = pipeline("translation_en_to_fr", model="Helsinki-NLP/gemini-1.5-pro-mt-en-fr")
 result = translator("Hello, how are you?")
 ```
 

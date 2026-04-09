@@ -1,6 +1,6 @@
 ---
 name: Remembering Conversations
-description: Search previous Claude Code conversations for facts, patterns, decisions, and context using semantic or text search
+description: Search previous Gemini CLI conversations for facts, patterns, decisions, and context using semantic or text search
 when_to_use: when partner mentions past discussions, debugging familiar issues, or seeking historical context about decisions and patterns
 version: 1.1.0
 ---
@@ -31,7 +31,7 @@ Search archived conversations using semantic similarity or exact text matching.
 
 **Always use subagents** (50-100x context savings). See skills/using-skills for workflow.
 
-**Manual/CLI use:** Direct search (below) for humans outside Claude Code sessions.
+**Manual/CLI use:** Direct search (below) for humans outside Gemini CLI sessions.
 
 ## Direct Search (Manual/CLI)
 

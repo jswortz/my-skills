@@ -1,19 +1,16 @@
 ---
 name: modern-python
-description: Modern Python best practices. Use when creating new Python projects, and writing Python scripts, or migrating existing projects from legacy tools.
+description: 'Modern Python best practices. Use when creating new Python projects,
+  and writing Python scripts, or migrating existing projects from legacy tools. Use
+  this skill when: - Creating a new Python project or package - Setting up `pyproject.toml`
+  configuration - Configuring development tools (linting, formatting, testing) - Writing
+  Python scripts with external dependencies - Migrating from legacy tools (when user
+  requests it)'
 ---
-
 # Modern Python
 
 Guide for modern Python tooling and best practices, based on [trailofbits/cookiecutter-python](https://github.com/trailofbits/cookiecutter-python).
 
-## When to Use This Skill
-
-- Creating a new Python project or package
-- Setting up `pyproject.toml` configuration
-- Configuring development tools (linting, formatting, testing)
-- Writing Python scripts with external dependencies
-- Migrating from legacy tools (when user requests it)
 
 ## When NOT to Use This Skill
 
@@ -331,3 +328,6 @@ Install with: `uv sync --group dev --group test`
 - [prek.md](./references/prek.md) - Fast pre-commit hooks with prek
 - [security-setup.md](./references/security-setup.md) - Security hooks and dependency scanning
 - [dependabot.md](./references/dependabot.md) - Automated dependency updates
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

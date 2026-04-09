@@ -153,14 +153,14 @@ Every code change goes through 3 specialized reviewers **simultaneously**:
 ```
 IMPLEMENT -> BLIND REVIEW (parallel) -> DEBATE (if disagreement) -> AGGREGATE -> FIX -> RE-REVIEW
                 |
-                +-- code-reviewer (Sonnet) - Code quality, patterns, best practices
-                +-- business-logic-reviewer (Sonnet) - Requirements, edge cases, UX
-                +-- security-reviewer (Sonnet) - Vulnerabilities, OWASP Top 10
+                +-- code-reviewer (gemini-3-flash-preview) - Code quality, patterns, best practices
+                +-- business-logic-reviewer (gemini-3-flash-preview) - Requirements, edge cases, UX
+                +-- security-reviewer (gemini-3-flash-preview) - Vulnerabilities, OWASP Top 10
 ```
 
 **Important:**
 - ALWAYS launch all 3 reviewers in a single message (3 Task calls)
-- ALWAYS specify model: "sonnet" for each reviewer
+- ALWAYS specify model: "gemini-3-flash-preview" for each reviewer
 - ALWAYS use blind review mode (reviewers cannot see each other's findings initially)
 - NEVER dispatch reviewers sequentially (always parallel - 3x faster)
 - NEVER aggregate before all 3 reviewers complete
@@ -177,7 +177,7 @@ reviews = []
 for reviewer in [code_reviewer, business_reviewer, security_reviewer]:
     review = Task(
         subagent_type="general-purpose",
-        model="opus",
+        model="gemini-1.5-pro",
         prompt=f"""
         {reviewer.prompt}
 
@@ -196,7 +196,7 @@ else:
     # All agreed - run devil's advocate
     devil_review = Task(
         subagent_type="general-purpose",
-        model="opus",
+        model="gemini-1.5-pro",
         prompt="""
         The other reviewers found no issues. Your job is to be contrarian.
         Find problems they missed. Challenge assumptions.
@@ -212,9 +212,9 @@ else:
 
 | Reviewer | Model | Expertise | Personality |
 |----------|-------|-----------|-------------|
-| Code Quality | Opus | SOLID, patterns, maintainability | Perfectionist |
-| Business Logic | Opus | Requirements, edge cases, UX | Pragmatic |
-| Security | Opus | OWASP, auth, injection | Paranoid |
+| Code Quality | gemini-1.5-pro | SOLID, patterns, maintainability | Perfectionist |
+| Business Logic | gemini-1.5-pro | Requirements, edge cases, UX | Pragmatic |
+| Security | gemini-1.5-pro | OWASP, auth, injection | Paranoid |
 
 This diversity prevents groupthink and catches more issues.
 
@@ -250,15 +250,15 @@ This diversity prevents groupthink and catches more issues.
 
 ```python
 # CORRECT: Launch all 3 in parallel
-Task(subagent_type="general-purpose", model="opus",
+Task(subagent_type="general-purpose", model="gemini-1.5-pro",
      description="Code quality review",
      prompt="Review for code quality, patterns, SOLID principles...")
 
-Task(subagent_type="general-purpose", model="opus",
+Task(subagent_type="general-purpose", model="gemini-1.5-pro",
      description="Business logic review",
      prompt="Review for requirements alignment, edge cases, UX...")
 
-Task(subagent_type="general-purpose", model="opus",
+Task(subagent_type="general-purpose", model="gemini-1.5-pro",
      description="Security review",
      prompt="Review for vulnerabilities, OWASP Top 10...")
 

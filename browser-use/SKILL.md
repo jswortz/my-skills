@@ -211,6 +211,11 @@ Load this file when you need detailed code examples or are implementing complex 
 5. **Test incrementally** - Start with simple tasks and add complexity
 6. **Reuse browser instances** - For multiple related tasks, keep browser open between operations
 
+## Evaluations
+
+To validate the reliability and determinism of your browser automation scripts, use the provided evaluation script:
+- **[scripts/eval_browser_task.py](scripts/eval_browser_task.py)**: A runnable Python script that tests a deterministic task and validates the output.
+
 ## Troubleshooting
 
 **Task not completing correctly**:

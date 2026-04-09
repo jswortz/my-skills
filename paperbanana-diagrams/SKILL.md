@@ -1,23 +1,16 @@
 ---
 name: paperbanana-diagrams
-description: >
-    Generate high-resolution architectural and methodology diagrams from text descriptions
-    using the paperbanana CLI. Provides an automated, iterative visual feedback loop
-    to refine diagrams using Gemini 3 and Google Imagen. Use this skill when the user asks to "generate a diagram",
-    "visualize the architecture", "draw an agent swarm", or "create a paperbanana diagram".
-    Don't use for generic markdown generation or when simple Mermaid is sufficient.
+description: Generate high-resolution architectural and methodology diagrams from
+  text descriptions using the paperbanana CLI. Provides an automated, iterative visual
+  feedback loop to refine diagrams using Gemini 3 and Google Imagen. Use this skill
+  when the user asks to "generate a diagram", "visualize the architecture", "draw
+  an agent swarm", or "create a paperbanana diagram". Don't use for generic markdown
+  generation or when simple Mermaid is sufficient.
 ---
-
 # PaperBanana Diagrams Skill
 
 This skill explains how to use the `paperbanana` CLI to generate high-quality `.png` architecture and methodology diagrams from text inputs. The CLI runs an iterative visual loop (the "Ralph Wiggum" loop) out-of-the-box, applying a Planner -> Stylist -> Critic workflow to produce publication-ready images.
 
-## When to use
-
-- "Generate an architecture diagram of this system"
-- "Create a paperbanana diagram for the multi-agent swarm"
-- "Visualize how the components interact in a high-res image"
-- "Replace this text-based mermaid flowchart with a paperbanana PNG"
 
 ## Prerequisites
 
@@ -81,3 +74,6 @@ Or manually list the directory and move the image `mv docs/run_20260307_XXXXXX/f
 
 - **Detailed Inputs**: The more specific your text file (`-i`), the better the generated image.
 - **Visual Iteration**: Let the tool handle the trial-and-error. You do not need to manually call the Critic agent or loop the CLI yourself; `paperbanana` does this natively.
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

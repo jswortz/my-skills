@@ -1,4 +1,9 @@
 ---
+name: collision-zone-thinking
+description: -- name: Collision-Zone Thinking description: Force unrelated concepts together to discover emergent properties - "What if we treated X like Y?" when_...
+---
+
+--
 name: Collision-Zone Thinking
 description: Force unrelated concepts together to discover emergent properties - "What if we treated X like Y?"
 when_to_use: when conventional approaches feel inadequate and you need breakthrough innovation by forcing unrelated concepts together

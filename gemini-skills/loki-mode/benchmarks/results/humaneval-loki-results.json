@@ -3,7 +3,7 @@
   "mode": "multi-agent",
   "version": "1.0",
   "timestamp": "2026-01-05T08:46:10.291133",
-  "model": "opus",
+  "model": "gemini-1.5-pro",
   "max_retries": 3,
   "total_problems": 164,
   "problems": [

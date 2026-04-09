@@ -6,7 +6,7 @@
 
 ## How Agents Actually Work
 
-**Claude Code's Task tool has these subagent_types:**
+**Gemini CLI's Task tool has these subagent_types:**
 - `general-purpose` - Most work (implementation, review, testing)
 - `Explore` - Codebase exploration and search
 - `Plan` - Architecture and planning
@@ -19,7 +19,7 @@
 # Security reviewer = general-purpose + security-focused prompt
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Security review: auth module",
     prompt="""You are a security reviewer. Focus on:
     - Authentication vulnerabilities
@@ -31,7 +31,7 @@ Task(
 # Frontend agent = general-purpose + frontend-focused prompt
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Implement login form",
     prompt="""You are a frontend developer. Implement:
     - React login form component
@@ -64,7 +64,7 @@ Task(
 ```python
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Implement user registration API",
     prompt="""
 ## GOAL
@@ -99,26 +99,26 @@ Success: Endpoint works, tests pass, matches OpenAPI spec.
 # Launch all 3 in ONE message (parallel execution)
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Review: correctness",
     prompt="Review for bugs, logic errors, edge cases. Files: {files}"
 )
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Review: security",
     prompt="Review for vulnerabilities, injection, auth issues. Files: {files}"
 )
 Task(
     subagent_type="general-purpose",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Review: performance",
     prompt="Review for N+1 queries, memory leaks, slow operations. Files: {files}"
 )
 ```
 
 **Rules:**
-- ALWAYS use opus for reviews
+- ALWAYS use gemini-1.5-pro for reviews
 - ALWAYS launch all 3 in single message
 - WAIT for all 3 before aggregating
 - IF unanimous approval: run Devil's Advocate reviewer
@@ -129,7 +129,7 @@ Task(
 
 | Confidence | Dispatch Strategy |
 |------------|-------------------|
-| >= 0.95 | Direct haiku execution, no review |
+| >= 0.95 | Direct gemini-1.5-flash execution, no review |
 | 0.70-0.95 | Direct execution + async review |
 | 0.40-0.70 | Supervisor orchestration, mandatory review |
 | < 0.40 | Flag for human decision |
@@ -159,7 +159,7 @@ handoff_data = {
 
 Task(
     subagent_type="general-purpose",
-    model="sonnet",
+    model="gemini-3-flash-preview",
     description="Integration testing for user registration",
     prompt=f"Previous agent completed: {handoff_data}. Now write integration tests..."
 )
@@ -173,7 +173,7 @@ Task(
 
 Priority order for context:
 1. `AGENTS.md` in current directory
-2. `CLAUDE.md` project instructions
+2. `GEMINI.md` project instructions
 3. `.loki/CONTINUITY.md` session state
 
 ---
@@ -222,9 +222,9 @@ Priority order for context:
 |---------|---------------|
 | Sub-Agent Spawning | Task tool with focused prompts |
 | Plan-Then-Execute | Architect -> Engineer workflow |
-| Dual LLM | Opus for planning, Haiku for execution |
+| Dual LLM | gemini-1.5-pro for planning, gemini-1.5-flash for execution |
 | CI Feedback Loop | Test results injected into retry prompts |
-| Self-Critique | Constitutional AI revision cycle |
+| Self-Critique | Responsible AI revision cycle |
 | Semantic Context Filtering | Only relevant files in context |
 | Episodic Memory | `.loki/memory/episodic/` traces |
 

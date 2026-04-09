@@ -1,7 +1,6 @@
 ---
 name: vertex-ai-pipelines
-description: >
-    Develop, construct, and orchestrate Vertex AI Pipelines using kfp and google-cloud-pipeline-components.
+description: Develop, construct, and orchestrate Vertex AI Pipelines using kfp and google-cloud-pipeline-components.
     Use when building production ML workflows, deploying custom prediction routines (CPR), writing hyperparameter tuning pipeline components, and ensuring inputs/outputs are tracked with ML Metadata. Don't use for generic Python script execution without Vertex integration.
 ---
 

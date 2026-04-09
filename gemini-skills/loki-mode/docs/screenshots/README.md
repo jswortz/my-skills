@@ -27,7 +27,7 @@ This directory contains screenshots for the Loki Mode README.
 4. Take a screenshot of the **"Active Agents" section** showing:
    - Multiple agent cards (ideally 5-8 visible)
    - Agent IDs and types (e.g., "eng-frontend", "qa-001-testing")
-   - Model badges (Sonnet, Haiku, Opus) with color coding
+   - Model badges (gemini-3-flash-preview, gemini-1.5-flash, gemini-1.5-pro) with color coding
    - Current work being performed
    - Runtime and tasks completed stats
    - Status indicators (active/completed)

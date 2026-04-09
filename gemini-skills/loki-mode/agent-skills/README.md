@@ -32,7 +32,7 @@ skill-name/
 
 | Skill | Description | Agent Types |
 |-------|-------------|-------------|
-| `prompt-optimization` | Prompt repetition for Haiku agents | All |
+| `prompt-optimization` | Prompt repetition for gemini-1.5-flash agents | All |
 | `checkpoint-mode` | Pause for review every N tasks | Orchestrator |
 | `confidence-routing` | Multi-tier routing based on confidence | Orchestrator |
 
@@ -134,7 +134,7 @@ author: username
 repository: https://github.com/user/my-awesome-skill
 compatible_with:
   - loki-mode: ">=2.36.0"
-  - claude-code: ">=1.0.0"
+  - gemini-code: ">=1.0.0"
 ```
 
 ---

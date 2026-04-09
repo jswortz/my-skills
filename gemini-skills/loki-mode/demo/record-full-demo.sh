@@ -84,8 +84,8 @@ if ! command -v ffmpeg &> /dev/null; then
     exit 1
 fi
 
-if ! command -v claude &> /dev/null; then
-    log_warn "Claude Code CLI not found"
+if ! command -v gemini &> /dev/null; then
+    log_warn "Gemini CLI CLI not found"
     exit 1
 fi
 
@@ -139,9 +139,9 @@ git add PRD.md
 git commit -m "Initial PRD" -q
 
 # Copy Loki Mode skill to workspace
-mkdir -p .claude/skills/loki-mode
-cp "$PROJECT_DIR/SKILL.md" .claude/skills/loki-mode/
-cp -r "$PROJECT_DIR/references" .claude/skills/loki-mode/ 2>/dev/null || true
+mkdir -p .gemini/skills/loki-mode
+cp "$PROJECT_DIR/SKILL.md" .gemini/skills/loki-mode/
+cp -r "$PROJECT_DIR/references" .gemini/skills/loki-mode/ 2>/dev/null || true
 
 log_info "Workspace ready: $DEMO_WORKSPACE"
 

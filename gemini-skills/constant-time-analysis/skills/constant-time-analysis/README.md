@@ -1,10 +1,10 @@
 # Constant-Time Analysis Skill
 
-A Claude Code skill that detects timing side-channel vulnerabilities in cryptographic code by analyzing assembly or bytecode output for dangerous instructions.
+A Gemini CLI skill that detects timing side-channel vulnerabilities in cryptographic code by analyzing assembly or bytecode output for dangerous instructions.
 
 ## What This Skill Does
 
-When activated, this skill helps Claude:
+When activated, this skill helps Gemini:
 
 - **Detect timing vulnerabilities** - Identifies variable-time instructions (division, floating-point) that leak secrets through execution timing
 - **Analyze across architectures** - Tests compiled output for x86_64, ARM64, RISC-V, and other targets
@@ -55,14 +55,14 @@ The analyzer tool is located at `ct_analyzer/analyzer.py` in the plugin root.
 
 ## Usage
 
-The skill activates automatically when Claude detects:
+The skill activates automatically when Gemini detects:
 
 - Cryptographic code implementation (encryption, signing, key derivation)
 - Questions about timing attacks or constant-time programming
 - Code handling secret keys, tokens, or cryptographic material
 - Functions with division/modulo operations on potentially secret data
 
-You can also invoke it explicitly by asking Claude to check code for timing vulnerabilities.
+You can also invoke it explicitly by asking Gemini to check code for timing vulnerabilities.
 
 ### Example Prompts
 

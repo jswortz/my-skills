@@ -8,7 +8,7 @@ import { ConversationExchange } from './types.js';
 
 describe('verifyIndex', () => {
   const testDir = path.join(os.tmpdir(), 'conversation-search-test-' + Date.now());
-  const projectsDir = path.join(testDir, '.claude', 'projects');
+  const projectsDir = path.join(testDir, '.gemini', 'projects');
   const archiveDir = path.join(testDir, '.config', 'superpowers', 'conversation-archive');
   const dbPath = path.join(testDir, '.config', 'superpowers', 'conversation-index', 'db.sqlite');
 
@@ -145,7 +145,7 @@ describe('verifyIndex', () => {
 
 describe('repairIndex', () => {
   const testDir = path.join(os.tmpdir(), 'conversation-repair-test-' + Date.now());
-  const projectsDir = path.join(testDir, '.claude', 'projects');
+  const projectsDir = path.join(testDir, '.gemini', 'projects');
   const archiveDir = path.join(testDir, '.config', 'superpowers', 'conversation-archive');
   const dbPath = path.join(testDir, '.config', 'superpowers', 'conversation-index', 'db.sqlite');
 

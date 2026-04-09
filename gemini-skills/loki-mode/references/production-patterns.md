@@ -242,7 +242,7 @@ conversation_management:
     - When errors accumulate (3+ in row)
 
   preserve_across_sessions:
-    - CLAUDE.md / CONTINUITY.md
+    - GEMINI.md / CONTINUITY.md
     - Architectural decisions
     - Key constraints
 
@@ -532,7 +532,7 @@ def evaluate_agent_change(before_agent, after_agent, task_set):
 
 ```yaml
 cost_patterns:
-  claude_code:
+  gemini_code:
     heavy_use: "$25/1-2 hours on large codebases"
     api_range: "$1-5/hour depending on efficiency"
     max_tier: "$200/month often needs 2-3 subscriptions"
@@ -556,7 +556,7 @@ cost_patterns:
 - [What Actually Works in Production for Autonomous Agents](https://news.ycombinator.com/item?id=44623207)
 - [Coding with LLMs in Summer 2025](https://news.ycombinator.com/item?id=44623953)
 - [Superpowers: How I'm Using Coding Agents](https://news.ycombinator.com/item?id=45547344)
-- [Claude Code Experience After Two Weeks](https://news.ycombinator.com/item?id=44596472)
+- [Gemini CLI Experience After Two Weeks](https://news.ycombinator.com/item?id=44596472)
 - [AI Agent Benchmarks Are Broken](https://news.ycombinator.com/item?id=44531697)
 - [How to Orchestrate Multi-Agent Workflows](https://news.ycombinator.com/item?id=45955997)
 - [Context Engineering vs Prompt Engineering](https://news.ycombinator.com/item?id=44427757)

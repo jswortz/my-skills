@@ -4,7 +4,7 @@
 # Simple command-line interface for Loki Mode
 #
 # Installation:
-#   ln -sf ~/.claude/skills/loki-mode/autonomy/loki /usr/local/bin/loki
+#   ln -sf ~/.gemini/skills/loki-mode/autonomy/loki /usr/local/bin/loki
 #
 # Usage:
 #   loki start [PRD]      - Start Loki Mode (optionally with PRD)
@@ -31,7 +31,7 @@ NC='\033[0m'
 # Find the skill installation
 find_skill_dir() {
     local dirs=(
-        "$HOME/.claude/skills/loki-mode"
+        "$HOME/.gemini/skills/loki-mode"
         "$(dirname "$0")/.."
         "."
     )
@@ -50,7 +50,7 @@ find_skill_dir() {
 SKILL_DIR=$(find_skill_dir)
 if [ -z "$SKILL_DIR" ]; then
     echo -e "${RED}Error: Could not find Loki Mode installation${NC}"
-    echo "Expected at: ~/.claude/skills/loki-mode"
+    echo "Expected at: ~/.gemini/skills/loki-mode"
     exit 1
 fi
 

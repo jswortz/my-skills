@@ -1,5 +1,10 @@
 ---
 name: dssib-vertex-pipelines
+description: -- name: dssib-vertex-pipelines description: Guide for deploying Dynamic Swarm (DSSIB) Fan-Out agents on Vertex AI Pipelines with ML Metadata integrat...
+---
+
+--
+name: dssib-vertex-pipelines
 description: Guide for deploying Dynamic Swarm (DSSIB) Fan-Out agents on Vertex AI Pipelines with ML Metadata integration.
 ---
 # Deploying DSSIB Agents on Vertex AI Pipelines

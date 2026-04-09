@@ -1,10 +1,9 @@
 ---
-name: Inversion Exercise
-description: Flip core assumptions to reveal hidden constraints and alternative approaches - "what if the opposite were true?"
-when_to_use: when stuck on unquestioned assumptions or feeling forced into "the only way" to do something
-version: 1.1.0
+name: inversion-exercise
+description: Flip core assumptions to reveal hidden constraints and alternative approaches
+  - "what if the opposite were true?" when stuck on unquestioned assumptions or feeling
+  forced into "the only way" to do something
 ---
-
 # Inversion Exercise
 
 ## Overview
@@ -56,3 +55,6 @@ Flip every assumption and see what still works. Sometimes the opposite reveals t
 - Valid inversions reveal context-dependence
 - Sometimes opposite is the answer
 - Question "must be" statements
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

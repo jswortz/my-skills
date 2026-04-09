@@ -77,13 +77,13 @@ These rules are ABSOLUTE. Violating them is a critical failure.
 
 | Task Type | Model | Reason |
 |-----------|-------|--------|
-| PRD analysis, architecture, system design | **opus** | Deep reasoning required |
-| Feature implementation, complex bugs | **sonnet** | Development workload |
-| Code review (always 3 parallel reviewers) | **sonnet** | Balanced quality/cost |
-| Integration tests, E2E, deployment | **sonnet** | Functional verification |
-| Unit tests, linting, docs, simple fixes | **haiku** | Fast, parallelizable |
+| PRD analysis, architecture, system design | **gemini-1.5-pro** | Deep reasoning required |
+| Feature implementation, complex bugs | **gemini-3-flash-preview** | Development workload |
+| Code review (always 3 parallel reviewers) | **gemini-3-flash-preview** | Balanced quality/cost |
+| Integration tests, E2E, deployment | **gemini-3-flash-preview** | Functional verification |
+| Unit tests, linting, docs, simple fixes | **gemini-1.5-flash** | Fast, parallelizable |
 
-**Parallelization rule:** Launch up to 10 haiku agents simultaneously for independent tasks.
+**Parallelization rule:** Launch up to 10 gemini-1.5-flash agents simultaneously for independent tasks.
 
 **Git worktree parallelism:** For true parallel feature development, use `--parallel` flag with run.sh. See `skills/parallel-workflows.md`.
 
@@ -153,7 +153,7 @@ GROWTH ──[continuous improvement loop]──> GROWTH
 
 ```bash
 # Standard mode
-claude --dangerously-skip-permissions
+gemini --dangerously-skip-permissions
 # Then say: "Loki Mode" or "Loki Mode with PRD at path/to/prd.md"
 
 # Parallel mode (git worktrees)

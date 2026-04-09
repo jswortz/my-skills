@@ -1,5 +1,5 @@
 ---
-description: Syncs skills from local user directories (~/.claude/skills, plugins) to the global Antigravity skills repository.
+description: Syncs skills from local user directories (~/.gemini/skills, plugins) to the global Antigravity skills repository.
 ---
 
 1. Run the sync script:

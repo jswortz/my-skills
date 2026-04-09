@@ -4,40 +4,40 @@
 
 | Model | SDLC Phases | Examples |
 |-------|-------------|----------|
-| **Opus 4.5** | Bootstrap, Discovery, Architecture | PRD analysis, system design, technology selection, API contracts |
-| **Sonnet 4.5** | Development, QA, Deployment | Feature implementation, complex bugs, integration/E2E tests, code review, deployment |
-| **Haiku 4.5** | All other operations (parallel) | Unit tests, docs, bash commands, linting, monitoring |
+| **gemini-1.5-pro 4.5** | Bootstrap, Discovery, Architecture | PRD analysis, system design, technology selection, API contracts |
+| **gemini-3-flash-preview 4.5** | Development, QA, Deployment | Feature implementation, complex bugs, integration/E2E tests, code review, deployment |
+| **gemini-1.5-flash 4.5** | All other operations (parallel) | Unit tests, docs, bash commands, linting, monitoring |
 
 ## Task Tool Examples
 
 ```python
-# Opus for Bootstrap, Discovery, Architecture (planning ONLY)
-Task(subagent_type="Plan", model="opus", description="Design system architecture", prompt="...")
-Task(subagent_type="Plan", model="opus", description="Analyze PRD requirements", prompt="...")
+# gemini-1.5-pro for Bootstrap, Discovery, Architecture (planning ONLY)
+Task(subagent_type="Plan", model="gemini-1.5-pro", description="Design system architecture", prompt="...")
+Task(subagent_type="Plan", model="gemini-1.5-pro", description="Analyze PRD requirements", prompt="...")
 
-# Sonnet for Development, QA, and Deployment
-Task(subagent_type="general-purpose", model="sonnet", description="Implement API endpoint", prompt="...")
-Task(subagent_type="general-purpose", model="sonnet", description="Write integration tests", prompt="...")
-Task(subagent_type="general-purpose", model="sonnet", description="Deploy to production", prompt="...")
+# gemini-3-flash-preview for Development, QA, and Deployment
+Task(subagent_type="general-purpose", model="gemini-3-flash-preview", description="Implement API endpoint", prompt="...")
+Task(subagent_type="general-purpose", model="gemini-3-flash-preview", description="Write integration tests", prompt="...")
+Task(subagent_type="general-purpose", model="gemini-3-flash-preview", description="Deploy to production", prompt="...")
 
-# Haiku for everything else (PREFER for parallelization)
-Task(subagent_type="general-purpose", model="haiku", description="Run unit tests", prompt="...")
-Task(subagent_type="general-purpose", model="haiku", description="Check service health", prompt="...")
+# gemini-1.5-flash for everything else (PREFER for parallelization)
+Task(subagent_type="general-purpose", model="gemini-1.5-flash", description="Run unit tests", prompt="...")
+Task(subagent_type="general-purpose", model="gemini-1.5-flash", description="Check service health", prompt="...")
 ```
 
 ## Task Categories
 
-**Opus (Bootstrap -> Architecture - Planning ONLY):**
+**gemini-1.5-pro (Bootstrap -> Architecture - Planning ONLY):**
 - Bootstrap: Project setup, dependency analysis, environment configuration
 - Discovery: PRD analysis, requirement extraction, gap identification
 - Architecture: System design, technology selection, schema design, API contracts
 
-**Sonnet (Development -> Deployment):**
+**gemini-3-flash-preview (Development -> Deployment):**
 - Development: Feature implementation, API endpoints, complex bug fixes, database migrations
 - QA: Integration tests, E2E tests, security scanning, performance testing, code review
 - Deployment: Release automation, infrastructure provisioning, monitoring setup
 
-**Haiku (Operations - Use Extensively in Parallel):**
+**gemini-1.5-flash (Operations - Use Extensively in Parallel):**
 - Writing/running unit tests
 - Generating documentation
 - Running bash commands (npm install, git operations)
@@ -48,9 +48,9 @@ Task(subagent_type="general-purpose", model="haiku", description="Check service 
 ## Parallelization Strategy
 
 ```python
-# Launch 10+ Haiku agents in parallel for unit test suite
+# Launch 10+ gemini-1.5-flash agents in parallel for unit test suite
 for test_file in test_files:
-    Task(subagent_type="general-purpose", model="haiku",
+    Task(subagent_type="general-purpose", model="gemini-1.5-flash",
          description=f"Run unit tests: {test_file}",
          run_in_background=True)
 ```
@@ -68,29 +68,29 @@ for test_file in test_files:
 ```python
 Task(
     subagent_type="Plan",
-    model="opus",
+    model="gemini-1.5-pro",
     description="Design auth architecture",
     prompt="think hard about the authentication architecture. Consider OAuth vs JWT..."
 )
 ```
 
 **When to use:** Discovery, Architecture, Critical decisions
-**When NOT to use:** Haiku tasks, repetitive work, obvious implementations
+**When NOT to use:** gemini-1.5-flash tasks, repetitive work, obvious implementations
 
-## Prompt Repetition for Haiku
+## Prompt Repetition for gemini-1.5-flash
 
-**For Haiku on structured tasks, repeat prompts 2x to improve accuracy 4-5x.**
+**For gemini-1.5-flash on structured tasks, repeat prompts 2x to improve accuracy 4-5x.**
 
 ```python
 base_prompt = "Run unit tests in tests/ directory and report results"
 repeated_prompt = f"{base_prompt}\n\n{base_prompt}"  # 2x repetition
-Task(model="haiku", description="Run unit tests", prompt=repeated_prompt)
+Task(model="gemini-1.5-flash", description="Run unit tests", prompt=repeated_prompt)
 ```
 
 **Research:** Accuracy improves from 21.33% to 97.33% (arXiv 2512.14982v1)
 
 **When to apply:** Unit tests, linting, parsing, list operations
-**When NOT to apply:** Opus/Sonnet, creative tasks, complex reasoning
+**When NOT to apply:** gemini-1.5-pro/gemini-3-flash-preview, creative tasks, complex reasoning
 
 ## Advanced Parameters
 
@@ -117,8 +117,8 @@ Task(resume="agent-abc123", prompt="Continue from where you left off")
 | < 0.40 | Human Escalation | Too uncertain |
 
 ```python
-# Simple tasks -> Direct dispatch to Haiku
-Task(model="haiku", description="Fix import in utils.py", prompt="...")
+# Simple tasks -> Direct dispatch to gemini-1.5-flash
+Task(model="gemini-1.5-flash", description="Fix import in utils.py", prompt="...")
 
 # Complex tasks -> Supervisor orchestration
 Task(description="Implement user authentication with OAuth", prompt="...")

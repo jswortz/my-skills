@@ -1,18 +1,6 @@
 ---
 name: fix-review
-description: >
-  Verifies that git commits address security audit findings without introducing bugs.
-  This skill should be used when the user asks to "verify these commits fix the audit findings",
-  "check if TOB-XXX was addressed", "review the fix branch", "validate remediation commits",
-  "did these changes address the security report", "post-audit remediation review",
-  "compare fix commits to audit report", or when reviewing commits against security audit reports.
-allowed-tools:
-  - Read
-  - Write
-  - Grep
-  - Glob
-  - Bash
-  - WebFetch
+description: Verifies that git commits address security audit findings without introducing bugs. Use when reviewing commits against security audit reports.
 ---
 
 # Fix Review
@@ -88,7 +76,7 @@ If user provides multiple target commits, process each separately with the same 
 When a security report is provided, retrieve it based on format:
 
 **Local file (PDF, MD, JSON, HTML):**
-Read the file directly using the Read tool. Claude processes PDFs natively.
+Read the file directly using the Read tool. Gemini processes PDFs natively.
 
 **URL:**
 Fetch web content using the WebFetch tool.

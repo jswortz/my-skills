@@ -5,7 +5,7 @@
 > **Full documentation:** For comprehensive details, see `references/` directory:
 > - `references/agents.md` - Complete 37 agent type specifications
 > - `references/openai-patterns.md` - OpenAI Agents SDK patterns
-> - `references/lab-research-patterns.md` - DeepMind + Anthropic research
+> - `references/lab-research-patterns.md` - DeepMind + Gemini research
 > - `references/production-patterns.md` - HN 2025 production insights
 > - `references/memory-system.md` - Episodic/semantic/procedural memory
 > - `references/tool-orchestration.md` - NVIDIA ToolOrchestra efficiency metrics
@@ -32,9 +32,9 @@
 ### model-selection.md
 **When:** Spawning subagents, choosing models, parallelization
 - Task tool parameters and examples
-- Opus/Sonnet/Haiku usage patterns
+- gemini-1.5-pro/gemini-3-flash-preview/gemini-1.5-flash usage patterns
 - Extended thinking mode prefixes
-- Prompt repetition for Haiku
+- Prompt repetition for gemini-1.5-flash
 - Background agents and resumption
 
 ### quality-gates.md
@@ -50,7 +50,7 @@
 - OptiMind problem classification + expert hints
 - Ensemble solution generation
 - Formal state machines (k8s-valkey-operator)
-- Constitutional AI self-critique
+- Responsible AI self-critique
 - Debate-based verification (DeepMind)
 
 ### testing.md
@@ -94,7 +94,7 @@
 ### parallel-workflows.md
 **When:** Running multiple features in parallel, worktree orchestration
 - Git worktree-based isolation
-- Parallel Claude sessions (feature, testing, docs streams)
+- Parallel Gemini sessions (feature, testing, docs streams)
 - Inter-stream communication via signals
 - Auto-merge completed features
 - Orchestrator state management

@@ -43,7 +43,7 @@ blog/
 
 ### 3. Research
 - OpenAI patterns
-- Lab research (DeepMind, Anthropic)
+- Lab research (DeepMind, Gemini)
 - Production patterns
 - Advanced patterns
 - Acknowledgements

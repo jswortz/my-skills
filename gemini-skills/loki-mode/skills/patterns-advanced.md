@@ -127,7 +127,7 @@ idempotent_operations:
 
 ---
 
-## Constitutional AI Self-Critique (Anthropic)
+## Responsible AI Self-Critique (Gemini)
 
 ```yaml
 constitution:

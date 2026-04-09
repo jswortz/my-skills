@@ -7,7 +7,7 @@ Install the MCP server:
 pip install mcp-atlassian
 ```
 
-Add to `~/.claude/.mcp.json`:
+Add to `~/.gemini/.mcp.json`:
 ```json
 {
   "mcpServers": {

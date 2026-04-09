@@ -8,7 +8,7 @@
 # E2E test after feature implementation
 Task(
     subagent_type="general-purpose",
-    model="sonnet",
+    model="gemini-3-flash-preview",
     description="Run E2E tests for auth flow",
     prompt="""Use Playwright MCP to test:
     1. Navigate to /login
@@ -84,7 +84,7 @@ hooks_system:
 **Benefits:**
 - Catches issues 5-10x earlier than phase-end review
 - Reduces rework cycles
-- Aligns with Constitutional AI (continuous self-critique)
+- Aligns with Responsible AI (continuous self-critique)
 
 ---
 
@@ -100,7 +100,7 @@ hooks_system:
 ```python
 # Capture screenshot for comparison
 Task(
-    model="sonnet",
+    model="gemini-3-flash-preview",
     description="Visual regression test",
     prompt="""Use Playwright MCP to:
     1. Navigate to implemented feature
@@ -116,8 +116,8 @@ Task(
 
 | Phase | Test Type | Tool |
 |-------|-----------|------|
-| Development | Unit tests | Haiku (parallel) |
-| Development | Integration tests | Sonnet |
+| Development | Unit tests | gemini-1.5-flash (parallel) |
+| Development | Integration tests | gemini-3-flash-preview |
 | QA | E2E tests | Playwright MCP |
 | QA | Property-based tests | fast-check/hypothesis |
 | Pre-deployment | Full regression | All of above |

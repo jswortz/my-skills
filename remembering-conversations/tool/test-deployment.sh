@@ -22,11 +22,11 @@ NC='\033[0m' # No Color
 setup_test() {
   TEST_DIR=$(mktemp -d)
   export HOME="$TEST_DIR"
-  export TEST_PROJECTS_DIR="$TEST_DIR/.claude/projects"
+  export TEST_PROJECTS_DIR="$TEST_DIR/.gemini/projects"
   export TEST_ARCHIVE_DIR="$TEST_DIR/.config/superpowers/conversation-archive"
   export TEST_DB_PATH="$TEST_DIR/.config/superpowers/conversation-index/db.sqlite"
 
-  mkdir -p "$HOME/.claude/hooks"
+  mkdir -p "$HOME/.gemini/hooks"
   mkdir -p "$TEST_PROJECTS_DIR"
   mkdir -p "$TEST_ARCHIVE_DIR"
   mkdir -p "$TEST_DIR/.config/superpowers/conversation-index"
@@ -69,8 +69,8 @@ assert_summary_exists() {
   local jsonl_file="$1"
 
   # If file is in projects dir, convert to archive path
-  if [[ "$jsonl_file" == *"/.claude/projects/"* ]]; then
-    jsonl_file=$(echo "$jsonl_file" | sed "s|/.claude/projects/|/.config/superpowers/conversation-archive/|")
+  if [[ "$jsonl_file" == *"/.gemini/projects/"* ]]; then
+    jsonl_file=$(echo "$jsonl_file" | sed "s|/.gemini/projects/|/.config/superpowers/conversation-archive/|")
   fi
 
   local summary_file="${jsonl_file%.jsonl}-summary.txt"
@@ -123,8 +123,8 @@ test_scenario_1_fresh_install() {
   echo "  1. Installing hook with no existing hook..."
   "$INSTALL_HOOK" > /dev/null 2>&1 || true
 
-  assert_file_exists "$HOME/.claude/hooks/sessionEnd" || return 1
-  assert_file_executable "$HOME/.claude/hooks/sessionEnd" || return 1
+  assert_file_exists "$HOME/.gemini/hooks/sessionEnd" || return 1
+  assert_file_executable "$HOME/.gemini/hooks/sessionEnd" || return 1
 
   echo "  2. Creating test conversation..."
   local conv_file=$(create_test_conversation "test-project" "conv-1")
@@ -169,35 +169,35 @@ EOF
 
 test_scenario_2_existing_hook_merge() {
   echo "  1. Creating existing hook..."
-  cat > "$HOME/.claude/hooks/sessionEnd" <<'EOF'
+  cat > "$HOME/.gemini/hooks/sessionEnd" <<'EOF'
 #!/bin/bash
 # Existing hook
 echo "Existing hook running"
 EOF
-  chmod +x "$HOME/.claude/hooks/sessionEnd"
+  chmod +x "$HOME/.gemini/hooks/sessionEnd"
 
   echo "  2. Installing with merge option..."
   echo "m" | "$INSTALL_HOOK" > /dev/null 2>&1 || true
 
   echo "  3. Verifying backup created..."
-  local backup_count=$(ls -1 "$HOME/.claude/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
+  local backup_count=$(ls -1 "$HOME/.gemini/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
   if [ "$backup_count" -lt 1 ]; then
     echo -e "${RED}❌ No backup created${NC}"
     return 1
   fi
 
   echo "  4. Verifying merge preserved existing content..."
-  assert_file_contains "$HOME/.claude/hooks/sessionEnd" "Existing hook running" || return 1
+  assert_file_contains "$HOME/.gemini/hooks/sessionEnd" "Existing hook running" || return 1
 
   echo "  5. Verifying indexer was appended..."
-  assert_file_contains "$HOME/.claude/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
+  assert_file_contains "$HOME/.gemini/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
 
   echo "  6. Testing merged hook runs both parts..."
   local conv_file=$(create_test_conversation "merge-project" "merge-conv")
   cd "$SCRIPT_DIR" && "$INDEX_CONVERSATIONS" > /dev/null 2>&1
 
   export SESSION_ID="merge-session-$(date +%s)"
-  local hook_output=$("$HOME/.claude/hooks/sessionEnd" 2>&1)
+  local hook_output=$("$HOME/.gemini/hooks/sessionEnd" 2>&1)
 
   if ! echo "$hook_output" | grep -q "Existing hook running"; then
     echo -e "${RED}❌ Existing hook logic not executed${NC}"
@@ -224,7 +224,7 @@ test_scenario_3_recovery_verify_repair() {
 
   echo "  3. Deleting summary to simulate missing file..."
   # Delete from archive (where summaries are stored)
-  local archive_conv1=$(echo "$conv1" | sed "s|/.claude/projects/|/.config/superpowers/conversation-archive/|")
+  local archive_conv1=$(echo "$conv1" | sed "s|/.gemini/projects/|/.config/superpowers/conversation-archive/|")
   rm "${archive_conv1%.jsonl}-summary.txt"
 
   echo "  4. Running verify (should detect missing)..."
@@ -273,7 +273,7 @@ test_scenario_4_change_detection() {
   sleep 1
 
   # Modify the archive file (that's what verify checks)
-  local archive_conv=$(echo "$conv" | sed "s|/.claude/projects/|/.config/superpowers/conversation-archive/|")
+  local archive_conv=$(echo "$conv" | sed "s|/.gemini/projects/|/.config/superpowers/conversation-archive/|")
   cat >> "$archive_conv" <<'EOF'
 {"type":"user","message":{"role":"user","content":"Tell me more about TDD"},"timestamp":"2024-01-01T00:00:02Z"}
 {"type":"assistant","message":{"role":"assistant","content":"TDD has three phases: Red, Green, Refactor."},"timestamp":"2024-01-01T00:00:03Z"}
@@ -330,7 +330,7 @@ test_scenario_5_subagent_workflow_docs() {
   echo ""
   echo -e "${YELLOW}  MANUAL TESTING REQUIRED:${NC}"
   echo "  To complete Scenario 5 testing:"
-  echo "    1. Start a new Claude Code session"
+  echo "    1. Start a new Gemini CLI session"
   echo "    2. Ask about a past conversation topic"
   echo "    3. Dispatch subagent using: skills/collaboration/remembering-conversations/tool/prompts/search-agent.md"
   echo "    4. Verify synthesis is 200-1000 words"

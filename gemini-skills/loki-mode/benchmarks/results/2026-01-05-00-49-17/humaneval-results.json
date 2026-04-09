@@ -2,7 +2,7 @@
   "benchmark": "HumanEval",
   "version": "1.0",
   "timestamp": "2026-01-05T00:49:17.745476",
-  "model": "opus",
+  "model": "gemini-1.5-pro",
   "timeout_per_problem": 300,
   "total_problems": 164,
   "status": "COMPLETED",

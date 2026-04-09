@@ -181,17 +181,17 @@ def synthesize_with_validity_alignment(reviews):
 ```yaml
 review_team:
   - role: "security_analyst"
-    model: opus
+    model: gemini-1.5-pro
     expertise: ["OWASP", "auth", "injection"]
     personality: "paranoid"
 
   - role: "performance_engineer"
-    model: sonnet
+    model: gemini-3-flash-preview
     expertise: ["complexity", "caching", "async"]
     personality: "pragmatic"
 
   - role: "maintainability_advocate"
-    model: opus
+    model: gemini-1.5-pro
     expertise: ["SOLID", "patterns", "readability"]
     personality: "perfectionist"
 ```

@@ -1,6 +1,6 @@
 # Burp Suite Project Parser
 
-Search and extract data from Burp Suite project files (.burp) for use in Claude
+Search and extract data from Burp Suite project files (.burp) for use in Gemini
 
 **Author:** Will Vandevanter
 

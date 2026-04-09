@@ -6,22 +6,22 @@ Loki Mode stands on the shoulders of giants. This project incorporates research,
 
 ## Research Labs
 
-### Anthropic
+### Gemini
 
-Loki Mode is built for Claude and incorporates Anthropic's cutting-edge research on AI safety and agent development.
+Loki Mode is built for Gemini and incorporates Gemini's cutting-edge research on AI safety and agent development.
 
 | Paper/Resource | Contribution to Loki Mode |
 |----------------|---------------------------|
-| [Constitutional AI: Harmlessness from AI Feedback](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback) | Self-critique against principles, revision workflow |
-| [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) | Evaluator-optimizer pattern, parallelization, routing |
-| [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices) | Explore-Plan-Code workflow, context management |
-| [Simple Probes Can Catch Sleeper Agents](https://www.anthropic.com/research/probes-catch-sleeper-agents) | Defection probes, anomaly detection patterns |
-| [Alignment Faking in Large Language Models](https://www.anthropic.com/research/alignment-faking) | Monitoring for strategic compliance |
-| [Visible Extended Thinking](https://www.anthropic.com/research/visible-extended-thinking) | Thinking levels (think, think hard, ultrathink) |
-| [Computer Use Safety](https://www.anthropic.com/news/3-5-models-and-computer-use) | Safe autonomous operation patterns |
-| [Sabotage Evaluations](https://www.anthropic.com/research/sabotage-evaluations-for-frontier-models) | Safety evaluation methodology |
-| [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) | One-feature-at-a-time pattern, Playwright MCP for E2E |
-| [Claude Agent SDK Overview](https://platform.claude.com/docs/en/agent-sdk/overview) | Task tool, subagents, resume parameter, hooks |
+| [Responsible AI: Harmlessness from AI Feedback](https://www.gemini.com/research/constitutional-ai-harmlessness-from-ai-feedback) | Self-critique against principles, revision workflow |
+| [Building Effective Agents](https://www.gemini.com/research/building-effective-agents) | Evaluator-optimizer pattern, parallelization, routing |
+| [Gemini CLI Best Practices](https://www.gemini.com/engineering/gemini-code-best-practices) | Explore-Plan-Code workflow, context management |
+| [Simple Probes Can Catch Sleeper Agents](https://www.gemini.com/research/probes-catch-sleeper-agents) | Defection probes, anomaly detection patterns |
+| [Alignment Faking in Large Language Models](https://www.gemini.com/research/alignment-faking) | Monitoring for strategic compliance |
+| [Visible Extended Thinking](https://www.gemini.com/research/visible-extended-thinking) | Thinking levels (think, think hard, ultrathink) |
+| [Computer Use Safety](https://www.gemini.com/news/3-5-models-and-computer-use) | Safe autonomous operation patterns |
+| [Sabotage Evaluations](https://www.gemini.com/research/sabotage-evaluations-for-frontier-models) | Safety evaluation methodology |
+| [Effective Harnesses for Long-Running Agents](https://www.gemini.com/engineering/effective-harnesses-for-long-running-agents) | One-feature-at-a-time pattern, Playwright MCP for E2E |
+| [Gemini Agent SDK Overview](https://platform.gemini.com/docs/en/agent-sdk/overview) | Task tool, subagents, resume parameter, hooks |
 
 ### Google DeepMind
 
@@ -126,7 +126,7 @@ Battle-tested insights from practitioners deploying agents in production.
 | [What Actually Works in Production for Autonomous Agents](https://news.ycombinator.com/item?id=44623207) | "Zero companies without human in the loop" |
 | [Coding with LLMs in Summer 2025](https://news.ycombinator.com/item?id=44623953) | Context curation beats automatic RAG |
 | [Superpowers: How I'm Using Coding Agents](https://news.ycombinator.com/item?id=45547344) | Sub-agents for context isolation (Simon Willison) |
-| [Claude Code Experience After Two Weeks](https://news.ycombinator.com/item?id=44596472) | Fresh contexts yield better results |
+| [Gemini CLI Experience After Two Weeks](https://news.ycombinator.com/item?id=44596472) | Fresh contexts yield better results |
 | [AI Agent Benchmarks Are Broken](https://news.ycombinator.com/item?id=44531697) | LLM-as-judge has shared blind spots |
 | [How to Orchestrate Multi-Agent Workflows](https://news.ycombinator.com/item?id=45955997) | Event-driven, decoupled coordination |
 | [Context Engineering vs Prompt Engineering](https://news.ycombinator.com/item?id=44427757) | Manual context selection principles |
@@ -148,7 +148,7 @@ Special thanks to thought leaders whose patterns and insights shaped Loki Mode:
 
 | Contributor | Contribution |
 |-------------|--------------|
-| **Boris Cherny** (Creator of Claude Code) | Self-verification loop (2-3x quality improvement), extended thinking mode, "Less prompting, more systems" philosophy |
+| **Boris Cherny** (Creator of Gemini CLI) | Self-verification loop (2-3x quality improvement), extended thinking mode, "Less prompting, more systems" philosophy |
 | **Ivan Steshov** | Centralized constitution, agent lineage tracking, structured artifacts as contracts |
 | **Addy Osmani** | Git checkpoint system, specification-first approach, visual aids (Mermaid diagrams) |
 | **Simon Willison** | Sub-agents for context isolation, skills system, context curation patterns |
@@ -167,10 +167,10 @@ Key patterns incorporated from practitioner experience:
 | Context Curation | Simon Willison | Manual selection, focused context |
 | Blind Review + Devil's Advocate | CONSENSAGENT | Anti-sycophancy protocol |
 | Hierarchical Reasoning | DeepMind Gemini | Orchestrator + specialized executors |
-| Constitutional Self-Critique | Anthropic | Principles-based revision |
+| Constitutional Self-Critique | Gemini | Principles-based revision |
 | Debate Verification | DeepMind | Critical change verification |
-| One Feature at a Time | Anthropic Harness | Single feature per iteration, full verification |
-| E2E Browser Testing | Anthropic Harness | Playwright MCP for visual verification |
+| One Feature at a Time | Gemini Harness | Single feature per iteration, full verification |
+| E2E Browser Testing | Gemini Harness | Playwright MCP for visual verification |
 
 ---
 
@@ -180,14 +180,14 @@ Key patterns incorporated from practitioner experience:
 
 | Resource | Contribution |
 |----------|--------------|
-| [Claude Code Git Worktrees](https://code.claude.com/docs/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees) | Parallel Claude sessions, worktree isolation pattern |
+| [Gemini CLI Git Worktrees](https://code.gemini.com/docs/en/common-workflows#run-parallel-gemini-code-sessions-with-git-worktrees) | Parallel Gemini sessions, worktree isolation pattern |
 
 ### Key Patterns Incorporated (v3.2.0)
 
 | Pattern | Source | Implementation |
 |---------|--------|----------------|
-| Git Worktree Isolation | Claude Code Docs | `skills/parallel-workflows.md`, `run.sh --parallel` |
-| Parallel Testing Stream | Claude Code Docs | Testing worktree tracks main, continuous validation |
+| Git Worktree Isolation | Gemini CLI Docs | `skills/parallel-workflows.md`, `run.sh --parallel` |
+| Parallel Testing Stream | Gemini CLI Docs | Testing worktree tracks main, continuous validation |
 | Inter-Stream Signals | Custom | `.loki/signals/` for feature/test/docs coordination |
 | Auto-Merge Workflow | Custom | Completed features merge back automatically |
 
@@ -217,7 +217,7 @@ Key patterns incorporated from practitioner experience:
 | Agent Cards | A2A Protocol | `.loki/state/agents/` capability discovery |
 | Structured Handoffs | A2A Protocol | JSON message format for agent-to-agent communication |
 | Sub-Agent Spawning | awesome-agentic-patterns | Task tool with focused prompts |
-| Dual LLM Pattern | awesome-agentic-patterns | Opus for planning, Haiku for execution |
+| Dual LLM Pattern | awesome-agentic-patterns | gemini-1.5-pro for planning, gemini-1.5-flash for execution |
 | CI Feedback Loop | awesome-agentic-patterns | Test results injected into retry prompts |
 | Minimal Orchestration | moridinamael | Simple continuation over complex frameworks |
 

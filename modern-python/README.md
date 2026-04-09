@@ -37,7 +37,7 @@ Modern Python tooling and best practices using uv, ruff, ty, and pytest. Based o
 
 ## Hook: Legacy Command Interception
 
-This plugin includes a `PreToolUse` hook that intercepts legacy Python/pip commands and suggests uv alternatives. When Claude attempts to run commands like `python` or `pip install`, the hook blocks the command and provides guidance:
+This plugin includes a `PreToolUse` hook that intercepts legacy Python/pip commands and suggests uv alternatives. When Gemini attempts to run commands like `python` or `pip install`, the hook blocks the command and provides guidance:
 
 | Legacy Command | Suggested Alternative |
 |----------------|----------------------|

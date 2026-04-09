@@ -6,24 +6,24 @@
 # Usage:
 #   ./benchmarks/run-benchmarks.sh [benchmark] [options]
 #   ./benchmarks/run-benchmarks.sh humaneval              # Setup only
-#   ./benchmarks/run-benchmarks.sh humaneval --execute    # Direct Claude (baseline)
+#   ./benchmarks/run-benchmarks.sh humaneval --execute    # Direct Gemini (baseline)
 #   ./benchmarks/run-benchmarks.sh humaneval --execute --loki  # Multi-agent Loki Mode
 #   ./benchmarks/run-benchmarks.sh humaneval --execute --limit 10  # First 10 problems
 #   ./benchmarks/run-benchmarks.sh swebench --execute     # Run SWE-bench
 #   ./benchmarks/run-benchmarks.sh all --execute          # Run all benchmarks
 #
 # Options:
-#   --execute       Actually run problems through Claude (vs just setup)
+#   --execute       Actually run problems through Gemini (vs just setup)
 #   --loki          Use Loki Mode multi-agent system (Architect->Engineer->QA->Reviewer)
 #   --limit N       Only run first N problems (useful for testing)
 #   --parallel N    Run N problems in parallel (default: 1)
-#   --model MODEL   Claude model to use (default: sonnet)
+#   --model MODEL   Gemini model to use (default: gemini-3-flash-preview)
 #   --timeout N     Timeout per problem in seconds (default: 120)
 #   --retries N     Max RARV retry attempts for --loki mode (default: 3)
 #
 # Prerequisites:
 #   - Python 3.8+
-#   - Claude Code CLI
+#   - Gemini CLI CLI
 #   - Git
 #
 # Results are saved to:
@@ -38,10 +38,10 @@ RESULTS_DIR="$SCRIPT_DIR/results/$(date +%Y-%m-%d-%H-%M-%S)"
 
 # Configuration
 EXECUTE_MODE=false
-LOKI_MODE=false  # Use multi-agent Loki Mode vs direct Claude
+LOKI_MODE=false  # Use multi-agent Loki Mode vs direct Gemini
 PROBLEM_LIMIT=0  # 0 = all problems
 PARALLEL_COUNT=1
-CLAUDE_MODEL="sonnet"
+GEMINI_MODEL="gemini-3-flash-preview"
 PROBLEM_TIMEOUT=120
 MAX_RETRIES=3    # RARV retry attempts
 
@@ -86,7 +86,7 @@ parse_args() {
                 shift 2
                 ;;
             --model)
-                CLAUDE_MODEL="$2"
+                GEMINI_MODEL="$2"
                 shift 2
                 ;;
             --timeout)
@@ -130,8 +130,8 @@ setup_environment() {
         exit 1
     fi
 
-    if ! command -v claude &> /dev/null; then
-        log_error "Claude Code CLI is required"
+    if ! command -v gemini &> /dev/null; then
+        log_error "Gemini CLI CLI is required"
         exit 1
     fi
 
@@ -234,11 +234,11 @@ run_humaneval_execute() {
 
     mkdir -p "$solutions_dir"
 
-    log_info "Executing HumanEval benchmark with Claude..."
-    log_info "Model: $CLAUDE_MODEL | Timeout: ${PROBLEM_TIMEOUT}s | Limit: ${PROBLEM_LIMIT:-all}"
+    log_info "Executing HumanEval benchmark with Gemini..."
+    log_info "Model: $GEMINI_MODEL | Timeout: ${PROBLEM_TIMEOUT}s | Limit: ${PROBLEM_LIMIT:-all}"
 
     # Export variables for Python
-    export PROBLEM_LIMIT PROBLEM_TIMEOUT CLAUDE_MODEL
+    export PROBLEM_LIMIT PROBLEM_TIMEOUT GEMINI_MODEL
 
     python3 << 'HUMANEVAL_EXECUTE'
 import json
@@ -255,7 +255,7 @@ SCRIPT_DIR = os.environ.get('SCRIPT_DIR', '.')
 RESULTS_DIR = os.environ.get('RESULTS_DIR', './results')
 PROBLEM_LIMIT = int(os.environ.get('PROBLEM_LIMIT', '0'))
 PROBLEM_TIMEOUT = int(os.environ.get('PROBLEM_TIMEOUT', '120'))
-CLAUDE_MODEL = os.environ.get('CLAUDE_MODEL', 'sonnet')
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-3-flash-preview')
 
 dataset_file = f"{SCRIPT_DIR}/datasets/humaneval.jsonl"
 results_file = f"{RESULTS_DIR}/humaneval-results.json"
@@ -272,19 +272,19 @@ if PROBLEM_LIMIT > 0:
 
 print(f"\n{'='*60}")
 print(f"  HumanEval Benchmark Execution")
-print(f"  Problems: {len(problems)} | Model: {CLAUDE_MODEL}")
+print(f"  Problems: {len(problems)} | Model: {GEMINI_MODEL}")
 print(f"{'='*60}\n")
 
 def solve_problem(problem):
-    """Send a HumanEval problem to Claude and get solution."""
+    """Send a HumanEval problem to Gemini and get solution."""
     task_id = problem["task_id"]
     prompt = problem["prompt"]
     entry_point = problem["entry_point"]
     test = problem["test"]
     canonical = problem.get("canonical_solution", "")
 
-    # Create prompt for Claude - ask for COMPLETE function to avoid indentation issues
-    claude_prompt = f'''You are solving a HumanEval coding problem. Complete the Python function below.
+    # Create prompt for Gemini - ask for COMPLETE function to avoid indentation issues
+    gemini_prompt = f'''You are solving a HumanEval coding problem. Complete the Python function below.
 
 {prompt}
 
@@ -298,9 +298,9 @@ INSTRUCTIONS:
 Output the complete function now:'''
 
     try:
-        # Call Claude
+        # Call Gemini
         result = subprocess.run(
-            ['claude', '-p', claude_prompt, '--model', CLAUDE_MODEL],
+            ['gemini', '-p', gemini_prompt, '--model', GEMINI_MODEL],
             capture_output=True,
             text=True,
             timeout=PROBLEM_TIMEOUT
@@ -319,7 +319,7 @@ Output the complete function now:'''
 
         # Verify solution contains the function definition
         if f"def {entry_point}" not in solution:
-            # Claude didn't include function signature, prepend it
+            # Gemini didn't include function signature, prepend it
             # Indent the body properly
             lines = solution.split('\n')
             indented_lines = ['    ' + line if line.strip() and not line.startswith('    ') else line for line in lines]
@@ -398,7 +398,7 @@ results = {
     "benchmark": "HumanEval",
     "version": "1.0",
     "timestamp": datetime.now().isoformat(),
-    "model": CLAUDE_MODEL,
+    "model": GEMINI_MODEL,
     "timeout_per_problem": PROBLEM_TIMEOUT,
     "total_problems": len(problems),
     "status": "RUNNING",
@@ -416,7 +416,7 @@ for i, problem in enumerate(problems):
 
     print(f"[{i+1}/{len(problems)}] {task_id}...", end=" ", flush=True)
 
-    # Get solution from Claude
+    # Get solution from Gemini
     solution_result = solve_problem(problem)
 
     if solution_result["error"]:
@@ -512,11 +512,11 @@ run_humaneval_loki() {
     mkdir -p "$solutions_dir"
 
     log_info "Executing HumanEval with Loki Mode Multi-Agent System..."
-    log_info "Model: $CLAUDE_MODEL | Retries: $MAX_RETRIES | Limit: ${PROBLEM_LIMIT:-all}"
+    log_info "Model: $GEMINI_MODEL | Retries: $MAX_RETRIES | Limit: ${PROBLEM_LIMIT:-all}"
     log_info "Agents: Architect -> Engineer -> QA -> Reviewer (RARV cycle)"
 
     # Export variables for Python
-    export PROBLEM_LIMIT PROBLEM_TIMEOUT CLAUDE_MODEL MAX_RETRIES
+    export PROBLEM_LIMIT PROBLEM_TIMEOUT GEMINI_MODEL MAX_RETRIES
 
     python3 << 'HUMANEVAL_LOKI'
 import json
@@ -532,7 +532,7 @@ SCRIPT_DIR = os.environ.get('SCRIPT_DIR', '.')
 RESULTS_DIR = os.environ.get('RESULTS_DIR', './results')
 PROBLEM_LIMIT = int(os.environ.get('PROBLEM_LIMIT', '0'))
 PROBLEM_TIMEOUT = int(os.environ.get('PROBLEM_TIMEOUT', '120'))
-CLAUDE_MODEL = os.environ.get('CLAUDE_MODEL', 'sonnet')
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-3-flash-preview')
 MAX_RETRIES = int(os.environ.get('MAX_RETRIES', '3'))
 
 dataset_file = f"{SCRIPT_DIR}/datasets/humaneval.jsonl"
@@ -550,7 +550,7 @@ if PROBLEM_LIMIT > 0:
 
 print(f"\n{'='*70}")
 print(f"  LOKI MODE Multi-Agent HumanEval Benchmark")
-print(f"  Problems: {len(problems)} | Model: {CLAUDE_MODEL} | Max Retries: {MAX_RETRIES}")
+print(f"  Problems: {len(problems)} | Model: {GEMINI_MODEL} | Max Retries: {MAX_RETRIES}")
 print(f"  Agent Pipeline: Architect -> Engineer -> QA -> Reviewer")
 print(f"{'='*70}\n")
 
@@ -558,7 +558,7 @@ def call_agent(agent_name, prompt, timeout=PROBLEM_TIMEOUT):
     """Call a Loki Mode agent with a specific role."""
     try:
         result = subprocess.run(
-            ['claude', '-p', prompt, '--model', CLAUDE_MODEL],
+            ['gemini', '-p', prompt, '--model', GEMINI_MODEL],
             capture_output=True,
             text=True,
             timeout=timeout
@@ -816,7 +816,7 @@ results = {
     "mode": "multi-agent",
     "version": "1.0",
     "timestamp": datetime.now().isoformat(),
-    "model": CLAUDE_MODEL,
+    "model": GEMINI_MODEL,
     "max_retries": MAX_RETRIES,
     "total_problems": len(problems),
     "problems": []
@@ -895,7 +895,7 @@ print(f"  Time:         {elapsed_time:.1f}s ({elapsed_time/len(problems):.1f}s a
 print(f"{'='*70}")
 print(f"\n  Comparison (baseline: MetaGPT 85.9-87.7%):")
 print(f"  - MetaGPT (multi-agent):     85.9-87.7%")
-print(f"  - Direct Claude:             98.17% (from previous run)")
+print(f"  - Direct Gemini:             98.17% (from previous run)")
 print(f"  - Loki Mode (multi-agent):   {pass_rate:.1f}%")
 if pass_rate >= 98:
     print(f"  Status: \033[0;32mEXCELLENT - Beats both!\033[0m")
@@ -1010,7 +1010,7 @@ run_swebench_execute() {
         pip install -q swebench datasets
     fi
 
-    export PROBLEM_LIMIT PROBLEM_TIMEOUT CLAUDE_MODEL
+    export PROBLEM_LIMIT PROBLEM_TIMEOUT GEMINI_MODEL
 
     python3 << 'SWEBENCH_EXECUTE'
 import json
@@ -1034,7 +1034,7 @@ SCRIPT_DIR = os.environ.get('SCRIPT_DIR', '.')
 RESULTS_DIR = os.environ.get('RESULTS_DIR', './results')
 PROBLEM_LIMIT = int(os.environ.get('PROBLEM_LIMIT', '10'))  # Default to 10 for SWE-bench
 PROBLEM_TIMEOUT = int(os.environ.get('PROBLEM_TIMEOUT', '300'))
-CLAUDE_MODEL = os.environ.get('CLAUDE_MODEL', 'sonnet')
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-3-flash-preview')
 
 results_file = f"{RESULTS_DIR}/swebench-results.json"
 patches_dir = f"{RESULTS_DIR}/swebench-patches"
@@ -1042,7 +1042,7 @@ os.makedirs(patches_dir, exist_ok=True)
 
 print(f"\n{'='*60}")
 print(f"  SWE-bench Lite Benchmark Execution")
-print(f"  Limit: {PROBLEM_LIMIT} | Model: {CLAUDE_MODEL}")
+print(f"  Limit: {PROBLEM_LIMIT} | Model: {GEMINI_MODEL}")
 print(f"{'='*60}\n")
 
 # Load SWE-bench Lite dataset
@@ -1067,14 +1067,14 @@ except Exception as e:
     sys.exit(1)
 
 def solve_swebench_problem(problem):
-    """Generate a patch for a SWE-bench problem using Claude."""
+    """Generate a patch for a SWE-bench problem using Gemini."""
     instance_id = problem["instance_id"]
     repo = problem["repo"]
     base_commit = problem["base_commit"]
     problem_statement = problem["problem_statement"]
     hints = problem.get("hints_text", "")
 
-    # Create prompt for Claude
+    # Create prompt for Gemini
     prompt = f'''You are solving a real GitHub issue from the {repo} repository.
 
 ## Problem Statement
@@ -1098,7 +1098,7 @@ Do not include any explanation or markdown code blocks. Just the raw patch.'''
 
     try:
         result = subprocess.run(
-            ['claude', '-p', prompt, '--model', CLAUDE_MODEL],
+            ['gemini', '-p', prompt, '--model', GEMINI_MODEL],
             capture_output=True,
             text=True,
             timeout=PROBLEM_TIMEOUT
@@ -1126,7 +1126,7 @@ results = {
     "benchmark": "SWE-bench Lite",
     "version": "1.0",
     "timestamp": datetime.now().isoformat(),
-    "model": CLAUDE_MODEL,
+    "model": GEMINI_MODEL,
     "timeout_per_problem": PROBLEM_TIMEOUT,
     "total_problems": len(problems),
     "status": "RUNNING",
@@ -1160,7 +1160,7 @@ for i, problem in enumerate(problems):
     results["predictions"].append({
         "instance_id": instance_id,
         "model_patch": solution["model_patch"] or "",
-        "model_name_or_path": f"loki-mode-{CLAUDE_MODEL}"
+        "model_name_or_path": f"loki-mode-{GEMINI_MODEL}"
     })
 
     # Save intermediate results
@@ -1210,7 +1210,7 @@ SWEBENCH_EXECUTE
 
 run_swebench_loki() {
     log_info "Executing SWE-bench Lite with Loki Mode Multi-Agent System..."
-    log_info "Model: $CLAUDE_MODEL | Retries: $MAX_RETRIES | Limit: ${PROBLEM_LIMIT:-all}"
+    log_info "Model: $GEMINI_MODEL | Retries: $MAX_RETRIES | Limit: ${PROBLEM_LIMIT:-all}"
     log_info "Agents: Architect -> Engineer -> QA -> Reviewer (RARV cycle)"
     log_info "Trajectory logging: ENABLED (for official submission)"
 
@@ -1220,7 +1220,7 @@ run_swebench_loki() {
         pip install -q swebench datasets
     fi
 
-    export PROBLEM_LIMIT PROBLEM_TIMEOUT CLAUDE_MODEL MAX_RETRIES
+    export PROBLEM_LIMIT PROBLEM_TIMEOUT GEMINI_MODEL MAX_RETRIES
 
     python3 << 'SWEBENCH_LOKI'
 import json
@@ -1241,7 +1241,7 @@ SCRIPT_DIR = os.environ.get('SCRIPT_DIR', '.')
 RESULTS_DIR = os.environ.get('RESULTS_DIR', './results')
 PROBLEM_LIMIT = int(os.environ.get('PROBLEM_LIMIT', '0'))
 PROBLEM_TIMEOUT = int(os.environ.get('PROBLEM_TIMEOUT', '300'))
-CLAUDE_MODEL = os.environ.get('CLAUDE_MODEL', 'sonnet')
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-3-flash-preview')
 MAX_RETRIES = int(os.environ.get('MAX_RETRIES', '3'))
 
 results_file = f"{RESULTS_DIR}/swebench-loki-results.json"
@@ -1254,7 +1254,7 @@ os.makedirs(logs_dir, exist_ok=True)
 
 print(f"\n{'='*70}")
 print(f"  LOKI MODE Multi-Agent SWE-bench Lite Benchmark")
-print(f"  Limit: {PROBLEM_LIMIT if PROBLEM_LIMIT > 0 else 'all'} | Model: {CLAUDE_MODEL} | Max Retries: {MAX_RETRIES}")
+print(f"  Limit: {PROBLEM_LIMIT if PROBLEM_LIMIT > 0 else 'all'} | Model: {GEMINI_MODEL} | Max Retries: {MAX_RETRIES}")
 print(f"  Agent Pipeline: Architect -> Engineer -> QA -> Reviewer")
 print(f"{'='*70}\n")
 
@@ -1275,7 +1275,7 @@ def call_agent(agent_name, prompt, timeout=PROBLEM_TIMEOUT):
     start_time = time.time()
     try:
         result = subprocess.run(
-            ['claude', '-p', prompt, '--model', CLAUDE_MODEL],
+            ['gemini', '-p', prompt, '--model', GEMINI_MODEL],
             capture_output=True,
             text=True,
             timeout=timeout
@@ -1283,7 +1283,7 @@ def call_agent(agent_name, prompt, timeout=PROBLEM_TIMEOUT):
         elapsed = time.time() - start_time
         return result.stdout.strip(), None, {
             "agent": agent_name,
-            "model": CLAUDE_MODEL,
+            "model": GEMINI_MODEL,
             "elapsed_seconds": round(elapsed, 2),
             "prompt_length": len(prompt),
             "output_length": len(result.stdout),
@@ -1293,7 +1293,7 @@ def call_agent(agent_name, prompt, timeout=PROBLEM_TIMEOUT):
         elapsed = time.time() - start_time
         return None, "TIMEOUT", {
             "agent": agent_name,
-            "model": CLAUDE_MODEL,
+            "model": GEMINI_MODEL,
             "elapsed_seconds": round(elapsed, 2),
             "error": "TIMEOUT",
             "timestamp": datetime.now().isoformat()
@@ -1492,7 +1492,7 @@ def save_trajectory(instance_id, trajectory_steps):
     with open(traj_file, 'w') as f:
         f.write(f"# Trajectory: {instance_id}\n\n")
         f.write(f"**Generated by:** Loki Mode Multi-Agent System\n")
-        f.write(f"**Model:** {CLAUDE_MODEL}\n")
+        f.write(f"**Model:** {GEMINI_MODEL}\n")
         f.write(f"**Timestamp:** {datetime.now().isoformat()}\n\n")
         f.write("---\n\n")
 
@@ -1542,7 +1542,7 @@ def save_logs(instance_id, patch, result):
     report_file = f"{log_dir}/report.json"
     report = {
         "instance_id": instance_id,
-        "model_name_or_path": f"loki-mode-{CLAUDE_MODEL}",
+        "model_name_or_path": f"loki-mode-{GEMINI_MODEL}",
         "model_patch": patch or "",
         "attempts": result.get("attempts", 1),
         "success": result.get("error") is None,
@@ -1666,7 +1666,7 @@ results = {
     "mode": "multi-agent",
     "version": "1.0",
     "timestamp": datetime.now().isoformat(),
-    "model": CLAUDE_MODEL,
+    "model": GEMINI_MODEL,
     "max_retries": MAX_RETRIES,
     "total_problems": len(problems),
     "predictions": []
@@ -1713,7 +1713,7 @@ for i, problem in enumerate(problems):
     results["predictions"].append({
         "instance_id": instance_id,
         "model_patch": result["model_patch"] or "",
-        "model_name_or_path": f"loki-mode-{CLAUDE_MODEL}",
+        "model_name_or_path": f"loki-mode-{GEMINI_MODEL}",
         "attempts": result["attempts"]
     })
 
@@ -1751,7 +1751,7 @@ print(f"  - Trajectories: {trajs_dir}/ ({len(os.listdir(trajs_dir))} files)")
 print(f"  - Logs: {logs_dir}/ ({len(os.listdir(logs_dir))} dirs)")
 print(f"{'='*70}")
 print(f"\n  Comparison:")
-print(f"  - Direct Claude:             99.67% patch gen")
+print(f"  - Direct Gemini:             99.67% patch gen")
 print(f"  - Loki Mode (multi-agent):   {gen_rate:.1f}% patch gen")
 print(f"{'='*70}")
 print(f"\n  Next Step: Run SWE-bench evaluator")
@@ -1878,13 +1878,13 @@ This mirrors real-world software development more accurately than single-agent a
 # Setup only (download datasets)
 ./benchmarks/run-benchmarks.sh all
 
-# Execute with Claude
+# Execute with Gemini
 ./benchmarks/run-benchmarks.sh humaneval --execute
 ./benchmarks/run-benchmarks.sh humaneval --execute --limit 10  # First 10 only
 ./benchmarks/run-benchmarks.sh swebench --execute --limit 5    # First 5 only
 
 # Use different model
-./benchmarks/run-benchmarks.sh humaneval --execute --model opus
+./benchmarks/run-benchmarks.sh humaneval --execute --model gemini-1.5-pro
 \`\`\`
 """
 

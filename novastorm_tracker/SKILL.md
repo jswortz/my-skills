@@ -1,8 +1,8 @@
 ---
 name: novastorm-tracker
-description: Guide and recipes for managing Buganizer issues for the NovaStorm project (Component ID 2059327).
+description: Guide and recipes for managing Buganizer issues for the NovaStorm project
+  (Component ID 2059327).
 ---
-
 # NovaStorm Tracker Skill
 
 Use this skill when managing Buganizer issues for the NovaStorm project. It provides recipes and default configurations to interact with the Buganizer MCP using the correct Component ID (`2059327`).
@@ -66,3 +66,6 @@ List issues related to Phase 3 implementation.
 1. **Always** use `componentId: "2059327"` when creating or listing issues for NovaStorm unless specifically directed otherwise.
 2. Structure titles with categories where applicable, e.g. `[GEPA]`, `[Critic Agent]`, `[Cloud Run]`, `[Dataplex]`, `[Multi-Agent]`, `[Memory Bank]`, etc.
 3. Use Markdown in comments for better readability.
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

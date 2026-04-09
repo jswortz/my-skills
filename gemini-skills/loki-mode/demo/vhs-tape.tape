@@ -26,9 +26,9 @@ Type "clear"
 Enter
 Show
 
-# Step 1: Show we're starting Claude Code
+# Step 1: Show we're starting Gemini CLI
 Sleep 1s
-Type "claude --dangerously-skip-permissions"
+Type "gemini --dangerously-skip-permissions"
 Enter
 Sleep 2s
 
@@ -91,15 +91,15 @@ Type@0ms "  Spawning agents..."
 Sleep 500ms
 Enter
 
-Type@0ms "    [SPAWN] agent-backend-001 (Sonnet)"
+Type@0ms "    [SPAWN] agent-backend-001 (gemini-3-flash-preview)"
 Sleep 300ms
 Enter
 
-Type@0ms "    [SPAWN] agent-frontend-001 (Sonnet)"
+Type@0ms "    [SPAWN] agent-frontend-001 (gemini-3-flash-preview)"
 Sleep 300ms
 Enter
 
-Type@0ms "    [SPAWN] agent-qa-001 (Haiku)"
+Type@0ms "    [SPAWN] agent-qa-001 (gemini-1.5-flash)"
 Sleep 300ms
 Enter
 
@@ -121,7 +121,7 @@ Type@0ms "[LOKI MODE] Code Review"
 Sleep 1s
 Enter
 
-Type@0ms "  Launching 3 parallel reviewers (Sonnet)..."
+Type@0ms "  Launching 3 parallel reviewers (gemini-3-flash-preview)..."
 Sleep 500ms
 Enter
 

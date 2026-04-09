@@ -84,7 +84,7 @@ completion:
 # Model & Routing Settings
 #===============================================================================
 model:
-  # Enable prompt repetition for Haiku agents
+  # Enable prompt repetition for gemini-1.5-flash agents
   prompt_repetition: true
   # Enable confidence-based routing
   confidence_routing: true
@@ -101,7 +101,7 @@ parallel:
   enabled: false
   # Maximum parallel worktrees
   max_worktrees: 5
-  # Maximum concurrent Claude sessions
+  # Maximum concurrent Gemini sessions
   max_sessions: 3
   # Run testing stream in parallel
   testing: true

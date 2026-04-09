@@ -1,8 +1,10 @@
 ---
 name: property-based-testing
-description: Provides guidance for property-based testing across multiple languages and smart contracts. Use when writing tests, reviewing code with serialization/validation/parsing patterns, designing features, or when property-based testing would provide stronger coverage than example-based tests.
+description: Provides guidance for property-based testing across multiple languages
+  and smart contracts. Use when writing tests, reviewing code with serialization/validation/parsing
+  patterns, designing features, or when property-based testing would provide stronger
+  coverage than example-based tests.
 ---
-
 # Property-Based Testing Guide
 
 Use this skill proactively during development when you encounter patterns where PBT provides stronger coverage than example-based tests.
@@ -107,3 +109,6 @@ When you detect a high-value pattern while writing tests, **offer PBT as an opti
 - Ignoring type hints (well-typed = easier to test)
 - Overwhelming user with candidates (limit to top 5-10)
 - Being pushy after user declines
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

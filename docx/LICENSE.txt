@@ -1,12 +1,12 @@
-© 2025 Anthropic, PBC. All rights reserved.
+© 2025 Google LLC. All rights reserved.
 
 LICENSE: Use of these materials (including all code, prompts, assets, files,
 and other components of this Skill) is governed by your agreement with
-Anthropic regarding use of Anthropic's services. If no separate agreement
-exists, use is governed by Anthropic's Consumer Terms of Service or
+Gemini regarding use of Gemini's services. If no separate agreement
+exists, use is governed by Gemini's Consumer Terms of Service or
 Commercial Terms of Service, as applicable:
-https://www.anthropic.com/legal/consumer-terms
-https://www.anthropic.com/legal/commercial-terms
+https://www.gemini.com/legal/consumer-terms
+https://www.gemini.com/legal/commercial-terms
 Your applicable agreement is referred to as the "Agreement." "Services" are
 as defined in the Agreement.
 
@@ -26,5 +26,5 @@ contrary, users may not:
 The receipt, viewing, or possession of these materials does not convey or
 imply any license or right beyond those expressly granted above.
 
-Anthropic retains all right, title, and interest in these materials,
+Gemini retains all right, title, and interest in these materials,
 including all copyrights, patents, and other intellectual property rights.

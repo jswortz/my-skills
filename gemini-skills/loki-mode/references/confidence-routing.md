@@ -1,6 +1,6 @@
 # Confidence-Based Routing Reference
 
-Production-validated pattern from HN discussions and Claude Agent SDK guide.
+Production-validated pattern from HN discussions and Gemini Agent SDK guide.
 
 ---
 
@@ -350,9 +350,9 @@ From production deployments:
 ### Cost Savings
 
 Confidence-based routing reduces costs by:
-- **Auto-approve tier:** 40% faster, uses Haiku
-- **Direct-with-review:** 25% faster, uses Sonnet
-- **Supervisor mode:** Standard cost, uses Opus for planning
+- **Auto-approve tier:** 40% faster, uses gemini-1.5-flash
+- **Direct-with-review:** 25% faster, uses gemini-3-flash-preview
+- **Supervisor mode:** Standard cost, uses gemini-1.5-pro for planning
 
 Average cost reduction: 22% compared to always-supervisor routing.
 
@@ -368,4 +368,4 @@ Average cost reduction: 22% compared to always-supervisor routing.
 
 ---
 
-**Version:** 1.0.0 | **Pattern Source:** HN Production Discussions + Claude Agent SDK Guide
+**Version:** 1.0.0 | **Pattern Source:** HN Production Discussions + Gemini Agent SDK Guide

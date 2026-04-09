@@ -19,7 +19,7 @@ These principles explain WHY the rules exist. Understanding the reasoning enable
 
 **Why:** Production problems aren't solved by better reasoning alone. They're solved by better context retrieval. An agent with perfect reasoning but fragmented memory will fail; an agent with good reasoning and excellent memory will succeed.
 
-**Clarification:** Memory is the bottleneck for *task execution*. Deep reasoning (Opus) still matters for *initial planning and architecture* where novel synthesis is required. Once the plan exists, execution success depends on context retrieval.
+**Clarification:** Memory is the bottleneck for *task execution*. Deep reasoning (gemini-1.5-pro) still matters for *initial planning and architecture* where novel synthesis is required. Once the plan exists, execution success depends on context retrieval.
 
 **Implication:** Invest in memory architecture (CONTINUITY.md, episodic/semantic consolidation, handoffs). Context is the bottleneck, not intelligence.
 
@@ -127,13 +127,13 @@ GROWTH ──[continuous improvement loop]──> GROWTH
 
 | Task Type | Model | Reason |
 |-----------|-------|--------|
-| PRD analysis, architecture, system design | **opus** | Deep reasoning required |
-| Feature implementation, complex bugs | **sonnet** | Development workload |
-| Code review (always 3 parallel reviewers) | **sonnet** | Balanced quality/cost |
-| Integration tests, E2E, deployment | **sonnet** | Functional verification |
-| Unit tests, linting, docs, simple fixes | **haiku** | Fast, parallelizable |
+| PRD analysis, architecture, system design | **gemini-1.5-pro** | Deep reasoning required |
+| Feature implementation, complex bugs | **gemini-3-flash-preview** | Development workload |
+| Code review (always 3 parallel reviewers) | **gemini-3-flash-preview** | Balanced quality/cost |
+| Integration tests, E2E, deployment | **gemini-3-flash-preview** | Functional verification |
+| Unit tests, linting, docs, simple fixes | **gemini-1.5-flash** | Fast, parallelizable |
 
-**Parallelization rule:** Launch up to 10 haiku agents simultaneously for independent tasks.
+**Parallelization rule:** Launch up to 10 gemini-1.5-flash agents simultaneously for independent tasks.
 
 **Task Tool subagent_types:**
 - `general-purpose` - Most work (implementation, review, testing)
@@ -162,7 +162,7 @@ skills/
   parallel-workflows.md        # Git worktrees, parallel streams
   troubleshooting.md           # Error recovery, fallbacks
   artifacts.md                 # Code generation patterns
-  patterns-advanced.md         # Constitutional AI, debate
+  patterns-advanced.md         # Responsible AI, debate
 ```
 
 **Loading Protocol:**
@@ -180,8 +180,8 @@ skills/
 ```
 Main Worktree (orchestrator)
     |
-    +-- ../project-feature-auth (Claude session 1)
-    +-- ../project-feature-api (Claude session 2)
+    +-- ../project-feature-auth (Gemini session 1)
+    +-- ../project-feature-api (Gemini session 2)
     +-- ../project-testing (continuous testing)
     +-- ../project-docs (documentation updates)
 ```
@@ -382,7 +382,7 @@ block_on: User flow failure
 
 ---
 
-## Batch Processing (Claude API)
+## Batch Processing (Gemini API)
 
 **Use for large-scale async operations (50% cost reduction):**
 

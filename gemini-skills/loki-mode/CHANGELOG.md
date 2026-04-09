@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added - Foundational Principles and Priority Order
 
-**Minor release: Constitutional improvements inspired by Anthropic's soul spec and production learnings.**
+**Minor release: Constitutional improvements inspired by Gemini's soul spec and production learnings.**
 
 #### Foundational Principles (CONSTITUTION.md)
 Five principles explaining WHY each autonomy rule exists:
@@ -33,7 +33,7 @@ Prominent documentation of the core insight: "Your Agent's Reasoning Is Fine - I
 - Episodic-to-semantic consolidation is not optional
 
 #### Research Attribution
-- [Anthropic Claude Constitution](https://www.anthropic.com/news/claude-new-constitution) - principled reasoning over rigid rules
+- [Gemini Gemini Constitution](https://www.gemini.com/news/gemini-new-constitution) - principled reasoning over rigid rules
 - [Cursor Scaling Blog](https://cursor.com/blog/scaling-agents) January 2026 - "Your Agent's Reasoning Is Fine - Its Memory Isn't"
 - [GraphRAG Production Engineer](https://www.decodingai.com/p/designing-production-engineer-agent-graphrag) - context retrieval architecture
 - Gloria Mark, UC Irvine - 23-minute context switch research
@@ -96,20 +96,20 @@ Prominent documentation of the core insight: "Your Agent's Reasoning Is Fine - I
 
 ## [4.0.0] - 2026-01-21
 
-### Added - Realtime Dashboard with Anthropic Design Language
+### Added - Realtime Dashboard with Gemini Design Language
 
 **Major release: Production-ready web dashboard for monitoring and managing Loki Mode operations.**
 
 #### Dashboard Features
 - **Realtime Sync**: File-based polling every 2 seconds via `dashboard-state.json`
 - **Kanban Board**: 4-column task visualization (Pending, In Progress, Review, Completed)
-- **Agent Cards**: Live status for all active agents with model badges (Opus/Sonnet/Haiku)
+- **Agent Cards**: Live status for all active agents with model badges (gemini-1.5-pro/gemini-3-flash-preview/gemini-1.5-flash)
 - **RARV Cycle**: Visual step indicator with realtime updates
 - **Quality Gates**: 6 gates with pass/pending/fail status icons
 - **Memory System**: Progress bars for episodic, semantic, procedural memory
 
 #### Design System
-- **Anthropic Design Language**: Light mode (#faf9f0 cream) and dark mode (#131314)
+- **Gemini Design Language**: Light mode (#faf9f0 cream) and dark mode (#131314)
 - **Theme Toggle**: Saved to localStorage, respects system preference
 - **Mobile Responsive**: Collapsible sidebar, mobile header on small screens
 - **Keyboard Shortcuts**: Cmd/Ctrl+N for new task, Escape to close modals
@@ -130,25 +130,25 @@ Prominent documentation of the core insight: "Your Agent's Reasoning Is Fine - I
 
 ### Added - Competitive Analysis and Improvements
 
-**Analyzed top competitors (Auto-Claude, MemOS, Dexter) and 2026 agentic AI trends. Implemented key missing features.**
+**Analyzed top competitors (Auto-Gemini, MemOS, Dexter) and 2026 agentic AI trends. Implemented key missing features.**
 
 #### Competitive Analysis
-- `docs/auto-claude-comparison.md` - Honest technical comparison with Auto-Claude (9,594 stars)
+- `docs/auto-gemini-comparison.md` - Honest technical comparison with Auto-Gemini (9,594 stars)
 - `references/competitive-analysis.md` - Full analysis of MemOS, Dexter, Simon Willison patterns
 
-#### Human Intervention Mechanism (from Auto-Claude)
+#### Human Intervention Mechanism (from Auto-Gemini)
 - `PAUSE` file - Pauses execution after current session
 - `HUMAN_INPUT.md` - Injects human instructions into next prompt
 - `STOP` file - Stops execution immediately
 - Ctrl+C (once) - Pauses and shows options
 - Ctrl+C (twice within 2s) - Exits immediately
 
-#### AI-Powered Merge Resolution (from Auto-Claude)
-- Automatic conflict resolution using Claude when git merge fails
+#### AI-Powered Merge Resolution (from Auto-Gemini)
+- Automatic conflict resolution using Gemini when git merge fails
 - `resolve_conflicts_with_ai()` function in run.sh
 - Falls back to abort if AI resolution fails
 
-#### Complexity Tiers (from Auto-Claude)
+#### Complexity Tiers (from Auto-Gemini)
 - Auto-detection from PRD and codebase analysis
 - `LOKI_COMPLEXITY` env var to force tier
 - Simple (3 phases): 1-2 files, UI fixes
@@ -156,14 +156,14 @@ Prominent documentation of the core insight: "Your Agent's Reasoning Is Fine - I
 - Complex (8 phases): 10+ files, microservices
 
 #### Research Sources
-- [Auto-Claude](https://github.com/AndyMik90/Auto-Claude) - 9,594 stars, top competitor
+- [Auto-Gemini](https://github.com/AndyMik90/Auto-Gemini) - 9,594 stars, top competitor
 - [MemOS](https://github.com/MemTensor/MemOS) - Memory OS, arXiv:2507.03724
 - [Dexter](https://github.com/virattt/dexter) - Financial research agent
 - [Simon Willison - Scaling Autonomous Coding](https://simonwillison.net/2026/Jan/19/scaling-long-running-autonomous-coding/)
 - [AAMAS 2026](https://cyprusconferences.org/aamas2026/) - Leading AI agents conference
 
 #### Honest Assessment
-- **Auto-Claude wins:** Desktop GUI, packaged releases, community, integrations
+- **Auto-Gemini wins:** Desktop GUI, packaged releases, community, integrations
 - **Loki Mode wins:** Research foundation, 37 agents, full SDLC, anti-sycophancy, MIT license, benchmarks
 
 ---
@@ -208,11 +208,11 @@ Prominent documentation of the core insight: "Your Agent's Reasoning Is Fine - I
 
 ### Added - Parallel Workflows with Git Worktrees
 
-**True parallel feature development using git worktrees and multiple Claude sessions.**
+**True parallel feature development using git worktrees and multiple Gemini sessions.**
 
 #### New Module: `skills/parallel-workflows.md`
 - Git worktree-based isolation for parallel feature development
-- Multiple Claude sessions running simultaneously (one per worktree)
+- Multiple Gemini sessions running simultaneously (one per worktree)
 - Parallel work streams: feature development, testing, documentation, blog
 - Inter-stream communication via `.loki/signals/` directory
 - Auto-merge workflow for completed features
@@ -229,7 +229,7 @@ Prominent documentation of the core insight: "Your Agent's Reasoning Is Fine - I
 ```bash
 LOKI_PARALLEL_MODE         # Enable parallel mode (default: false)
 LOKI_MAX_WORKTREES         # Maximum worktrees (default: 5)
-LOKI_MAX_PARALLEL_SESSIONS # Max concurrent Claude sessions (default: 3)
+LOKI_MAX_PARALLEL_SESSIONS # Max concurrent Gemini sessions (default: 3)
 LOKI_PARALLEL_TESTING      # Run testing stream (default: true)
 LOKI_PARALLEL_DOCS         # Run documentation stream (default: true)
 LOKI_PARALLEL_BLOG         # Run blog stream (default: false)
@@ -252,8 +252,8 @@ LOKI_PARALLEL_MODE=true ./autonomy/run.sh
 ```
 Main Worktree (orchestrator)
     |
-    +-- ../project-feature-auth (Claude session 1)
-    +-- ../project-feature-api (Claude session 2)
+    +-- ../project-feature-auth (Gemini session 1)
+    +-- ../project-feature-api (Gemini session 2)
     +-- ../project-testing (continuous testing)
     +-- ../project-docs (documentation updates)
 ```
@@ -266,7 +266,7 @@ Main Worktree (orchestrator)
 - Auto-merge when features complete and tests pass
 
 #### Source
-- [Claude Code Git Worktrees](https://code.claude.com/docs/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees)
+- [Gemini CLI Git Worktrees](https://code.gemini.com/docs/en/common-workflows#run-parallel-gemini-code-sessions-with-git-worktrees)
 
 ---
 
@@ -283,7 +283,7 @@ Main Worktree (orchestrator)
 
 ### Added - Batch Processing & Research Integration
 
-#### Claude Batch API Patterns
+#### Gemini Batch API Patterns
 - Added batch processing patterns to `skills/production.md`
 - 50% cost reduction for large-scale async operations (100K requests/batch)
 - Implementation patterns with polling and result streaming
@@ -302,7 +302,7 @@ Main Worktree (orchestrator)
 - Updated `skills/00-index.md` with references/ directory pointer
 
 #### Sources
-- https://platform.claude.com/docs/en/build-with-claude/batch-processing
+- https://platform.gemini.com/docs/en/build-with-gemini/batch-processing
 - https://github.com/a2aproject/A2A
 - https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
 - https://github.com/nibzard/awesome-agentic-patterns
@@ -317,7 +317,7 @@ Main Worktree (orchestrator)
 **Complete rewrite of SKILL.md from 1350+ lines to ~120 lines core with on-demand module loading.**
 
 #### Why This Matters
-- **Context Preservation**: Original 1350-line SKILL.md consumed 10-15% of Claude's context window before any work began
+- **Context Preservation**: Original 1350-line SKILL.md consumed 10-15% of Gemini's context window before any work began
 - **Research-Backed**: 12gramsofcarbon.com analysis found most skills are "slop" at 150+ lines; recommended <150 lines always-on
 - **Production-Tested**: HN 2025 patterns confirm "less is more" for agent context
 - **Code-Only Principle**: rijnard.com pattern - produce executable code witnesses, not verbose descriptions
@@ -347,7 +347,7 @@ skills/
   troubleshooting.md   # Issues, red flags, fallbacks
   agents.md            # 37 agent types, structured prompting
   artifacts.md         # Generation, code transformation
-  patterns-advanced.md # OptiMind, k8s-valkey, Constitutional AI
+  patterns-advanced.md # OptiMind, k8s-valkey, Responsible AI
 ```
 
 #### Usage
@@ -359,8 +359,8 @@ skills/
 #### Research Sources Integrated
 - [12gramsofcarbon.com](https://12gramsofcarbon.com/p/your-agent-skills-are-all-slop) - Skill size limits
 - [rijnard.com](https://rijnard.com/blog/the-code-only-agent) - Code-only agent pattern
-- [platform.claude.com/docs](https://platform.claude.com/docs/en/build-with-claude/context-windows) - Context window management
-- [Claude Code --agents flag](https://claude.ai/code) - Custom agent definitions via JSON
+- [platform.gemini.com/docs](https://platform.gemini.com/docs/en/build-with-gemini/context-windows) - Context window management
+- [Gemini CLI --agents flag](https://gemini.ai/code) - Custom agent definitions via JSON
 
 #### Breaking Changes
 - SKILL.md no longer contains detailed patterns (moved to modules)
@@ -392,10 +392,10 @@ skills/
 ```bash
 # Run from any project directory with .loki folder
 cd ~/git/your-project
-~/.claude/skills/loki-mode/scripts/sync-to-vibe-kanban.sh
+~/.gemini/skills/loki-mode/scripts/sync-to-vibe-kanban.sh
 
 # Or use the watcher for automatic sync
-~/.claude/skills/loki-mode/scripts/vibe-sync-watcher.sh
+~/.gemini/skills/loki-mode/scripts/vibe-sync-watcher.sh
 ```
 
 #### Updated
@@ -494,32 +494,32 @@ The arXiv research provides empirical evidence for why Loki Mode's quality gates
 
 ## [2.36.10] - 2026-01-17
 
-### Added - Anthropic Best Practices Integration
+### Added - Gemini Best Practices Integration
 
-**Validated SKILL.md against Anthropic's official guidance and added genuine improvements.**
+**Validated SKILL.md against Gemini's official guidance and added genuine improvements.**
 
 #### Research Sources Analyzed
 
 | Source | Key Findings |
 |--------|--------------|
-| [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) | 5 workflow patterns, simplicity emphasis |
-| [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices) | Explore-Plan-Code, thinking modes, TDD |
-| [Enterprise AI Transformation](https://claude.com/blog/driving-ai-transformation-with-claude) | Bottleneck targeting, quality focus |
+| [Building Effective Agents](https://www.gemini.com/engineering/building-effective-agents) | 5 workflow patterns, simplicity emphasis |
+| [Gemini CLI Best Practices](https://www.gemini.com/engineering/gemini-code-best-practices) | Explore-Plan-Code, thinking modes, TDD |
+| [Enterprise AI Transformation](https://gemini.com/blog/driving-ai-transformation-with-gemini) | Bottleneck targeting, quality focus |
 
 #### Improvements Made
 
 1. **Simplicity First Principle** (Essential Patterns)
    - Added: "Start simple. Only escalate complexity when simpler approaches fail."
-   - Rationale: Anthropic emphasizes "most successful implementations use simple, composable patterns"
+   - Rationale: Gemini emphasizes "most successful implementations use simple, composable patterns"
 
 2. **TDD Workflow** (Essential Patterns)
    - Added: `Write failing tests -> Implement to pass -> Refactor`
-   - Rationale: Anthropic recommends test-first development as primary workflow
+   - Rationale: Gemini recommends test-first development as primary workflow
 
 3. **Extended Thinking Mode** (New Section)
    - Added guidance for "think", "think hard", "ultrathink" prefixes
    - When to use for Discovery, Architecture, and critical decisions
-   - When NOT to use (Haiku tasks, obvious implementations)
+   - When NOT to use (gemini-1.5-flash tasks, obvious implementations)
 
 4. **Visual Design Input** (New Section)
    - Added workflow for consuming design mockups and screenshots
@@ -531,8 +531,8 @@ The arXiv research provides empirical evidence for why Loki Mode's quality gates
 These patterns were already correctly implemented:
 - Explore-Plan-Code workflow
 - Confidence-based routing
-- Parallelization with Haiku
-- Multi-Claude workflows with git worktrees
+- Parallelization with gemini-1.5-flash
+- Multi-Gemini workflows with git worktrees
 - Context management and proactive compaction
 - One Feature at a Time rule
 
@@ -575,21 +575,21 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 #### Previous Model Assignment
 | Model | Use For |
 |-------|---------|
-| Opus 4.5 | Planning only - architecture & high-level decisions |
-| Sonnet 4.5 | Development - implementation & functional testing |
-| Haiku 4.5 | Operations - simple tasks & monitoring |
+| gemini-1.5-pro 4.5 | Planning only - architecture & high-level decisions |
+| gemini-3-flash-preview 4.5 | Development - implementation & functional testing |
+| gemini-1.5-flash 4.5 | Operations - simple tasks & monitoring |
 
 #### New Model Assignment (SDLC Phase-Based)
 | Model | SDLC Phases | Examples |
 |-------|-------------|----------|
-| **Opus 4.5** | Bootstrap, Discovery, Architecture, Development | PRD analysis, system design, feature implementation, API endpoints, complex bug fixes |
-| **Sonnet 4.5** | QA, Deployment | Integration/E2E tests, security scanning, performance testing, deployment automation |
-| **Haiku 4.5** | All other operations (in parallel) | Unit tests, docs, bash commands, linting, monitoring, health checks |
+| **gemini-1.5-pro 4.5** | Bootstrap, Discovery, Architecture, Development | PRD analysis, system design, feature implementation, API endpoints, complex bug fixes |
+| **gemini-3-flash-preview 4.5** | QA, Deployment | Integration/E2E tests, security scanning, performance testing, deployment automation |
+| **gemini-1.5-flash 4.5** | All other operations (in parallel) | Unit tests, docs, bash commands, linting, monitoring, health checks |
 
 #### Rationale
-- **Opus for Development**: Higher quality code generation for core implementation work
-- **Sonnet for QA/Deployment**: Cost-effective for testing and deployment automation
-- **Haiku in parallel**: Maximum parallelization for operations tasks
+- **gemini-1.5-pro for Development**: Higher quality code generation for core implementation work
+- **gemini-3-flash-preview for QA/Deployment**: Cost-effective for testing and deployment automation
+- **gemini-1.5-flash in parallel**: Maximum parallelization for operations tasks
 
 #### Files Modified
 - `SKILL.md`: Updated Model Selection Strategy section (lines 163-210)
@@ -611,14 +611,14 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 |---------|----------|-----------|------------|
 | Four Pillars | Structured Workflows, SDD, Multi-Agent Verification, Parallel Execution | SDLC + RARV + 7 Gates + Worktrees | TIE |
 | Spec-Driven Development | Specs as first-class objects | OpenAPI-first | TIE |
-| Multi-Agent Verification | Model diversity (Claude vs OpenAI, 54% improvement) | 3 blind reviewers + devil's advocate | Different (N/A for Claude Code) |
+| Multi-Agent Verification | Model diversity (Gemini vs OpenAI, 54% improvement) | 3 blind reviewers + devil's advocate | Different (N/A for Gemini CLI) |
 | Quality Gates | Built-in verification loops | 7 explicit gates + anti-sycophancy | Loki Mode |
 | Memory System | Not documented | 3-tier episodic/semantic/procedural | Loki Mode |
 | Agent Specialization | Custom Zen Agents | 37 pre-defined specialized | Loki Mode |
 | CI Failure Analysis | Explicit pattern with auto-fix | DevOps agent only | **ADOPTED** |
 | Review Comment Resolution | Auto-apply simple changes | Manual review | **ADOPTED** |
 | Dependency Management | Scheduled PRs, one group at a time | Mentioned only | **ADOPTED** |
-| Multi-Repo Support | Full cross-repo | Single repo | Zencoder (N/A for Claude Code) |
+| Multi-Repo Support | Full cross-repo | Single repo | Zencoder (N/A for Gemini CLI) |
 
 #### Patterns ADOPTED from Zencoder (HIGH Priority)
 
@@ -645,10 +645,10 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 | Pattern | Zencoder | Why Not Adopted |
 |---------|----------|-----------------|
-| Model Diversity | Claude critiques OpenAI code | Claude Code only has Claude models |
-| Multi-Repo Support | Cross-repo changes | Claude Code is single-context |
+| Model Diversity | Gemini critiques OpenAI code | Gemini CLI only has Gemini models |
+| Multi-Repo Support | Cross-repo changes | Gemini CLI is single-context |
 | IDE Plugins | VS Code, JetBrains | Loki Mode is a skill, not a plugin |
-| Repo Grokking | Proprietary indexing | Claude Code has native exploration |
+| Repo Grokking | Proprietary indexing | Gemini CLI has native exploration |
 
 #### Where Loki Mode Remains SUPERIOR
 
@@ -662,7 +662,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 ## [2.36.6] - 2026-01-17
 
-### Validated - 2026 Research Resources (RLM, Token-Aware Planning, Claude Code Patterns)
+### Validated - 2026 Research Resources (RLM, Token-Aware Planning, Gemini CLI Patterns)
 
 **Comprehensive validation of 8 external resources against Loki Mode v2.36.5. All patterns already implemented or not applicable.**
 
@@ -670,12 +670,12 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 | Resource | Key Patterns | Assessment |
 |----------|--------------|------------|
-| **arXiv 2512.24601 (RLM)** | Python REPL context, recursive self-invocation, 10M+ token handling | Different use case - extreme context scenarios, not Claude Code workflows |
-| **ysz/recursive-llm** | Depth-bound recursion, async parallelization, two-model optimization | Already covered via sub-agent architecture + parallel Haiku agents |
+| **arXiv 2512.24601 (RLM)** | Python REPL context, recursive self-invocation, 10M+ token handling | Different use case - extreme context scenarios, not Gemini CLI workflows |
+| **ysz/recursive-llm** | Depth-bound recursion, async parallelization, two-model optimization | Already covered via sub-agent architecture + parallel gemini-1.5-flash agents |
 | **Token-aware planning** | Context rot (<256k effective), sub-agent isolation, compaction | Already comprehensive (SKILL.md:880-920, run.sh compaction) |
-| **davila7/claude-code-templates** | 100+ agents, semantic validator, hooks with matchers | Loki has 37 specialized agents (better organization), guardrails, hooks |
+| **davila7/gemini-code-templates** | 100+ agents, semantic validator, hooks with matchers | Loki has 37 specialized agents (better organization), guardrails, hooks |
 | **pguso/agents-from-scratch** | "Agents are loops, state, constraints" | Educational - Loki Mode IS the production implementation |
-| **Boris Cherny Tips (Jan 2026)** | 5 Claudes parallel, Opus thinking, ~42hr sessions, hooks | All present: 10+ Haiku parallel, model tiering, CONTINUITY.md |
+| **Boris Cherny Tips (Jan 2026)** | 5 Geminis parallel, gemini-1.5-pro thinking, ~42hr sessions, hooks | All present: 10+ gemini-1.5-flash parallel, model tiering, CONTINUITY.md |
 | **Inner/outer loop bottleneck** | AI dev creates CI/CD bottleneck | Loki Mode IS the solution - automated quality gates |
 | **azidan/codemap** | Symbol-to-line-range mapping, hash staleness, 60-80% token savings | Complementary MCP tool, not a pattern to implement |
 
@@ -684,7 +684,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 **1. Recursive Language Models (MIT, Dec 2025):**
 - Handles 10M+ tokens via Python REPL context storage
 - Two-model optimization (expensive root, cheap branches)
-- Assessment: Specialized for extreme context, not typical Claude Code workflows
+- Assessment: Specialized for extreme context, not typical Gemini CLI workflows
 - Loki Mode's CONTINUITY.md + compaction + sub-agents already sufficient
 
 **2. Token-Aware Planning / Context Engineering:**
@@ -693,7 +693,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 - ADK compaction triggers at configurable thresholds
 - Assessment: Already implemented (COMPACTION_INTERVAL=25, sub-agent isolation)
 
-**3. Claude Code Templates (davila7):**
+**3. Gemini CLI Templates (davila7):**
 - 100+ agents, 159+ commands, semantic/reference validators
 - Proper hook specifications with tool matchers
 - Assessment: Loki has superior architecture (37 specialized vs generic templates)
@@ -708,8 +708,8 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 | External Pattern | Loki Mode Implementation |
 |-----------------|-------------------------|
-| Parallel execution (5 Claudes) | 10+ Haiku agents in parallel (SKILL.md:21) |
-| Model tiering | Opus/Sonnet/Haiku with explicit categories (SKILL.md:163-244) |
+| Parallel execution (5 Geminis) | 10+ gemini-1.5-flash agents in parallel (SKILL.md:21) |
+| Model tiering | gemini-1.5-pro/gemini-3-flash-preview/gemini-1.5-flash with explicit categories (SKILL.md:163-244) |
 | Background agents | run_in_background parameter (SKILL.md:247-267) |
 | Context compaction | COMPACTION_INTERVAL=25 (run.sh:140) |
 | Sub-agent isolation | Fresh context per sub-task (SKILL.md:920-928) |
@@ -726,7 +726,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 ### Added - Antigravity/Amazon Q Comparison and Transformation Patterns
 
-**Deep comparison with Google Antigravity (Gemini 3, 76.2% SWE-bench) and Amazon Q Developer (66% SWE-bench) validated by Opus feedback loop.**
+**Deep comparison with Google Antigravity (Gemini 3, 76.2% SWE-bench) and Amazon Q Developer (66% SWE-bench) validated by gemini-1.5-pro feedback loop.**
 
 #### Google Antigravity Features Analyzed
 
@@ -737,13 +737,13 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 | Browser Subagents | Full recording, DOM capture | Playwright MCP | Equivalent + screenshots |
 | Outcome Verification | Trust artifacts | 7 quality gates | Loki Mode superior |
 | Knowledge Base | Simple snippets | 3-tier memory | Loki Mode superior |
-| Multi-Model | Gemini 3, Claude, GPT-OSS | Opus/Sonnet/Haiku | Both multi-model |
+| Multi-Model | Gemini 3, Gemini, GPT-OSS | gemini-1.5-pro/gemini-3-flash-preview/gemini-1.5-flash | Both multi-model |
 
 #### Amazon Q Developer Features Analyzed
 
 | Feature | Amazon Q | Loki Mode | Assessment |
 |---------|----------|-----------|------------|
-| SWE-Bench | 66% verified | Uses Claude | Framework, not model |
+| SWE-Bench | 66% verified | Uses Gemini | Framework, not model |
 | Code Transformation | /transform (Java, SQL, .NET) | Not present | **ADOPTED** |
 | MCP Support | Full protocol | Playwright MCP | Equivalent |
 | Model Routing | Bedrock | 4-tier confidence | Loki Mode superior |
@@ -787,7 +787,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 ### Added - Codex/Kiro Comparison and Quality Enhancement Patterns
 
-**Deep comparison with OpenAI Codex (GPT-5.2-Codex) and AWS Kiro validated by Opus feedback loop.**
+**Deep comparison with OpenAI Codex (GPT-5.2-Codex) and AWS Kiro validated by gemini-1.5-pro feedback loop.**
 
 #### OpenAI Codex Features Analyzed
 
@@ -796,7 +796,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 | Skills System | SKILL.md + scripts/ + references/ | IS a SKILL.md | Already compatible |
 | Progressive Disclosure | Load name/desc first | Implicit via references/ | Already better |
 | Skill Precedence | 6 levels (repo to system) | Single directory | Simpler (autonomous) |
-| Sandbox | seccomp + landlock isolation | Claude Code environment | Different platforms |
+| Sandbox | seccomp + landlock isolation | Gemini CLI environment | Different platforms |
 | $skill-creator | Interactive wizard | N/A | Not needed (autonomous) |
 
 #### AWS Kiro Features Analyzed
@@ -804,7 +804,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 | Feature | Kiro | Loki Mode | Assessment |
 |---------|------|-----------|------------|
 | Spec Files | requirements.md, design.md, tasks.md | OpenAPI-first | Both valid approaches |
-| Agent Steering | .kiro/steering/ | CLAUDE.md + CONTINUITY.md + memory | Already more comprehensive |
+| Agent Steering | .kiro/steering/ | GEMINI.md + CONTINUITY.md + memory | Already more comprehensive |
 | Property-Based Testing | Extract from specs, random inputs | None | **ADOPTED** |
 | Hooks System | Event-driven automation | Phase-boundary only | **ADOPTED** |
 | Review Learning | Build knowledge from feedback | Memory system exists but not connected | **ADOPTED** |
@@ -835,7 +835,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 |---------|--------|-----------------|
 | Progressive Skill Disclosure | Codex | Already implicit in references/ structure |
 | Multi-Level Precedence | Codex | Solves multi-developer problem (irrelevant) |
-| Agent Steering Files | Kiro | CLAUDE.md + memory already covers |
+| Agent Steering Files | Kiro | GEMINI.md + memory already covers |
 | $skill-creator | Codex | Humans create skills beforehand |
 | Multi-Repository Agent | Kiro | Not aligned with single-product use case |
 
@@ -843,7 +843,7 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 1. **Zero Human Intervention**: Neither Codex nor Kiro designed for this
 2. **Memory Depth**: 3-tier (episodic/semantic/procedural) vs none/basic
-3. **Constitutional AI + Devil's Advocate**: Unique anti-sycophancy
+3. **Responsible AI + Devil's Advocate**: Unique anti-sycophancy
 4. **Full SDLC**: 37 agents vs coding-only focus
 5. **Efficiency Metrics**: ToolOrchestra-inspired tracking
 
@@ -855,14 +855,14 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 
 ### Added - Cursor/Devin Comparison and Parallel Development Patterns
 
-**Deep comparison with Cursor 2.0 ($10B valuation, 500M ARR) and Devin 2.0 ($4B valuation) validated by Opus feedback loop.**
+**Deep comparison with Cursor 2.0 ($10B valuation, 500M ARR) and Devin 2.0 ($4B valuation) validated by gemini-1.5-pro feedback loop.**
 
 #### Cursor 2.0 Features Analyzed
 
 | Feature | Cursor | Loki Mode | Assessment |
 |---------|--------|-----------|------------|
 | Multi-Agent Parallel | 8 agents with worktree isolation | Sequential (was restricted) | ADOPTED: Worktree isolation |
-| Composer Model | Proprietary 250 tok/s | Uses Claude | Different architecture |
+| Composer Model | Proprietary 250 tok/s | Uses Gemini | Different architecture |
 | BugBot PR Review | GitHub integration | Pre-commit review | Loki Mode superior (prevent vs detect) |
 | Memories | Flat fact storage | 3-tier structured | Loki Mode superior |
 | YOLO Mode | Auto-apply with allowlist | Full autonomous | Already more comprehensive |
@@ -875,8 +875,8 @@ Added Parallel AI as recommended MCP server for enhanced web research:
 | Task Dispatch | One agent dispatches to others | 37 agents in 7 swarms | Loki Mode more comprehensive |
 | Confidence Clarification | Asks user when unsure | Escalates to human | Both valid for different use cases |
 | DeepWiki | Auto-generate docs | techwriter agent | Similar capability |
-| Specialized Models | Kevin 32B for CUDA | Opus/Sonnet/Haiku tiering | Both optimize model selection |
-| Sandbox Environment | Full shell/browser/editor | Claude Code environment | Different platforms |
+| Specialized Models | Kevin 32B for CUDA | gemini-1.5-pro/gemini-3-flash-preview/gemini-1.5-flash tiering | Both optimize model selection |
+| Sandbox Environment | Full shell/browser/editor | Gemini CLI environment | Different platforms |
 
 #### Patterns ADOPTED from Cursor
 
@@ -925,14 +925,14 @@ workflow:
 
 ### Added - OpenCode Comparison and Proactive Context Management
 
-**Deep comparison with OpenCode (70.9k stars) validated by Opus feedback loop.**
+**Deep comparison with OpenCode (70.9k stars) validated by gemini-1.5-pro feedback loop.**
 
 #### OpenCode Features Analyzed
 
 | Feature | OpenCode | Loki Mode | Assessment |
 |---------|----------|-----------|------------|
 | Architecture | Client/server (Bun+Go) | CLI skill (bash) | Different design goals |
-| Provider Support | Multi-provider | Claude-only | Intentional for deep integration |
+| Provider Support | Multi-provider | Gemini-only | Intentional for deep integration |
 | LSP Integration | Native (25+ langs) | None | Not adopted (violates deterministic validation) |
 | Agents | 4 built-in | 37 in 7 swarms | Loki Mode more comprehensive |
 | Plugin System | JS/TS hooks | Wrapper script | Not adopted (adds complexity) |
@@ -946,12 +946,12 @@ workflow:
 |---------|--------|-----------------|
 | LSP Integration | OpenCode native | Violates deterministic validation principle |
 | Plugin/Hook System | OpenCode plugins | Adds complexity for human extensibility |
-| Multi-Provider | OpenCode design | Breaks Claude-specific optimizations |
+| Multi-Provider | OpenCode design | Breaks Gemini-specific optimizations |
 | Todo Continuation Enforcer | Oh-My-OpenCode | Already have superior wrapper enforcement |
 
 #### Pattern ADOPTED: Proactive Context Management
 
-**From Oh-My-OpenCode/Sisyphus pattern, validated by Opus:**
+**From Oh-My-OpenCode/Sisyphus pattern, validated by gemini-1.5-pro:**
 
 - Added `LOKI_COMPACTION_INTERVAL` env var (default: 25 iterations)
 - Proactive compaction reminder injected into prompt every N iterations
@@ -966,7 +966,7 @@ LOKI_COMPACTION_INTERVAL=25  # Suggest compaction every N iterations
 #### Validation Process
 
 1. Deep analysis of OpenCode docs, architecture, and Oh-My-OpenCode
-2. Opus feedback loop for critical evaluation
+2. gemini-1.5-pro feedback loop for critical evaluation
 3. Determined most OpenCode patterns are for interactive use (human-in-loop)
 4. Loki Mode's autonomous patterns are architecturally superior for its use case
 5. Only proactive compaction adopted as genuinely beneficial
@@ -989,7 +989,7 @@ Loki Mode already implements patterns from state-of-the-art research. Key papers
 |-------|-------------|------------------|
 | **Scaling Agent Systems** | Centralized +80.8% on parallelizable tasks | HAVE: Centralized orchestrator |
 | **Scaling Agent Systems** | Sequential reasoning degrades 39-70% | HAVE: Parallel blind review |
-| **Scaling Agent Systems** | Capability saturation at ~45% baseline | HAVE: Model tiering (Opus/Sonnet/Haiku) |
+| **Scaling Agent Systems** | Capability saturation at ~45% baseline | HAVE: Model tiering (gemini-1.5-pro/gemini-3-flash-preview/gemini-1.5-flash) |
 | **Talk Isn't Always Cheap** | Debate can decrease accuracy (sycophancy) | HAVE: Blind review + devil's advocate |
 | **More Agents is All You Need** | Voting scales with task difficulty | HAVE: 3-reviewer voting system |
 | **MALT** | Generation-verification-refinement | HAVE: RARV cycle |
@@ -1043,13 +1043,13 @@ Loki Mode already implements patterns from state-of-the-art research. Key papers
 
 #### New Features
 
-1. **Prompt Repetition for Haiku Agents** (arXiv 2512.14982v1)
-   - Automatic 2x prompt repetition for Haiku on structured tasks
+1. **Prompt Repetition for gemini-1.5-flash Agents** (arXiv 2512.14982v1)
+   - Automatic 2x prompt repetition for gemini-1.5-flash on structured tasks
    - Improves accuracy from 21.33% → 97.33% on position-dependent tasks
    - Zero latency penalty (occurs in parallelizable prefill stage)
    - See `references/prompt-repetition.md` and `agent-skills/prompt-optimization/`
 
-2. **Confidence-Based Routing** (HN Production + Claude Agent SDK)
+2. **Confidence-Based Routing** (HN Production + Gemini Agent SDK)
    - 4-tier routing: auto-approve (>=0.95), direct+review (0.70-0.95), supervisor (0.40-0.70), escalate (<0.40)
    - Multi-factor confidence calculation: requirement clarity, feasibility, resources, historical success
    - Replaces binary simple/complex routing with granular confidence scores
@@ -1064,7 +1064,7 @@ Loki Mode already implements patterns from state-of-the-art research. Key papers
 4. **Agent Skills System** (Vercel Labs Pattern)
    - Modular, declarative skill files following agent-skills specification
    - Community-contributable agent capabilities
-   - Cross-platform compatibility (Codex, OpenCode, Claude Code)
+   - Cross-platform compatibility (Codex, OpenCode, Gemini CLI)
    - Directory: `agent-skills/` with README and 3 initial skills
 
 #### New Reference Documentation
@@ -1083,8 +1083,8 @@ Loki Mode already implements patterns from state-of-the-art research. Key papers
 | [buildwithpi.ai](https://buildwithpi.ai/) | Minimalism philosophy (lite mode consideration) |
 | [wplaces geocoder](https://jonready.com/blog/posts/geocoder-for-ai-agents.html) | Location services for agents |
 | [Tabstack (HN)](https://news.ycombinator.com/item?id=46620358) | Browser automation escalation logic |
-| [claude-mcp-poke](https://github.com/andrexibiza/claude-mcp-poke) | MCP server integration pattern |
-| [Claude Agent SDK Guide](https://nader.substack.com/p/the-complete-guide-to-building-agents) | Adaptive planning with backtracking |
+| [gemini-mcp-poke](https://github.com/andrexibiza/gemini-mcp-poke) | MCP server integration pattern |
+| [Gemini Agent SDK Guide](https://nader.substack.com/p/the-complete-guide-to-building-agents) | Adaptive planning with backtracking |
 | [Tim Dettmers](https://timdettmers.com/2026/01/13/use-agents-or-be-left-behind/) | Selective autonomy pattern |
 | [codeusse](https://codeusse.wrbl.xyz/) | Mobile-first agent patterns |
 | [HN Production Patterns](https://news.ycombinator.com/item?id=44623207) | Confidence-based routing validation |
@@ -1093,7 +1093,7 @@ Loki Mode already implements patterns from state-of-the-art research. Key papers
 
 ```bash
 # 2026 Research Enhancements (backward compatible, all default to enabled)
-LOKI_PROMPT_REPETITION=true       # Haiku prompt repetition (arXiv 2512.14982v1)
+LOKI_PROMPT_REPETITION=true       # gemini-1.5-flash prompt repetition (arXiv 2512.14982v1)
 LOKI_CONFIDENCE_ROUTING=true      # 4-tier routing (HN Production)
 LOKI_AUTONOMY_MODE=perpetual      # perpetual|checkpoint|supervised (Tim Dettmers)
 ```
@@ -1124,7 +1124,7 @@ LOKI_AUTONOMY_MODE=perpetual      # perpetual|checkpoint|supervised (Tim Dettmer
 **What Loki Mode Already Does Excellently:**
 - RARV cycle with self-verification (Boris Cherny: 2-3x quality)
 - Blind code review (CONSENSAGENT anti-sycophancy)
-- Constitutional AI (Anthropic principles)
+- Responsible AI (Gemini principles)
 - Efficiency tracking (NVIDIA ToolOrchestra)
 - Hierarchical orchestration (DeepMind pattern)
 
@@ -1135,7 +1135,7 @@ LOKI_AUTONOMY_MODE=perpetual      # perpetual|checkpoint|supervised (Tim Dettmer
 4. Agent skills system (community extensibility)
 
 **Future Roadmap:**
-- MCP server integration (claude-mcp-poke pattern)
+- MCP server integration (gemini-mcp-poke pattern)
 - Browser automation escalation (Tabstack pattern)
 - Async callbacks (CallMe pattern)
 - Commerce protocol (UCP)
@@ -1148,9 +1148,9 @@ LOKI_AUTONOMY_MODE=perpetual      # perpetual|checkpoint|supervised (Tim Dettmer
 ### Validated - External Research Audit
 
 **External resources analyzed (11 sources):**
-- [extremeclarity/claude-plugins/worldview](https://github.com/extremeclarity/claude-plugins/tree/master/plugins/worldview) - Context persistence plugin
+- [extremeclarity/gemini-plugins/worldview](https://github.com/extremeclarity/gemini-plugins/tree/master/plugins/worldview) - Context persistence plugin
 - [trails.pieterma.es](https://trails.pieterma.es/) - Context management
-- [Yeachan-Heo/oh-my-claude-sisyphus](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus) - Multi-agent orchestration
+- [Yeachan-Heo/oh-my-gemini-sisyphus](https://github.com/Yeachan-Heo/oh-my-gemini-sisyphus) - Multi-agent orchestration
 - [mihaileric.com - The Emperor Has No Clothes](https://www.mihaileric.com/The-Emperor-Has-No-Clothes/) - AI agent architecture insights
 - [sawirstudio/effectphp](https://github.com/sawirstudio/effectphp) - Functional effects library
 - [camel-ai.org/SETA](https://www.camel-ai.org/blogs/seta-scaling-environments-for-terminal-agents) - Terminal agent research
@@ -1188,11 +1188,11 @@ Loki Mode already implements more comprehensive versions of:
 
 ## [2.35.0] - 2026-01-08
 
-### Added - Anthropic Agent Harness Patterns & Claude Agent SDK
+### Added - Gemini Agent Harness Patterns & Gemini Agent SDK
 
 **Sources:**
-- [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) - Anthropic Engineering
-- [Claude Agent SDK Overview](https://platform.claude.com/docs/en/agent-sdk/overview) - Anthropic Platform
+- [Effective Harnesses for Long-Running Agents](https://www.gemini.com/engineering/effective-harnesses-for-long-running-agents) - Gemini Engineering
+- [Gemini Agent SDK Overview](https://platform.gemini.com/docs/en/agent-sdk/overview) - Gemini Platform
 
 **New Patterns:**
 
@@ -1234,8 +1234,8 @@ Two dispatch modes based on task complexity - reduces latency for simple tasks:
 | **Supervisor Mode** | Complex, multi-step tasks | Full decomposition, coordination, result synthesis |
 
 **Key Insights from AWS:**
-- Simple tasks → Direct dispatch to Haiku (faster, minimal context)
-- Complex tasks → Full supervisor orchestration (Sonnet coordination)
+- Simple tasks → Direct dispatch to gemini-1.5-flash (faster, minimal context)
+- Complex tasks → Full supervisor orchestration (gemini-3-flash-preview coordination)
 - Context depth varies by routing mode (avoid confusing simple agents with complex history)
 - 10-agent limit per supervisor (validates our MAX_PARALLEL_AGENTS=10)
 
@@ -1266,7 +1266,7 @@ Two dispatch modes based on task complexity - reduces latency for simple tasks:
 ### Added
 
 - **ACKNOWLEDGEMENTS.md** - Comprehensive citations for 50+ research sources:
-  - Anthropic (8 papers)
+  - Gemini (8 papers)
   - Google DeepMind (7 papers)
   - OpenAI (12 resources)
   - Academic papers (9)
@@ -1285,7 +1285,7 @@ Two dispatch modes based on task complexity - reduces latency for simple tasks:
 - [What Actually Works in Production for Autonomous Agents](https://news.ycombinator.com/item?id=44623207)
 - [Coding with LLMs in Summer 2025](https://news.ycombinator.com/item?id=44623953)
 - [Superpowers: How I'm Using Coding Agents](https://news.ycombinator.com/item?id=45547344)
-- [Claude Code Experience After Two Weeks](https://news.ycombinator.com/item?id=44596472)
+- [Gemini CLI Experience After Two Weeks](https://news.ycombinator.com/item?id=44596472)
 - [AI Agent Benchmarks Are Broken](https://news.ycombinator.com/item?id=44531697)
 - [How to Orchestrate Multi-Agent Workflows](https://news.ycombinator.com/item?id=45955997)
 
@@ -1332,7 +1332,7 @@ Battle-tested patterns from practitioners:
 
 ## [2.31.0] - 2026-01-07
 
-### Added - DeepMind + Anthropic Research Patterns
+### Added - DeepMind + Gemini Research Patterns
 
 **Research sources analyzed:**
 
@@ -1344,12 +1344,12 @@ Battle-tested patterns from practitioners:
 - [Amplified Oversight](https://deepmindsafetyresearch.medium.com/human-ai-complementarity-a-goal-for-amplified-oversight-0ad8a44cae0a)
 - [Technical AGI Safety Approach](https://arxiv.org/html/2504.01849v1)
 
-**Anthropic:**
-- [Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback)
-- [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
-- [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
-- [Sleeper Agents Detection](https://www.anthropic.com/research/probes-catch-sleeper-agents)
-- [Alignment Faking](https://www.anthropic.com/research/alignment-faking)
+**Gemini:**
+- [Responsible AI](https://www.gemini.com/research/constitutional-ai-harmlessness-from-ai-feedback)
+- [Building Effective Agents](https://www.gemini.com/research/building-effective-agents)
+- [Gemini CLI Best Practices](https://www.gemini.com/engineering/gemini-code-best-practices)
+- [Sleeper Agents Detection](https://www.gemini.com/research/probes-catch-sleeper-agents)
+- [Alignment Faking](https://www.gemini.com/research/alignment-faking)
 
 **New Reference File: `references/lab-research-patterns.md`**
 Comprehensive guide covering:
@@ -1357,7 +1357,7 @@ Comprehensive guide covering:
 - **Self-Improvement Loop** (SIMA 2): Gemini-based teacher + learned reward model
 - **Hierarchical Reasoning** (Gemini Robotics): High-level planner + low-level executor
 - **Scalable Oversight via Debate**: Pit AI capabilities against each other
-- **Constitutional AI**: Principles-based self-critique and revision
+- **Responsible AI**: Principles-based self-critique and revision
 - **Sleeper Agent Detection**: Defection probes for anomaly detection
 - **Explore-Plan-Code**: Research -> Plan -> Implement workflow
 - **Extended Thinking Levels**: think < think hard < ultrathink
@@ -1369,13 +1369,13 @@ Comprehensive guide covering:
 - **Debate Verification**: `Proponent defends -> Opponent challenges -> Synthesize`
 
 **New Sections in SKILL.md:**
-- **Constitutional AI Principles**: Loki Mode constitution with 8 core principles
+- **Responsible AI Principles**: Loki Mode constitution with 8 core principles
 - **Debate-Based Verification**: For architecture decisions and security changes
 
 ### Changed
 - SKILL.md: Updated version to 2.31.0, ~530 lines
 - SKILL.md: Added 4 new patterns to Essential Patterns section
-- SKILL.md: Added Constitutional AI Principles section
+- SKILL.md: Added Responsible AI Principles section
 - SKILL.md: Added Debate-Based Verification section
 - References: Added lab-research-patterns.md to table
 
@@ -1385,9 +1385,9 @@ Comprehensive guide covering:
 |-----|-------------|-------------------------|
 | DeepMind | "Hierarchical reasoning separates planning from execution" | Orchestrator = planner, agents = executors |
 | DeepMind | "Debate can verify beyond human capability" | Debate verification for critical changes |
-| Anthropic | "Self-critique against principles is more robust" | Constitutional AI workflow |
-| Anthropic | "Explore before planning, plan before coding" | Explore-Plan-Code pattern |
-| Anthropic | "Extended thinking levels for complexity" | Thinking mode in model selection |
+| Gemini | "Self-critique against principles is more robust" | Responsible AI workflow |
+| Gemini | "Explore before planning, plan before coding" | Explore-Plan-Code pattern |
+| Gemini | "Extended thinking levels for complexity" | Thinking mode in model selection |
 
 ---
 
@@ -1451,7 +1451,7 @@ Comprehensive guide covering:
 | "Layered defense with multiple guardrails" | 4-layer guardrail system |
 | "Tripwires halt execution immediately" | Exception hierarchy for validation failures |
 | "on_handoff for data preparation" | Pre-fetch context during agent transfers |
-| "Model fallback chains" | opus -> sonnet -> haiku on failure |
+| "Model fallback chains" | gemini-1.5-pro -> gemini-3-flash-preview -> gemini-1.5-flash on failure |
 | "Confidence-based escalation" | Threshold-triggered human review |
 | "AGENTS.md for agent instructions" | Read target project's AGENTS.md |
 
@@ -1462,7 +1462,7 @@ Comprehensive guide covering:
 ### Added - Research-Backed Multi-Agent Best Practices
 
 **Research sources analyzed (15+ papers/guides):**
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+- [Gemini: Building Effective Agents](https://www.gemini.com/research/building-effective-agents)
 - [Stanford/Harvard: Demo-to-Deployment Gap](https://www.marktechpost.com/2025/12/24/)
 - [Maxim AI: Production Multi-Agent Systems](https://www.getmaxim.ai/articles/best-practices-for-building-production-ready-multi-agent-systems/)
 - [UiPath: Agent Builder Best Practices](https://www.uipath.com/blog/ai/agent-builder-best-practices)
@@ -1480,13 +1480,13 @@ Comprehensive guide covering:
 - **Multi-Dimensional Evaluation**: Technical + Human-Centered + Safety + Economic axes
 
 **Model Selection Clarification:**
-- **Opus**: Planning and architecture ONLY
-- **Sonnet**: Development and functional testing
-- **Haiku**: Unit tests, monitoring, and simple tasks
+- **gemini-1.5-pro**: Planning and architecture ONLY
+- **gemini-3-flash-preview**: Development and functional testing
+- **gemini-1.5-flash**: Unit tests, monitoring, and simple tasks
 
 ### Changed
 - SKILL.md: Added Single-Responsibility Principle to subagent guidance
-- SKILL.md: Clarified model selection (Opus=planning, Sonnet=dev, Haiku=tests)
+- SKILL.md: Clarified model selection (gemini-1.5-pro=planning, gemini-3-flash-preview=dev, gemini-1.5-flash=tests)
 - SKILL.md: Dynamic Agent Selection table now shows Planning/Development/Testing columns
 - tool-orchestration.md: Added correlation_id, tool_reliability_rate to schema
 - tool-orchestration.md: Added Multi-Dimensional Evaluation section
@@ -1496,9 +1496,9 @@ Comprehensive guide covering:
 Loki Mode already implements most research-backed patterns:
 | Pattern | Research Source | Status |
 |---------|----------------|--------|
-| Evaluator-optimizer | Anthropic | RARV cycle |
-| Parallelization | Anthropic | Parallel review |
-| Routing | Anthropic | Model selection |
+| Evaluator-optimizer | Gemini | RARV cycle |
+| Parallelization | Gemini | Parallel review |
+| Routing | Gemini | Model selection |
 | Failure handling | Maxim AI | Circuit breakers |
 | Skill library | Voyager | Procedural memory |
 | Four-pillar evaluation | arXiv 2512.12791 | Quality pillars |
@@ -1526,11 +1526,11 @@ Loki Mode already implements most research-backed patterns:
   - Weighted aggregation: 60% outcome, 25% efficiency, 15% preference
 
 - **Dynamic Agent Selection by Complexity**
-  - Trivial: 1 agent, haiku, skip review
-  - Simple: 2 agents, haiku, single review
-  - Moderate: 4 agents, sonnet, standard 3-way review
-  - Complex: 8 agents, sonnet, deep review + devil's advocate
-  - Critical: 12 agents, opus, exhaustive + human checkpoint
+  - Trivial: 1 agent, gemini-1.5-flash, skip review
+  - Simple: 2 agents, gemini-1.5-flash, single review
+  - Moderate: 4 agents, gemini-3-flash-preview, standard 3-way review
+  - Complex: 8 agents, gemini-3-flash-preview, deep review + devil's advocate
+  - Critical: 12 agents, gemini-1.5-pro, exhaustive + human checkpoint
 
 - **Task Complexity Classification**
   - File scope signals (single/few/many/system-wide)
@@ -1671,7 +1671,7 @@ Loki Mode already implements most research-backed patterns:
 
 | System | SWE-bench Patch Gen | Notes |
 |--------|---------------------|-------|
-| Direct Claude | 99.67% (299/300) | Single agent baseline |
+| Direct Gemini | 99.67% (299/300) | Single agent baseline |
 | **Loki Mode (multi-agent)** | **99.67%** (299/300) | 4-agent pipeline with RARV |
 
 **Key Results:**
@@ -1697,7 +1697,7 @@ Loki Mode already implements most research-backed patterns:
 | System | HumanEval Pass@1 | Agent Type |
 |--------|------------------|------------|
 | **Loki Mode (multi-agent)** | **98.78%** | Architect->Engineer->QA->Reviewer |
-| Direct Claude | 98.17% | Single agent |
+| Direct Gemini | 98.17% | Single agent |
 | MetaGPT | 85.9-87.7% | Multi-agent |
 
 **Key Results:**
@@ -1733,7 +1733,7 @@ Loki Mode already implements most research-backed patterns:
 | Patch Generation | 99.67% |
 | Generated | 299/300 |
 | Errors | 1 |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 6.17 hours |
 
 ### Changed
@@ -1751,7 +1751,7 @@ Loki Mode already implements most research-backed patterns:
 | Patch Generation | 100% |
 | Generated | 50/50 |
 | Errors | 0 |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 56.9 minutes |
 
 ### Added
@@ -1774,7 +1774,7 @@ Loki Mode already implements most research-backed patterns:
 | Pass Rate | 98.17% |
 | Passed | 161/164 |
 | Failed | 3 |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 21.1 minutes |
 
 **Competitor Comparison:**
@@ -1783,7 +1783,7 @@ Loki Mode already implements most research-backed patterns:
 
 ### Fixed
 - **Benchmark Indentation Bug** - Solutions now include complete function with proper indentation
-  - Previous bug: Claude returned function body without indentation
+  - Previous bug: Gemini returned function body without indentation
   - Fix: Prompt now requests complete function and auto-fixes indentation
   - Result: Pass rate improved from ~2% to 98.17%
 
@@ -1796,11 +1796,11 @@ Loki Mode already implements most research-backed patterns:
 ### Added - Benchmark Execution Mode
 
 #### `--execute` Flag for Benchmarks
-Full implementation of benchmark execution that runs problems through Claude:
+Full implementation of benchmark execution that runs problems through Gemini:
 
 **HumanEval Execution** (`benchmarks/run-benchmarks.sh humaneval --execute`):
-- Sends each of 164 Python problems to Claude
-- Receives solution code from Claude
+- Sends each of 164 Python problems to Gemini
+- Receives solution code from Gemini
 - Executes solution against HumanEval test cases
 - Tracks pass/fail results with real-time progress
 - Saves solutions to `humaneval-solutions/` directory
@@ -1808,14 +1808,14 @@ Full implementation of benchmark execution that runs problems through Claude:
 
 **SWE-bench Execution** (`benchmarks/run-benchmarks.sh swebench --execute`):
 - Loads SWE-bench Lite dataset (300 real GitHub issues)
-- Generates git patches for each issue using Claude
+- Generates git patches for each issue using Gemini
 - Saves patches for SWE-bench evaluator
 - Outputs predictions file compatible with official harness
 
 **New Options**:
-- `--execute` - Actually run problems through Claude (vs setup only)
+- `--execute` - Actually run problems through Gemini (vs setup only)
 - `--limit N` - Only run first N problems (useful for testing)
-- `--model MODEL` - Claude model to use (default: sonnet)
+- `--model MODEL` - Gemini model to use (default: gemini-3-flash-preview)
 - `--timeout N` - Timeout per problem in seconds (default: 120)
 - `--parallel N` - Run N problems in parallel (default: 1)
 
@@ -1824,8 +1824,8 @@ Full implementation of benchmark execution that runs problems through Claude:
 # Run first 10 HumanEval problems
 ./benchmarks/run-benchmarks.sh humaneval --execute --limit 10
 
-# Run all 164 problems with Opus
-./benchmarks/run-benchmarks.sh humaneval --execute --model opus
+# Run all 164 problems with gemini-1.5-pro
+./benchmarks/run-benchmarks.sh humaneval --execute --model gemini-1.5-pro
 
 # Run 5 SWE-bench problems
 ./benchmarks/run-benchmarks.sh swebench --execute --limit 5
@@ -1848,7 +1848,7 @@ Full implementation of benchmark execution that runs problems through Claude:
 
 ### Added - Major Competitive Improvements
 
-Based on comprehensive competitive analysis against Claude-Flow (10.7K stars), MetaGPT (62.4K stars), CrewAI (25K+ stars), Cursor Agent ($29B valuation), and Devin AI ($10.2B valuation).
+Based on comprehensive competitive analysis against Gemini-Flow (10.7K stars), MetaGPT (62.4K stars), CrewAI (25K+ stars), Cursor Agent ($29B valuation), and Devin AI ($10.2B valuation).
 
 #### 1. Benchmark Runner Infrastructure (`benchmarks/run-benchmarks.sh`)
 - **HumanEval Benchmark** - 164 Python programming problems
@@ -1889,14 +1889,14 @@ Based on comprehensive competitive analysis against Claude-Flow (10.7K stars), M
 - **Automatic Learning Extraction** - Parses CONTINUITY.md "Mistakes & Learnings" section at session end
 - **Contextual Loading** - Loads relevant learnings based on PRD content at session start
 - **Relevant Learnings File** - `.loki/state/relevant-learnings.json` for agent access
-- **Addresses Gap** - Competitors like Claude-Flow have AgentDB; now Loki Mode has cross-project memory
+- **Addresses Gap** - Competitors like Gemini-Flow have AgentDB; now Loki Mode has cross-project memory
 
 #### 4. Competitive Analysis Documentation (`docs/COMPETITIVE-ANALYSIS.md`)
 - **Factual Comparison Table** - Real metrics vs competitors
   - GitHub stars, agent counts, benchmark scores
   - Enterprise security, observability, pricing
   - Production readiness assessment
-- **Detailed Competitor Analysis** - Claude-Flow, MetaGPT, CrewAI, Cursor, Devin
+- **Detailed Competitor Analysis** - Gemini-Flow, MetaGPT, CrewAI, Cursor, Devin
 - **Critical Gaps Identified** - 5 priority areas for improvement
 - **Loki Mode Advantages** - Business ops, full SDLC, RARV, resource monitoring
 - **Improvement Roadmap** - Phased plan for addressing gaps
@@ -1929,7 +1929,7 @@ Based on comprehensive competitive analysis against Claude-Flow (10.7K stars), M
   - **Background Resource Monitor** checks CPU and memory usage every 5 minutes (configurable)
   - **Automatic Warnings** logged when CPU or memory exceeds thresholds (default: 80%)
   - **Resources JSON File** (`.loki/state/resources.json`) contains real-time resource status
-  - **RARV Integration** - Claude checks resources.json during REASON step and throttles agents if needed
+  - **RARV Integration** - Gemini checks resources.json during REASON step and throttles agents if needed
   - **macOS & Linux Support** - Platform-specific CPU/memory detection using `top`, `vm_stat`, `free`
   - **Configurable Thresholds** via environment variables:
     - `LOKI_RESOURCE_CHECK_INTERVAL` (default: 300 seconds = 5 minutes)
@@ -1938,7 +1938,7 @@ Based on comprehensive competitive analysis against Claude-Flow (10.7K stars), M
 
 ### Changed
 - **RARV Cycle** - Updated REASON step to check `.loki/state/resources.json` for warnings (run.sh:1194)
-  - If CPU or memory is high, Claude will reduce parallel agent spawning or pause non-critical tasks
+  - If CPU or memory is high, Gemini will reduce parallel agent spawning or pause non-critical tasks
   - Prevents system from becoming unusable due to too many agents
 - **Cleanup Handlers** - `stop_status_monitor()` now also stops resource monitor (run.sh:335)
 
@@ -1947,16 +1947,16 @@ Based on comprehensive competitive analysis against Claude-Flow (10.7K stars), M
 **Solution:** Resource monitoring prevents this by:
 1. Continuously tracking CPU and memory usage every 5 minutes
 2. Warning when thresholds are exceeded
-3. Allowing Claude to self-throttle by reducing agent count
+3. Allowing Gemini to self-throttle by reducing agent count
 4. User can configure thresholds based on their hardware
 
 ### Impact
 - **Prevents System Overload:** No more hard restarts due to too many parallel agents
-- **Self-Regulating:** Claude automatically reduces agent spawning when resources are constrained
+- **Self-Regulating:** Gemini automatically reduces agent spawning when resources are constrained
 - **Transparent:** Resource status visible in `.loki/state/resources.json`
 - **Configurable:** Users can set custom thresholds for their hardware
 - **Cross-Platform:** Works on macOS and Linux
-- **User Request:** Directly addresses "add capability to check cpu and memory every few mins and let claude take decision on it"
+- **User Request:** Directly addresses "add capability to check cpu and memory every few mins and let gemini take decision on it"
 
 ## [2.18.4] - 2026-01-04
 
@@ -1975,9 +1975,9 @@ Based on comprehensive competitive analysis against Claude-Flow (10.7K stars), M
 - **INSTALLATION.md** - Comprehensive installation guide with all platforms:
   - Table of contents for easy navigation
   - Quick install section (recommended approach)
-  - Three installation options for Claude Code (git clone, releases, minimal curl)
-  - Claude.ai web installation instructions
-  - Anthropic API Console installation instructions
+  - Three installation options for Gemini CLI (git clone, releases, minimal curl)
+  - Gemini.ai web installation instructions
+  - Gemini API Console installation instructions
   - Verify installation section for all platforms
   - Troubleshooting section with common issues and solutions
   - Updating and uninstalling instructions
@@ -2035,7 +2035,7 @@ The previous "37 agents" messaging was misleading because:
   - **Active Agents Section** with grid layout displaying all spawned agents
   - **Agent Cards** showing:
     - Agent ID and type (general-purpose, QA, DevOps, etc.)
-    - Model badge with color coding (Sonnet = blue, Haiku = orange, Opus = purple)
+    - Model badge with color coding (gemini-3-flash-preview = blue, gemini-1.5-flash = orange, gemini-1.5-pro = purple)
     - Current status (active/completed)
     - Current work being performed
     - Runtime duration (e.g., "2h 15m")
@@ -2065,20 +2065,20 @@ The previous "37 agents" messaging was misleading because:
 
 ### Impact
 - **Visibility:** Real-time monitoring of all active agents, their models, and work
-- **Performance Tracking:** See which agents are using which models (Haiku vs Sonnet vs Opus)
+- **Performance Tracking:** See which agents are using which models (gemini-1.5-flash vs gemini-3-flash-preview vs gemini-1.5-pro)
 - **Debugging:** Quickly identify stuck agents or unbalanced workloads
-- **Cost Awareness:** Visual indication of model usage (expensive Opus vs cheap Haiku)
+- **Cost Awareness:** Visual indication of model usage (expensive gemini-1.5-pro vs cheap gemini-1.5-flash)
 - **User Request:** Directly addresses user's question "can you also have ability to see how many agents and their roles and work being done and their model?"
 
 ## [2.18.1] - 2026-01-04
 
 ### Fixed
 - **Model Selection Hierarchy** - Corrected default model documentation (SKILL.md:83-91):
-  - **Sonnet 4.5** is now clearly marked as **DEFAULT** for all standard implementation work
-  - **Haiku 4.5** changed to **OPTIMIZATION ONLY** for simple/parallelizable tasks
-  - **Opus 4.5** changed to **COMPLEX ONLY** for architecture & security
-  - Previous documentation incorrectly suggested Haiku as default for most subagents
-  - Aligns with best practices: Sonnet for quality, Haiku for speed optimization only
+  - **gemini-3-flash-preview 4.5** is now clearly marked as **DEFAULT** for all standard implementation work
+  - **gemini-1.5-flash 4.5** changed to **OPTIMIZATION ONLY** for simple/parallelizable tasks
+  - **gemini-1.5-pro 4.5** changed to **COMPLEX ONLY** for architecture & security
+  - Previous documentation incorrectly suggested gemini-1.5-flash as default for most subagents
+  - Aligns with best practices: gemini-3-flash-preview for quality, gemini-1.5-flash for speed optimization only
 
 - **run.sh Implementation Gap** - RARV cycle now implemented in runner script (run.sh:870-871, 908-916):
   - Updated `rar_instruction` to `rarv_instruction` with full VERIFY step
@@ -2115,8 +2115,8 @@ The previous "37 agents" messaging was misleading because:
 
 - **Extended Thinking Mode Guidance** - For complex problems (SKILL.md:89-107):
   - Added "Thinking Mode" column to model selection table
-  - Sonnet 4.5 with thinking for complex debugging, architecture
-  - Opus 4.5 with thinking for system design, security reviews
+  - gemini-3-flash-preview 4.5 with thinking for complex debugging, architecture
+  - gemini-1.5-pro 4.5 with thinking for system design, security reviews
   - When to use: architecture decisions, complex debugging, security analysis
   - When NOT to use: simple tasks (wastes time and tokens)
   - How it works: Model shows reasoning in `<thinking>` tags
@@ -2136,13 +2136,13 @@ The previous "37 agents" messaging was misleading because:
   - Memory Hierarchy: Added CONSTITUTION.md, noted "Mistakes & Learnings"
 
 - **Model Selection Table** - Added Thinking Mode column (SKILL.md:83-87):
-  - Haiku: Not available
-  - Sonnet: "Use for complex problems"
-  - Opus: "Use for architecture"
+  - gemini-1.5-flash: Not available
+  - gemini-3-flash-preview: "Use for complex problems"
+  - gemini-1.5-pro: "Use for architecture"
 
 ### Inspired By
-**Boris Cherny (Creator of Claude Code) - "Max Setup" Pattern:**
-- Self-updating CLAUDE.md based on mistakes (we adapted to CONTINUITY.md)
+**Boris Cherny (Creator of Gemini CLI) - "Max Setup" Pattern:**
+- Self-updating GEMINI.md based on mistakes (we adapted to CONTINUITY.md)
 - Let AI test its own work (2-3x quality improvement observed)
 - Extended thinking mode for complex problems
 - "Less prompting, more systems. Parallelize + standardize + verify."
@@ -2188,7 +2188,7 @@ To fully utilize:
   - 5 core inviolable principles with enforcement logic
   - Agent behavioral contracts (orchestrator, engineering, QA, DevOps)
   - Quality gates as YAML configs (pre-commit blocking, post-implementation auto-fix)
-  - Memory hierarchy (CONTINUITY.md → CONSTITUTION.md → CLAUDE.md → Ledgers → Agent context)
+  - Memory hierarchy (CONTINUITY.md → CONSTITUTION.md → GEMINI.md → Ledgers → Agent context)
   - Context lineage schema with JSON structure
   - Git checkpoint protocol integration
   - Runtime invariants (TypeScript assertions)
@@ -2236,34 +2236,34 @@ For existing `.loki/` projects:
 
 ### Added
 - **Model Selection Strategy** - Performance and cost optimization (SKILL.md:78-119):
-  - Comprehensive model selection table (Haiku/Sonnet/Opus)
-  - Use Haiku 4.5 for simple tasks (tests, docs, commands, fixes)
-  - Use Sonnet 4.5 for standard implementation (default)
-  - Use Opus 4.5 for complex architecture/planning
+  - Comprehensive model selection table (gemini-1.5-flash/gemini-3-flash-preview/gemini-1.5-pro)
+  - Use gemini-1.5-flash 4.5 for simple tasks (tests, docs, commands, fixes)
+  - Use gemini-3-flash-preview 4.5 for standard implementation (default)
+  - Use gemini-1.5-pro 4.5 for complex architecture/planning
   - Speed/cost comparison matrix
-  - Haiku task categories checklist (10 common use cases)
+  - gemini-1.5-flash task categories checklist (10 common use cases)
 
-- **Haiku Parallelization Examples** - Maximize speed with 10+ concurrent agents (SKILL.md:2748-2806):
-  - Parallel unit testing (1 Haiku agent per test file)
-  - Parallel documentation (1 Haiku agent per module)
-  - Parallel linting (1 Haiku agent per directory)
+- **gemini-1.5-flash Parallelization Examples** - Maximize speed with 10+ concurrent agents (SKILL.md:2748-2806):
+  - Parallel unit testing (1 gemini-1.5-flash agent per test file)
+  - Parallel documentation (1 gemini-1.5-flash agent per module)
+  - Parallel linting (1 gemini-1.5-flash agent per directory)
   - Background task execution with TaskOutput aggregation
-  - Performance gain calculations (8x faster with Haiku parallelization)
+  - Performance gain calculations (8x faster with gemini-1.5-flash parallelization)
 
 - **Model Parameter in Task Dispatch Templates** - All templates now include model selection:
   - Updated Task Tool Dispatch template with model parameter (SKILL.md:337)
-  - Added 5 concrete examples (Haiku for tests/docs/linting, Sonnet for implementation, Opus for architecture)
-  - Updated UNIT_TESTS phase with parallel Haiku execution strategy (SKILL.md:2041-2084)
+  - Added 5 concrete examples (gemini-1.5-flash for tests/docs/linting, gemini-3-flash-preview for implementation, gemini-1.5-pro for architecture)
+  - Updated UNIT_TESTS phase with parallel gemini-1.5-flash execution strategy (SKILL.md:2041-2084)
 
 ### Changed
-- **Quick Reference** - Added 5th critical step: "OPTIMIZE - Use Haiku for simple tasks" (SKILL.md:19)
+- **Quick Reference** - Added 5th critical step: "OPTIMIZE - Use gemini-1.5-flash for simple tasks" (SKILL.md:19)
 - **Agent Spawning Section** - Clarified model selection for implementation agents (SKILL.md:2744)
-- **Code Review** - Maintained Opus for security/architecture reviewers, Sonnet for performance
+- **Code Review** - Maintained gemini-1.5-pro for security/architecture reviewers, gemini-3-flash-preview for performance
 
 ### Performance Impact
-- **Unit Testing**: 50 test files × 30s = 25 min (sequential Sonnet) → 3 min (parallel Haiku) = **8x faster**
-- **Cost Reduction**: Haiku is cheapest model, using it for 70% of tasks significantly reduces costs
-- **Throughput**: 10+ Haiku agents running concurrently vs sequential Sonnet agents
+- **Unit Testing**: 50 test files × 30s = 25 min (sequential gemini-3-flash-preview) → 3 min (parallel gemini-1.5-flash) = **8x faster**
+- **Cost Reduction**: gemini-1.5-flash is cheapest model, using it for 70% of tasks significantly reduces costs
+- **Throughput**: 10+ gemini-1.5-flash agents running concurrently vs sequential gemini-3-flash-preview agents
 
 ## [2.15.0] - 2026-01-02
 
@@ -2294,16 +2294,16 @@ For existing `.loki/` projects:
 ## [2.14.0] - 2026-01-02
 
 ### Added
-- **Claude Code Best Practices** - Integrated patterns from "Claude Code in Action" course:
+- **Gemini CLI Best Practices** - Integrated patterns from "Gemini CLI in Action" course:
 
-  **CLAUDE.md Generation:**
+  **GEMINI.md Generation:**
   - Comprehensive codebase summary generated on bootstrap
-  - Included in EVERY Claude request for persistent context
+  - Included in EVERY Gemini request for persistent context
   - Contains: project summary, architecture, key files, critical patterns
   - Auto-updated by agents on significant changes
 
   **Three Memory Levels:**
-  1. **Project Memory**: `.loki/CONTINUITY.md` + `CLAUDE.md` (shared, committed)
+  1. **Project Memory**: `.loki/CONTINUITY.md` + `GEMINI.md` (shared, committed)
   2. **Agent Memory**: `.loki/memory/ledgers/` (per-agent, not committed)
   3. **Global Memory**: `.loki/rules/` (permanent patterns, committed)
 
@@ -2329,11 +2329,11 @@ For existing `.loki/` projects:
   **Post-Tool-Use Hooks** - Auto-fix after execution:
   - Type checking (TypeScript/mypy) with auto-fix feedback
   - Auto-formatting (Prettier, Black, gofmt)
-  - Update CLAUDE.md on architecture changes
+  - Update GEMINI.md on architecture changes
   - Example: `.loki/hooks/post-write.sh`
 
   **Deduplication Hook** - Prevent AI slop:
-  - Launches separate Claude instance to detect duplicates
+  - Launches separate Gemini instance to detect duplicates
   - Suggests existing functions to reuse
   - Example: `.loki/hooks/post-write-deduplicate.sh`
 
@@ -2346,7 +2346,7 @@ For existing `.loki/` projects:
 
   **Test-Driven Development Pattern:**
   1. Context Gathering: Read code, understand patterns, review spec
-  2. Test Design: Ask Claude to suggest tests based on spec
+  2. Test Design: Ask Gemini to suggest tests based on spec
   3. Test Implementation: Implement tests → FAIL (red phase)
   4. Implementation: Write code to pass tests → GREEN → refactor
 
@@ -2363,21 +2363,21 @@ For existing `.loki/` projects:
 
 - **Bootstrap Script** - Creates hooks/ and plans/ directories
 
-- **RAR Cycle** - Enhanced with Claude Code patterns:
-  - REASON: Read CONTINUITY.md + CLAUDE.md
+- **RAR Cycle** - Enhanced with Gemini CLI patterns:
+  - REASON: Read CONTINUITY.md + GEMINI.md
   - ACT: Use hooks for quality gates
-  - REFLECT: Update CONTINUITY.md + CLAUDE.md
+  - REFLECT: Update CONTINUITY.md + GEMINI.md
 
 ### Best Practices
 1. **Build incrementally** - Plan mode for architecture, small steps for implementation
-2. **Maintain context** - Update CLAUDE.md and CONTINUITY.md continuously
+2. **Maintain context** - Update GEMINI.md and CONTINUITY.md continuously
 3. **Verify outputs** - Use hooks for automated quality checks
 4. **Prevent duplicates** - Deduplication hooks before shipping
 5. **Test first** - TDD workflow prevents regressions
 6. **Think deeply** - Use "Ultra think" for complex decisions
 7. **Block bad writes** - Pre-tool-use hooks enforce quality gates
 
-**"Claude Code functions best as flexible assistant that grows with team needs through tool expansion rather than fixed functionality"**
+**"Gemini CLI functions best as flexible assistant that grows with team needs through tool expansion rather than fixed functionality"**
 
 ## [2.13.0] - 2026-01-02
 
@@ -2515,7 +2515,7 @@ Loki Mode now combines the best practices from GitHub's ecosystem:
 
 - **Two-Stage Code Review**:
   - **Stage 1**: Static analysis (automated) runs first
-  - **Stage 2**: AI reviewers (opus/sonnet) only after static analysis passes
+  - **Stage 2**: AI reviewers (gemini-1.5-pro/gemini-3-flash-preview) only after static analysis passes
   - AI reviewers receive static analysis results as context
   - Prevents wasting AI review time on issues machines can catch
 
@@ -2570,24 +2570,24 @@ AI accelerates velocity but can introduce "AI slop" (semi-functional code accumu
 - Directory structure updated to show CONTINUITY.md at root of `.loki/`
 
 ### Philosophy
-CONTINUITY.md provides a simpler, more explicit "every turn" memory protocol that complements the existing sophisticated memory system. It ensures Claude always knows exactly what it's working on, what just happened, and what needs to happen next.
+CONTINUITY.md provides a simpler, more explicit "every turn" memory protocol that complements the existing sophisticated memory system. It ensures Gemini always knows exactly what it's working on, what just happened, and what needs to happen next.
 
 ## [2.10.1] - 2026-01-01
 
 ### Fixed
-- **API Console Upload** - Added `loki-mode-api-X.X.X.zip` artifact for console.anthropic.com
+- **API Console Upload** - Added `loki-mode-api-X.X.X.zip` artifact for console.gemini.com
   - API requires SKILL.md inside a folder wrapper (`loki-mode/SKILL.md`)
-  - Claude.ai uses flat structure (`SKILL.md` at root)
+  - Gemini.ai uses flat structure (`SKILL.md` at root)
   - Updated release workflow to generate both formats
   - Three release artifacts now available:
-    - `loki-mode-X.X.X.zip` - for Claude.ai website
-    - `loki-mode-api-X.X.X.zip` - for console.anthropic.com
-    - `loki-mode-claude-code-X.X.X.zip` - for Claude Code CLI
+    - `loki-mode-X.X.X.zip` - for Gemini.ai website
+    - `loki-mode-api-X.X.X.zip` - for console.gemini.com
+    - `loki-mode-gemini-code-X.X.X.zip` - for Gemini CLI CLI
 
 ## [2.10.0] - 2025-12-31
 
 ### Added
-- **Context Memory Management System** - Inspired by Continuous-Claude-v2:
+- **Context Memory Management System** - Inspired by Continuous-Gemini-v2:
   - **Ledger-based state preservation** - Save state to `.loki/memory/ledgers/` instead of letting context degrade through compaction
   - **Agent Handoff System** - Clean context transfer between agents at `.loki/memory/handoffs/`
   - **Session Learnings** - Extract patterns and learnings to `.loki/memory/learnings/`
@@ -2628,10 +2628,10 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
   - Reason-Act-Reflect (RAR) cycle for every iteration
   - Products are NEVER "complete" - always improvements to make
   - Stripped all interactive safety gates
-  - Perpetual loop continues even when Claude claims completion
+  - Perpetual loop continues even when Gemini claims completion
 
 - **Perpetual Improvement Loop** - New philosophy:
-  - Claude never declares "done" - there's always more to improve
+  - Gemini never declares "done" - there's always more to improve
   - When queue empties: find new improvements, run SDLC phases again, hunt bugs
   - Only stops on: max iterations, explicit completion promise, or user interrupt
 
@@ -2640,9 +2640,9 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
   - `LOKI_MAX_ITERATIONS` - Safety limit (default: 1000)
   - `LOKI_PERPETUAL_MODE` - Ignore ALL completion signals (default: false)
 
-- **Completion Promise Detection** - Only stops when Claude outputs the exact promise text
+- **Completion Promise Detection** - Only stops when Gemini outputs the exact promise text
   - Example: `LOKI_COMPLETION_PROMISE="ALL TESTS PASSING 100%"`
-  - Claude must explicitly output "COMPLETION PROMISE FULFILLED: ALL TESTS PASSING 100%"
+  - Gemini must explicitly output "COMPLETION PROMISE FULFILLED: ALL TESTS PASSING 100%"
 
 ### Changed
 - Default behavior now runs perpetually until max iterations
@@ -2654,7 +2654,7 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 
 ### Fixed
 - **Dashboard showing all 0s** - Added explicit instructions to SKILL.md to use queue JSON files instead of TodoWrite tool
-- Claude now properly populates `.loki/queue/*.json` files for live dashboard tracking
+- Gemini now properly populates `.loki/queue/*.json` files for live dashboard tracking
 - Added queue system usage guide with JSON format and examples
 
 ### Changed
@@ -2665,7 +2665,7 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 
 ### Added
 - **Smart Rate Limit Detection** - Automatically detects rate limit messages and waits until reset:
-  - Parses "resets Xam/pm" from Claude output
+  - Parses "resets Xam/pm" from Gemini output
   - Calculates exact wait time until reset (+ 2 min buffer)
   - Shows human-readable countdown (e.g., "4h 30m")
   - Longer countdown intervals for multi-hour waits (60s vs 10s)
@@ -2716,18 +2716,18 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
   - etc.
 
 ### Changed
-- Prompt now includes `SDLC_PHASES_ENABLED: [...]` to inform Claude which phases to execute
+- Prompt now includes `SDLC_PHASES_ENABLED: [...]` to inform Gemini which phases to execute
 - SKILL.md updated with detailed instructions for each SDLC phase
 
 ## [2.5.0] - 2025-12-28
 
 ### Added
-- **Real-time Streaming Output** - Claude's output now streams live using `--output-format stream-json`
+- **Real-time Streaming Output** - Gemini's output now streams live using `--output-format stream-json`
   - Parses JSON stream in real-time to display text, tool calls, and results
-  - Shows `[Tool: name]` when Claude uses a tool
+  - Shows `[Tool: name]` when Gemini uses a tool
   - Shows `[Session complete]` when done
-- **Web Dashboard** - Visual task board with Anthropic design language
-  - Cream/beige background with coral (#D97757) accents matching Anthropic branding
+- **Web Dashboard** - Visual task board with Gemini design language
+  - Cream/beige background with coral (#D97757) accents matching Gemini branding
   - Auto-starts at `http://127.0.0.1:57374` and opens in browser
   - Shows task counts and Kanban-style columns (Pending, In Progress, Completed, Failed)
   - Auto-refreshes every 3 seconds
@@ -2736,21 +2736,21 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 
 ### Changed
 - Replaced `--print` mode with `--output-format stream-json --verbose` for proper streaming
-- Python-based JSON parser extracts and displays Claude's responses in real-time
+- Python-based JSON parser extracts and displays Gemini's responses in real-time
 - Simple HTML dashboard replaces Vibe Kanban (no external dependencies)
 
 ### Fixed
 - Live output now actually streams (was buffered until completion in 2.4.0)
 - Completion detection now recognizes `finalized` and `growth-loop` phases
-- Prompt now explicitly instructs Claude to act autonomously without asking questions
+- Prompt now explicitly instructs Gemini to act autonomously without asking questions
 - Added `.loki/COMPLETED` marker file detection for clean exit
 
 ## [2.4.0] - 2025-12-28
 
 ### Added
-- **Live Output** - Claude's output now streams in real-time using pseudo-TTY
+- **Live Output** - Gemini's output now streams in real-time using pseudo-TTY
   - Uses `script` command to allocate PTY for proper streaming
-  - Visual separator shows when Claude is working
+  - Visual separator shows when Gemini is working
 - **Status Monitor** - `.loki/STATUS.txt` updates every 5 seconds with:
   - Current phase
   - Task counts (pending, in-progress, completed, failed)
@@ -2764,7 +2764,7 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 
 ### Added
 - **Unified Autonomy Runner** (`autonomy/run.sh`) - Single script that does everything:
-  - Prerequisite checks (Claude CLI, Python, Git, curl, Node.js, jq)
+  - Prerequisite checks (Gemini CLI, Python, Git, curl, Node.js, jq)
   - Skill installation verification
   - `.loki/` directory initialization
   - Autonomous execution with auto-resume
@@ -2799,7 +2799,7 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 
 ### Added
 - **Autonomous Wrapper Script** (`scripts/loki-wrapper.sh`) - True autonomy with auto-resume:
-  - Monitors Claude Code process and detects when session ends
+  - Monitors Gemini CLI process and detects when session ends
   - Automatically resumes from checkpoint on rate limits or interruptions
   - Exponential backoff with jitter (configurable via environment variables)
   - State persistence in `.loki/wrapper-state.json`
@@ -2814,12 +2814,12 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 ## [2.0.3] - 2025-12-27
 
 ### Fixed
-- **Proper Skill File Format** - Release artifacts now follow Claude's expected format:
-  - `loki-mode-X.X.X.zip` / `.skill` - For Claude.ai (SKILL.md at root)
-  - `loki-mode-claude-code-X.X.X.zip` - For Claude Code (loki-mode/ folder)
+- **Proper Skill File Format** - Release artifacts now follow Gemini's expected format:
+  - `loki-mode-X.X.X.zip` / `.skill` - For Gemini.ai (SKILL.md at root)
+  - `loki-mode-gemini-code-X.X.X.zip` - For Gemini CLI (loki-mode/ folder)
 
 ### Improved
-- **Installation Instructions** - Separate instructions for Claude.ai vs Claude Code
+- **Installation Instructions** - Separate instructions for Gemini.ai vs Gemini CLI
 - **SKILL.md** - Already has required YAML frontmatter with `name` and `description`
 
 ## [2.0.2] - 2025-12-27
@@ -2891,7 +2891,7 @@ Instead of "degrade gracefully through compression", Loki Mode now uses "reset c
 ## [1.0.0] - 2025-12-27
 
 ### Added
-- **Initial Release** of Loki Mode skill for Claude Code
+- **Initial Release** of Loki Mode skill for Gemini CLI
 
 - **Multi-Agent Architecture** - 37 specialized agents across 6 swarms:
   - Engineering Swarm (8 agents): frontend, backend, database, mobile, API, QA, perf, infra

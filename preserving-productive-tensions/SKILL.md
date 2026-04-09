@@ -1,10 +1,9 @@
 ---
-name: Preserving Productive Tensions
-description: Recognize when disagreements reveal valuable context, preserve multiple valid approaches instead of forcing premature resolution
-when_to_use: when oscillating between equally valid approaches that optimize for different legitimate priorities
-version: 1.1.0
+name: preserving-productive-tensions
+description: Recognize when disagreements reveal valuable context, preserve multiple
+  valid approaches instead of forcing premature resolution when oscillating between
+  equally valid approaches that optimize for different legitimate priorities
 ---
-
 # Preserving Productive Tensions
 
 ## Overview
@@ -150,3 +149,6 @@ When preserving tensions, document clearly:
 - Configuration > forced choice (when reasonable)
 - Document trade-offs explicitly
 - Resolution is okay when justified
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

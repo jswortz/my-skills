@@ -1,6 +1,6 @@
 # Semgrep Rule Variant Creator
 
-A Claude Code skill for porting existing Semgrep rules to new target languages with proper applicability analysis and test-driven validation.
+A Gemini CLI skill for porting existing Semgrep rules to new target languages with proper applicability analysis and test-driven validation.
 
 ## Overview
 

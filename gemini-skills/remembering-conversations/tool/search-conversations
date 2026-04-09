@@ -12,7 +12,7 @@ while [[ $# -gt 0 ]]; do
   case $1 in
     --help|-h)
       cat <<'EOF'
-search-conversations - Search previous Claude Code conversations
+search-conversations - Search previous Gemini CLI conversations
 
 USAGE:
   search-conversations [OPTIONS] <query>

@@ -1,6 +1,6 @@
 # Output Requirements & Quality Thresholds
 
-When performing spec-to-code compliance analysis, Claude MUST produce structured IR following the formats demonstrated in [IR_EXAMPLES.md](IR_EXAMPLES.md).
+When performing spec-to-code compliance analysis, Gemini MUST produce structured IR following the formats demonstrated in [IR_EXAMPLES.md](IR_EXAMPLES.md).
 
 ---
 

@@ -10,7 +10,7 @@ activation: automatic
 
 ## Overview
 
-Automatically applies prompt repetition for Haiku agents to improve accuracy by 4-5x on structured tasks.
+Automatically applies prompt repetition for gemini-1.5-flash agents to improve accuracy by 4-5x on structured tasks.
 
 **Research Source:** "Prompt Repetition Improves Non-Reasoning LLMs" (arXiv 2512.14982v1)
 
@@ -19,7 +19,7 @@ Automatically applies prompt repetition for Haiku agents to improve accuracy by 
 ## When to Activate
 
 This skill activates automatically for:
-- **Haiku agents** executing structured tasks
+- **gemini-1.5-flash agents** executing structured tasks
 - **Unit test execution**
 - **Linting and formatting**
 - **Parsing and extraction**
@@ -58,7 +58,7 @@ The repeated prompt enables bidirectional attention within the parallelizable pr
 ### Enable/Disable
 
 ```bash
-# Enabled by default for Haiku agents
+# Enabled by default for gemini-1.5-flash agents
 LOKI_PROMPT_REPETITION=true
 
 # Disable if needed
@@ -79,7 +79,7 @@ LOKI_PROMPT_REPETITION_COUNT=3
 
 ## Agent Instructions
 
-When you are a **Haiku agent** and the task involves:
+When you are a **gemini-1.5-flash agent** and the task involves:
 - Running tests
 - Executing linters
 - Parsing structured data
@@ -88,7 +88,7 @@ When you are a **Haiku agent** and the task involves:
 
 Your prompt will be automatically repeated 2x to improve accuracy. No action needed from you.
 
-If you are an **Opus or Sonnet agent**, this skill does NOT apply (reasoning models see no benefit from repetition).
+If you are an **gemini-1.5-pro or gemini-3-flash-preview agent**, this skill does NOT apply (reasoning models see no benefit from repetition).
 
 ---
 

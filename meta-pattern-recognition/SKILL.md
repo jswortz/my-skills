@@ -1,10 +1,9 @@
 ---
-name: Meta-Pattern Recognition
-description: Spot patterns appearing in 3+ domains to find universal principles
-when_to_use: when noticing the same pattern across 3+ different domains or experiencing déjà vu in problem-solving
-version: 1.1.0
+name: meta-pattern-recognition
+description: "Spot patterns appearing in 3+ domains to find universal principles when\
+  \ noticing the same pattern across 3+ different domains or experiencing d\xE9j\xE0\
+  \ vu in problem-solving"
 ---
-
 # Meta-Pattern Recognition
 
 ## Overview
@@ -52,3 +51,6 @@ When the same pattern appears in 3+ domains, it's probably a universal principle
 - Abstract form reveals new applications
 - Variations show adaptation points
 - Universal patterns are battle-tested
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

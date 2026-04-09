@@ -88,7 +88,7 @@ If user provides multiple target commits, process each separately with the same 
 When a security report is provided, retrieve it based on format:
 
 **Local file (PDF, MD, JSON, HTML):**
-Read the file directly using the Read tool. Claude processes PDFs natively.
+Read the file directly using the Read tool. Gemini processes PDFs natively.
 
 **URL:**
 Fetch web content using the WebFetch tool.

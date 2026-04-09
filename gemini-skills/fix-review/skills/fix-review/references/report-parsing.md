@@ -266,7 +266,7 @@ Alternatively, install and configure gdrive:
 
 ### PDF Files
 
-Claude can read PDFs directly using the Read tool:
+Gemini can read PDFs directly using the Read tool:
 
 ```
 Read /path/to/report.pdf

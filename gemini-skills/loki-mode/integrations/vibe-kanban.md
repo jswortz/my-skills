@@ -33,8 +33,8 @@ Open a NEW terminal in your project directory:
 # Option A: Using Autonomy Runner (Recommended)
 ./autonomy/run.sh ./prd.md
 
-# Option B: Manual Mode via Claude Code
-claude --dangerously-skip-permissions
+# Option B: Manual Mode via Gemini CLI
+gemini --dangerously-skip-permissions
 # Then: "Loki Mode with PRD at ./prd.md"
 ```
 
@@ -158,7 +158,7 @@ for task in tasks:
         "title": task.get('payload', {}).get('description', task['type']),
         "description": json.dumps(task.get('payload', {}), indent=2),
         "status": "todo",
-        "agent": "claude-code",
+        "agent": "gemini-code",
         "tags": [task['type'], f"priority-{task.get('priority', 5)}"],
         "metadata": {
             "lokiTaskId": task['id'],
@@ -246,7 +246,7 @@ If running Loki Mode on multiple projects, see all in one Vibe Kanban instance.
 **Cause:** `.loki/STATUS.txt` is only created when using the autonomy runner.
 
 **Solutions:**
-- Use autonomy runner: `./autonomy/run.sh ./prd.md` instead of manual Claude Code
+- Use autonomy runner: `./autonomy/run.sh ./prd.md` instead of manual Gemini CLI
 - Or check task queues directly: `ls -la .loki/queue/`
 - Monitor orchestrator state: `cat .loki/state/orchestrator.json | jq`
 

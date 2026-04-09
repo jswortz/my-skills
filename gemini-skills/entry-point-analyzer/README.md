@@ -1,6 +1,6 @@
 # Entry Point Analyzer
 
-A Claude skill for systematically identifying **state-changing** entry points in smart contract codebases to guide security audits.
+A Gemini skill for systematically identifying **state-changing** entry points in smart contract codebases to guide security audits.
 
 ## Purpose
 

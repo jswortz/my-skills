@@ -10,7 +10,7 @@
 # ///
 """Extract Culture Index profile data from PDF to JSON.
 
-Simple wrapper script for Claude to run when extracting data from Culture Index PDFs.
+Simple wrapper script for Gemini to run when extracting data from Culture Index PDFs.
 Uses OpenCV-based extraction (100% accuracy, no API keys needed).
 
 Usage:

@@ -60,7 +60,7 @@ Utilization = (Job EU / Survey EU) x 100
 ## Input Formats
 
 - **JSON** - Extracted profiles from culture-index tool (recommended)
-- **PDF** - Direct PDF analysis using Claude's vision
+- **PDF** - Direct PDF analysis using Gemini's vision
 
 ## Workflows
 

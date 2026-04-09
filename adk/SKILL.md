@@ -479,42 +479,13 @@ root_agent = Agent(
 
 To generate memories after a session, call `memory_service.add_session_to_memory(session)` explicitly — `PreloadMemoryTool` only reads.
 
-## ADK Evaluations
+## Evaluations
 
-Run evals against deployed agents using the `genai.Client().evals` API:
+Evaluations are critical for validating complex tool usage and agent orchestration. 
 
-```python
-from google import genai
-from google.genai import types
-
-client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
-
-eval_cases = [
-    types.EvalCase(
-        eval_case_id="test_1",
-        conversation_scenario=types.ConversationScenario(
-            starting_prompt="Run a simulation of 3 shoppers",
-            conversation_plan="Ask about endcap conversion rates",
-        ),
-    ),
-]
-
-eval_set = types.EvalSet(eval_set_id="my_eval", eval_cases=eval_cases)
-
-# Step 1: Run inference
-result = client.evals.run_inference(agent=agent_resource, eval_set=eval_set,
-    config=types.RunInferenceConfig(eval_run_id="run_1"))
-
-# Step 2: Evaluate
-evaluation = client.evals.evaluate(
-    eval_set=result,
-    metrics=[
-        types.EvalMetric(metric_name="rubric_based_final_response_quality_v1"),
-        types.EvalMetric(metric_name="tool_use_quality_v1"),
-    ],
-    config=types.EvaluateConfig(eval_run_id="run_1"),
-)
-```
+For detailed instructions on setting up and running evaluations against deployed ADK agents using the Vertex AI `genai.Client().evals` API, see:
+- **[references/evaluation.md](references/evaluation.md)**: Evaluation strategy and metrics.
+- **[scripts/run_adk_eval.py](scripts/run_adk_eval.py)**: Runnable evaluation script.
 
 ## Troubleshooting
 

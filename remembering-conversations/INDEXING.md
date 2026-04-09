@@ -6,24 +6,24 @@ Index, archive, and maintain conversations for search.
 
 **Install auto-indexing hook:**
 ```bash
-~/.claude/skills/collaboration/remembering-conversations/tool/install-hook
+~/.gemini/skills/collaboration/remembering-conversations/tool/install-hook
 ```
 
 **Index all conversations:**
 ```bash
-~/.claude/skills/collaboration/remembering-conversations/tool/index-conversations
+~/.gemini/skills/collaboration/remembering-conversations/tool/index-conversations
 ```
 
 **Process unindexed only:**
 ```bash
-~/.claude/skills/collaboration/remembering-conversations/tool/index-conversations --cleanup
+~/.gemini/skills/collaboration/remembering-conversations/tool/index-conversations --cleanup
 ```
 
 ## Features
 
 - **Automatic indexing** via sessionEnd hook (install once, forget)
 - **Semantic search** across all past conversations
-- **AI summaries** (Claude Haiku with Sonnet fallback)
+- **AI summaries** (Gemini gemini-1.5-flash with gemini-3-flash-preview fallback)
 - **Recovery modes** (verify, repair, rebuild)
 - **Permanent archive** at `~/.config/superpowers/conversation-archive/`
 
@@ -32,7 +32,7 @@ Index, archive, and maintain conversations for search.
 ### 1. Install Hook (One-Time)
 
 ```bash
-cd ~/.claude/skills/collaboration/remembering-conversations/tool
+cd ~/.gemini/skills/collaboration/remembering-conversations/tool
 ./install-hook
 ```
 
@@ -83,12 +83,12 @@ Handles existing hooks gracefully (merge or replace). Runs in background after e
 ## Troubleshooting
 
 **Hook not running:**
-- Check: `ls -l ~/.claude/hooks/sessionEnd` (should be executable)
-- Test: `SESSION_ID=test-$(date +%s) ~/.claude/hooks/sessionEnd`
+- Check: `ls -l ~/.gemini/hooks/sessionEnd` (should be executable)
+- Test: `SESSION_ID=test-$(date +%s) ~/.gemini/hooks/sessionEnd`
 - Re-install: `./install-hook`
 
 **Summaries failing:**
-- Check API key: `echo $ANTHROPIC_API_KEY`
+- Check API key: `echo $GOOGLE_API_KEY`
 - Check logs in ~/.config/superpowers/conversation-index/
 - Try manual: `./index-conversations --session <uuid>`
 
@@ -124,7 +124,7 @@ export CONVERSATION_SEARCH_EXCLUDE_PROJECTS="project1,project2"
 
 - **Embeddings:** @xenova/transformers (all-MiniLM-L6-v2, 384 dimensions, local/free)
 - **Vector search:** sqlite-vec (local/free)
-- **Summaries:** Claude Haiku with Sonnet fallback (~$0.01-0.02/conversation)
+- **Summaries:** Gemini gemini-1.5-flash with gemini-3-flash-preview fallback (~$0.01-0.02/conversation)
 - **Parser:** Handles multi-message exchanges and sidechains
 
 ## See Also

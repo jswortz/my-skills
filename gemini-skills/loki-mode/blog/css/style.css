@@ -1,4 +1,4 @@
-/* Anthropic Design Language - Loki Mode Website */
+/* Gemini Design Language - Loki Mode Website */
 
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
@@ -11,7 +11,7 @@
 }
 
 :root {
-    /* Anthropic Official Colors */
+    /* Gemini Official Colors */
     --color-dark: #141413;
     --color-light: #faf9f5;
     --color-mid-gray: #b0aea5;
@@ -19,7 +19,7 @@
     --color-orange: #d97757;
     --color-blue: #6a9bcc;
     --color-green: #788c5d;
-    --color-claude: #da7756;
+    --color-gemini: #da7756;
 
     /* Semantic Colors */
     --bg-primary: var(--color-light);
@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .version {
-    background: linear-gradient(135deg, var(--color-orange), var(--color-claude));
+    background: linear-gradient(135deg, var(--color-orange), var(--color-gemini));
     color: white;
     padding: 0.35rem 0.85rem;
     border-radius: 1.5rem;
@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link.github {
-    background: linear-gradient(135deg, var(--color-orange), var(--color-claude));
+    background: linear-gradient(135deg, var(--color-orange), var(--color-gemini));
     color: white;
     padding: 0.65rem 1.25rem;
     border-radius: 2rem;
@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--color-orange), var(--color-claude));
+    background: linear-gradient(135deg, var(--color-orange), var(--color-gemini));
     color: white;
     border: none;
 }
@@ -279,7 +279,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .feature-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--color-orange), var(--color-claude));
+    background: linear-gradient(135deg, var(--color-orange), var(--color-gemini));
     color: white;
     padding: 0.4rem 0.9rem;
     border-radius: 1.5rem;

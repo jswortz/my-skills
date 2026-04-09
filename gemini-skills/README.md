@@ -32,8 +32,8 @@ The following skills are available in this repository:
 - chembl-database
 - cirq
 - citation-management
-- claude-d3js-skill
-- claude-md-improver
+- gemini-d3js-skill
+- gemini-md-improver
 - clinical-decision-support
 - clinical-reports
 - clinicaltrials-database

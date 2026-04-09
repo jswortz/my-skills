@@ -197,12 +197,12 @@ jobs:
 ### Workflow Per Task:
 
 ```
-1. Dispatch implementation subagent (Task tool, model: sonnet)
+1. Dispatch implementation subagent (Task tool, model: gemini-3-flash-preview)
 2. Subagent implements with TDD, commits, reports back
 3. Dispatch 3 reviewers IN PARALLEL (single message, 3 Task calls):
-   - code-reviewer (sonnet)
-   - business-logic-reviewer (sonnet)
-   - security-reviewer (sonnet)
+   - code-reviewer (gemini-3-flash-preview)
+   - business-logic-reviewer (gemini-3-flash-preview)
+   - security-reviewer (gemini-3-flash-preview)
 4. Aggregate findings by severity
 5. IF Critical/High/Medium found:
    - Dispatch fix subagent

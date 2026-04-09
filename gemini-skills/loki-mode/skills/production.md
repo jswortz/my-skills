@@ -77,7 +77,7 @@ compaction_strategy:
 # Heavy analysis that would bloat main context
 Task(
     subagent_type="Explore",
-    model="haiku",
+    model="gemini-1.5-flash",
     description="Find all auth-related files",
     prompt="Search codebase for authentication patterns. Return only file paths."
 )
@@ -182,7 +182,7 @@ dependency_workflow:
 
 ---
 
-## Batch Processing (Claude API)
+## Batch Processing (Gemini API)
 
 **50% cost reduction for large-scale async operations.**
 
@@ -214,11 +214,11 @@ pricing:
 ### Implementation Pattern
 
 ```python
-import anthropic
-from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
-from anthropic.types.messages.batch_create_params import Request
+import gemini
+from gemini.types.message_create_params import MessageCreateParamsNonStreaming
+from gemini.types.messages.batch_create_params import Request
 
-client = anthropic.Anthropic()
+client = gemini.Gemini()
 
 # Batch all code review requests
 def batch_code_review(files: list[str]) -> str:
@@ -226,7 +226,7 @@ def batch_code_review(files: list[str]) -> str:
         Request(
             custom_id=f"review-{i}-{file.replace('/', '-')}",
             params=MessageCreateParamsNonStreaming(
-                model="claude-sonnet-4-5",
+                model="gemini-3-flash-preview",
                 max_tokens=2048,
                 messages=[{
                     "role": "user",
@@ -275,7 +275,7 @@ requests = [
     Request(
         custom_id=f"review-{file}",
         params=MessageCreateParamsNonStreaming(
-            model="claude-sonnet-4-5",
+            model="gemini-3-flash-preview",
             max_tokens=2048,
             system=SHARED_SYSTEM,  # Identical across all requests
             messages=[{"role": "user", "content": f"Review: {code}"}]
@@ -286,7 +286,7 @@ requests = [
 ```
 
 **Cost math:**
-- Base: $3/MTok input, $15/MTok output (Sonnet)
+- Base: $3/MTok input, $15/MTok output (gemini-3-flash-preview)
 - Batch discount: 50% -> $1.50/$7.50
 - Cache hit: 90% reduction on cached tokens
 - Combined: Up to 95% savings on large batches

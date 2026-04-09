@@ -1,5 +1,10 @@
 ---
 name: demo-qa-coordinator
+description: -- name: demo-qa-coordinator description: QA test demo applications, verify documentation clarity, identify broken user flows or system issues, or coo...
+---
+
+--
+name: demo-qa-coordinator
 description: QA test demo applications, verify documentation clarity, identify broken user flows or system issues, or coordinate a comprehensive quality review across multiple subsystems.
 ---
 

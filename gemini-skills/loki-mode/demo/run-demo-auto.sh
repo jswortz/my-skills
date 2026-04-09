@@ -146,16 +146,16 @@ banner "STEP 5: Agent Orchestration"
 step "Spawning specialized agents..."
 echo ""
 
-agent "SPAWN" "agent-backend-001  (Sonnet) - Backend implementation"
+agent "SPAWN" "agent-backend-001  (gemini-3-flash-preview) - Backend implementation"
 sleep 0.5
-agent "SPAWN" "agent-frontend-001 (Sonnet) - Frontend development"
+agent "SPAWN" "agent-frontend-001 (gemini-3-flash-preview) - Frontend development"
 sleep 0.5
-agent "SPAWN" "agent-database-001 (Haiku)  - Database setup"
+agent "SPAWN" "agent-database-001 (gemini-1.5-flash)  - Database setup"
 sleep 0.5
-agent "SPAWN" "agent-qa-001       (Haiku)  - Test execution"
+agent "SPAWN" "agent-qa-001       (gemini-1.5-flash)  - Test execution"
 echo ""
 info "4 agents working in parallel"
-info "Haiku for simple tasks, Sonnet for implementation"
+info "gemini-1.5-flash for simple tasks, gemini-3-flash-preview for implementation"
 sleep 2
 
 # Development
@@ -186,7 +186,7 @@ sleep 2
 
 # Code Review
 banner "STEP 7: Code Review (Anti-Sycophancy)"
-step "Launching 3 parallel reviewers (Sonnet model)..."
+step "Launching 3 parallel reviewers (gemini-3-flash-preview model)..."
 echo ""
 
 echo "  [1/3] Code Quality Reviewer"

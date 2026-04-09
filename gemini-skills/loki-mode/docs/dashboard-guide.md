@@ -37,7 +37,7 @@ The sidebar provides navigation and system status at a glance.
 - Version updates automatically from server state
 
 #### Theme Toggle
-- Switch between light mode (Anthropic cream: #faf9f0) and dark mode (#131314)
+- Switch between light mode (Gemini cream: #faf9f0) and dark mode (#131314)
 - Preference saved to localStorage
 - Respects system preference on first visit
 
@@ -122,7 +122,7 @@ Grid of agent cards showing:
 
 - **Agent ID**: e.g., orchestrator, backend-agent
 - **Agent Type**: e.g., Orchestrator, Backend, Frontend
-- **Model Badge**: Colored badge (Opus=amber, Sonnet=indigo, Haiku=emerald)
+- **Model Badge**: Colored badge (gemini-1.5-pro=amber, gemini-3-flash-preview=indigo, gemini-1.5-flash=emerald)
 - **Current Task**: What the agent is working on
 - **Stats**: Runtime and tasks completed
 - **Status**: Active (green), Idle (gray), Error (red)
@@ -165,9 +165,9 @@ Status icons:
 
 ## Design System
 
-### Anthropic Design Language
+### Gemini Design Language
 
-The dashboard follows Anthropic's design language:
+The dashboard follows Gemini's design language:
 
 **Light Mode (Default)**:
 ```css
@@ -342,7 +342,7 @@ Useful for:
 | Version | Changes |
 |---------|---------|
 | v4.1.0 | Terminal output, quick actions, GitHub import modal, config file support |
-| v4.0.0 | Complete rewrite with Anthropic design, realtime sync, mobile support |
+| v4.0.0 | Complete rewrite with Gemini design, realtime sync, mobile support |
 | v3.x | Basic status display (no interactivity) |
 
 ---

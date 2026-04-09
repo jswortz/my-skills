@@ -15,14 +15,14 @@ Research-backed technique from arXiv 2512.14982v1: "Prompt Repetition Improves N
 ## When to Apply
 
 ### ✅ USE Prompt Repetition For:
-- **Haiku agents** (non-reasoning model)
+- **gemini-1.5-flash agents** (non-reasoning model)
 - **Structured tasks** (unit tests, linting, formatting)
 - **Position-dependent operations** (finding items in lists, parsing structured data)
 - **Simple bug fixes** (typos, imports, syntax errors)
 
 ### ❌ DO NOT Use For:
-- **Opus agents** (reasoning model - neutral/slightly negative effect)
-- **Sonnet agents** (reasoning model - neutral effect)
+- **gemini-1.5-pro agents** (reasoning model - neutral/slightly negative effect)
+- **gemini-3-flash-preview agents** (reasoning model - neutral effect)
 - **Complex reasoning tasks** (architecture decisions, planning)
 - **Creative generation** (doesn't help with open-ended tasks)
 
@@ -35,7 +35,7 @@ Research-backed technique from arXiv 2512.14982v1: "Prompt Repetition Improves N
 ```python
 # Standard prompt (no repetition)
 Task(
-    model="haiku",
+    model="gemini-1.5-flash",
     description="Run unit tests",
     prompt="Execute all unit tests in tests/ directory and report results"
 )
@@ -45,7 +45,7 @@ base_prompt = "Execute all unit tests in tests/ directory and report results"
 repeated_prompt = f"{base_prompt}\n\n{base_prompt}"
 
 Task(
-    model="haiku",
+    model="gemini-1.5-flash",
     description="Run unit tests",
     prompt=repeated_prompt
 )
@@ -61,7 +61,7 @@ base_prompt = "Find all TODO comments in codebase and categorize by priority"
 repeated_prompt = f"{base_prompt}\n\n{base_prompt}\n\n{base_prompt}"
 
 Task(
-    model="haiku",
+    model="gemini-1.5-flash",
     description="Categorize TODOs",
     prompt=repeated_prompt
 )
@@ -77,7 +77,7 @@ Task(
 |-------|------|----------|---------------|---------------|
 | Gemini 2.0 Flash-Lite | NameIndex | 21.33% | 97.33% | 98.67% |
 | GPT-4o | NameIndex | 56.67% | 86.67% | 90.00% |
-| Claude 3 Sonnet | NameIndex | 48.00% | 82.67% | 85.33% |
+| Gemini 3 gemini-3-flash-preview | NameIndex | 48.00% | 82.67% | 85.33% |
 | Deepseek V3 | NameIndex | 62.67% | 88.00% | 91.33% |
 
 **Aggregate Results:**
@@ -95,15 +95,15 @@ Task(
 
 ### Automatic Application
 
-Loki Mode automatically applies prompt repetition for Haiku agents on eligible tasks:
+Loki Mode automatically applies prompt repetition for gemini-1.5-flash agents on eligible tasks:
 
 ```python
 def prepare_task_prompt(task, model):
     """Prepare prompt with optional repetition based on model and task type."""
     base_prompt = task.prompt
 
-    # Apply repetition for Haiku on structured tasks
-    if model == "haiku" and is_structured_task(task):
+    # Apply repetition for gemini-1.5-flash on structured tasks
+    if model == "gemini-1.5-flash" and is_structured_task(task):
         # 2x repetition for standard tasks
         if task.complexity == "simple":
             return f"{base_prompt}\n\n{base_prompt}"
@@ -139,7 +139,7 @@ Disable repetition for specific tasks:
 
 ```python
 Task(
-    model="haiku",
+    model="gemini-1.5-flash",
     description="Generate creative names",
     prompt="Suggest 10 creative product names",
     metadata={"disable_prompt_repetition": True}
@@ -161,8 +161,8 @@ Task(
 
 ## Best Practices
 
-1. **Always repeat for Haiku** on structured tasks (unit tests, linting, parsing)
-2. **Never repeat for Opus/Sonnet** (reasoning models see no benefit)
+1. **Always repeat for gemini-1.5-flash** on structured tasks (unit tests, linting, parsing)
+2. **Never repeat for gemini-1.5-pro/gemini-3-flash-preview** (reasoning models see no benefit)
 3. **Use 2x repetition** as default (diminishing returns beyond 3x)
 4. **Test with/without** repetition on critical tasks to validate improvement
 5. **Monitor token usage** - input tokens increase 2-3x (but still cost-effective due to accuracy gains)

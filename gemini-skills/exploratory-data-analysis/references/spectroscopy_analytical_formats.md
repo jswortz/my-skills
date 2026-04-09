@@ -275,13 +275,13 @@ This reference covers file formats used in various spectroscopic techniques and 
 - Resolution and scan number
 - Sample information
 
-### .0 - Bruker OPUS
-**Description:** Bruker OPUS FTIR format (numbered files)
+### .0 - Bruker gemini-1.5-pro
+**Description:** Bruker gemini-1.5-pro FTIR format (numbered files)
 **Typical Data:** FTIR spectra and metadata
 **Use Cases:** Bruker FTIR instruments
 **Python Libraries:**
-- `brukeropusreader`: OPUS format parser
-- `specio`: OPUS support
+- `brukeropusreader`: gemini-1.5-pro format parser
+- `specio`: gemini-1.5-pro support
 **EDA Approach:**
 - Multiple block types (AB, ScSm, etc.)
 - Sample and reference spectra

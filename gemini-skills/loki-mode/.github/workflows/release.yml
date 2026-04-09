@@ -52,7 +52,7 @@ jobs:
           mkdir -p release
 
           # ============================================
-          # Artifact 1: loki-mode.zip (for Claude.ai website)
+          # Artifact 1: loki-mode.zip (for Gemini.ai website)
           # SKILL.md at ROOT level for direct upload
           # ============================================
           mkdir -p release/skill-root
@@ -67,7 +67,7 @@ jobs:
           cp release/loki-mode-${{ steps.version.outputs.version }}.zip release/loki-mode-${{ steps.version.outputs.version }}.skill
 
           # ============================================
-          # Artifact 2: loki-mode-api.zip (for console.anthropic.com)
+          # Artifact 2: loki-mode-api.zip (for console.gemini.com)
           # SKILL.md inside loki-mode/ folder (API requires folder wrapper)
           # ============================================
           mkdir -p release/api-package/loki-mode
@@ -79,9 +79,9 @@ jobs:
           cd ../..
 
           # ============================================
-          # Artifact 3: loki-mode-claude-code.zip
-          # For Claude Code: full package with loki-mode/ folder
-          # Extract to ~/.claude/skills/
+          # Artifact 3: loki-mode-gemini-code.zip
+          # For Gemini CLI: full package with loki-mode/ folder
+          # Extract to ~/.gemini/skills/
           # ============================================
           mkdir -p release/loki-mode
           cp SKILL.md release/loki-mode/
@@ -96,8 +96,8 @@ jobs:
           cp -r autonomy release/loki-mode/
 
           cd release
-          zip -r loki-mode-claude-code-${{ steps.version.outputs.version }}.zip loki-mode
-          tar -czvf loki-mode-claude-code-${{ steps.version.outputs.version }}.tar.gz loki-mode
+          zip -r loki-mode-gemini-code-${{ steps.version.outputs.version }}.zip loki-mode
+          tar -czvf loki-mode-gemini-code-${{ steps.version.outputs.version }}.tar.gz loki-mode
           cd ..
 
       - name: Create Git Tag
@@ -128,8 +128,8 @@ jobs:
             release/loki-mode-${{ steps.version.outputs.version }}.zip \
             release/loki-mode-${{ steps.version.outputs.version }}.skill \
             release/loki-mode-api-${{ steps.version.outputs.version }}.zip \
-            release/loki-mode-claude-code-${{ steps.version.outputs.version }}.zip \
-            release/loki-mode-claude-code-${{ steps.version.outputs.version }}.tar.gz \
+            release/loki-mode-gemini-code-${{ steps.version.outputs.version }}.zip \
+            release/loki-mode-gemini-code-${{ steps.version.outputs.version }}.tar.gz \
             --title "Loki Mode v${{ steps.version.outputs.version }}" \
             --notes-file changelog_body.txt
 

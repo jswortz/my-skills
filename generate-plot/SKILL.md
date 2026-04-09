@@ -1,11 +1,11 @@
 ---
-user-invocable: true
 allowed-tools:
-  - mcp__paperbanana__generate_plot
-  - Read
-  - "Bash(paperbanana *)"
+- mcp__paperbanana__generate_plot
+- Read
+- Bash(paperbanana *)
+name: generate-plot
+description: Workflow and instructions for generate-plot.
 ---
-
 # Generate Plot
 
 Generate a publication-quality statistical plot from a data file using PaperBanana.
@@ -36,3 +36,6 @@ paperbanana plot --data <file> --intent "<intent>"
 ```
 /generate-plot results.csv "Bar chart comparing model accuracy"
 ```
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

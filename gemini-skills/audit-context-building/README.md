@@ -14,7 +14,7 @@ Use this skill when you need to:
 
 ## What It Does
 
-This skill governs how Claude thinks during the context-building phase of an audit. When active, Claude will:
+This skill governs how Gemini thinks during the context-building phase of an audit. When active, Gemini will:
 
 - Perform **line-by-line / block-by-block** code analysis
 - Apply **First Principles**, **5 Whys**, and **5 Hows** at micro scale

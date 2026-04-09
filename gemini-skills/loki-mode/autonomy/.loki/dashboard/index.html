@@ -12,11 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* ============================================
-           Anthropic Design Language - Light & Dark
-           Based on anthropic.com color system
+           Gemini Design Language - Light & Dark
+           Based on gemini.com color system
            ============================================ */
         :root {
-            /* Light Mode (default) - Anthropic cream theme */
+            /* Light Mode (default) - Gemini cream theme */
             --bg-primary: #faf9f0;
             --bg-secondary: #f5f4eb;
             --bg-tertiary: #eeeddf;
@@ -44,16 +44,16 @@
             --purple-muted: rgba(147, 51, 234, 0.12);
 
             /* Model Colors */
-            --opus: #d97706;
-            --sonnet: #4f46e5;
-            --haiku: #059669;
+            --gemini-1.5-pro: #d97706;
+            --gemini-3-flash-preview: #4f46e5;
+            --gemini-1.5-flash: #059669;
 
             /* Transition */
             --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="dark"] {
-            /* Dark Mode - Anthropic dark theme */
+            /* Dark Mode - Gemini dark theme */
             --bg-primary: #131314;
             --bg-secondary: #1a1a1b;
             --bg-tertiary: #232325;
@@ -79,9 +79,9 @@
             --purple: #a855f7;
             --purple-muted: rgba(168, 85, 247, 0.15);
 
-            --opus: #f59e0b;
-            --sonnet: #6366f1;
-            --haiku: #10b981;
+            --gemini-1.5-pro: #f59e0b;
+            --gemini-3-flash-preview: #6366f1;
+            --gemini-1.5-flash: #10b981;
         }
 
         * {
@@ -693,19 +693,19 @@
             text-transform: uppercase;
         }
 
-        .model-badge.opus {
+        .model-badge.gemini-1.5-pro {
             background: rgba(217, 119, 6, 0.12);
-            color: var(--opus);
+            color: var(--gemini-1.5-pro);
         }
 
-        .model-badge.sonnet {
+        .model-badge.gemini-3-flash-preview {
             background: rgba(79, 70, 229, 0.12);
-            color: var(--sonnet);
+            color: var(--gemini-3-flash-preview);
         }
 
-        .model-badge.haiku {
+        .model-badge.gemini-1.5-flash {
             background: rgba(5, 150, 105, 0.12);
-            color: var(--haiku);
+            color: var(--gemini-1.5-flash);
         }
 
         .agent-work {
@@ -2107,7 +2107,7 @@
                             <h3>${agent.id || 'unknown'}</h3>
                             <div class="agent-type">${agent.type || 'Agent'}</div>
                         </div>
-                        <span class="model-badge ${(agent.model || 'sonnet').toLowerCase()}">${agent.model || 'sonnet'}</span>
+                        <span class="model-badge ${(agent.model || 'gemini-3-flash-preview').toLowerCase()}">${agent.model || 'gemini-3-flash-preview'}</span>
                     </div>
                     <div class="agent-work">${agent.work || agent.currentTask || (agent.status === 'idle' ? 'Waiting for tasks...' : 'Working...')}</div>
                     <div class="agent-stats">

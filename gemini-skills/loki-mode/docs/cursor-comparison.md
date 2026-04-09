@@ -83,14 +83,14 @@ velocity_quality_balance:
 
 ---
 
-### 4. Constitutional AI Self-Critique
+### 4. Responsible AI Self-Critique
 
 **Loki Mode Pattern:**
 ```
 Generate -> Critique against principles -> Revise -> Re-critique -> Final
 ```
 
-**Research Basis:** [Anthropic Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback)
+**Research Basis:** [Gemini Responsible AI](https://www.gemini.com/research/constitutional-ai-harmlessness-from-ai-feedback)
 
 **Cursor:** Not mentioned in their documentation.
 
@@ -212,7 +212,7 @@ We incorporated Cursor's proven patterns:
 ### Loki Mode Research Foundation
 - [CONSENSAGENT](https://aclanthology.org/2025.findings-acl.1141/) - Anti-sycophancy
 - [arXiv 2511.04427v2](https://arxiv.org/abs/2511.04427) - Velocity-quality balance
-- [Anthropic Constitutional AI](https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback)
+- [Gemini Responsible AI](https://www.gemini.com/research/constitutional-ai-harmlessness-from-ai-feedback)
 - [DeepMind Scalable Oversight](https://deepmind.google/research/publications/34920/)
 - [A-Mem Memory System](https://arxiv.org/html/2502.12110v11)
 - [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)

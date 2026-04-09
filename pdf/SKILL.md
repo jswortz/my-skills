@@ -1,9 +1,11 @@
 ---
 name: pdf
-description: Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.
+description: Comprehensive PDF manipulation toolkit for extracting text and tables,
+  creating new PDFs, merging/splitting documents, and handling forms. When Gemini
+  needs to fill in a PDF form or programmatically process, generate, or analyze PDF
+  documents at scale.
 license: Proprietary. LICENSE.txt has complete terms
 ---
-
 # PDF Processing Guide
 
 ## Overview
@@ -292,3 +294,6 @@ with open("encrypted.pdf", "wb") as output:
 - For JavaScript libraries (pdf-lib), see reference.md
 - If you need to fill out a PDF form, follow the instructions in forms.md
 - For troubleshooting guides, see reference.md
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

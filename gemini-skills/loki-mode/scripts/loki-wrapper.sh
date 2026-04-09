@@ -3,10 +3,10 @@
 # Provides true autonomy by auto-resuming on rate limits or interruptions
 #
 # How it works:
-# 1. Launches Claude Code with Loki Mode prompt
-# 2. Monitors the process - when Claude exits, checks exit code
+# 1. Launches Gemini CLI with Loki Mode prompt
+# 2. Monitors the process - when Gemini exits, checks exit code
 # 3. On rate limit (exit code != 0), waits with exponential backoff
-# 4. Restarts automatically, telling Claude to resume from checkpoint
+# 4. Restarts automatically, telling Gemini to resume from checkpoint
 # 5. Continues until successful completion or max retries exceeded
 #
 # Usage:
@@ -183,7 +183,7 @@ main() {
         log_info "Prompt: $prompt"
         save_state $retry "running" 0
 
-        # Launch Claude Code
+        # Launch Gemini CLI
         # The process exits when:
         # 1. User types /exit or Ctrl+C (exit 0)
         # 2. Rate limit hit (exit 1 or other non-zero)
@@ -192,17 +192,17 @@ main() {
 
         local start_time=$(date +%s)
 
-        # Run Claude Code with the prompt
+        # Run Gemini CLI with the prompt
         # Using -p for non-interactive prompt mode
         set +e
-        claude --dangerously-skip-permissions -p "$prompt" 2>&1 | tee -a "$LOG_FILE"
+        gemini --dangerously-skip-permissions -p "$prompt" 2>&1 | tee -a "$LOG_FILE"
         local exit_code=${PIPESTATUS[0]}
         set -e
 
         local end_time=$(date +%s)
         local duration=$((end_time - start_time))
 
-        log_info "Claude exited with code $exit_code after ${duration}s"
+        log_info "Gemini exited with code $exit_code after ${duration}s"
         save_state $retry "exited" $exit_code
 
         # Check for successful completion
@@ -212,7 +212,7 @@ main() {
                 save_state $retry "completed" 0
                 exit 0
             else
-                log_info "Claude exited cleanly but work may not be complete"
+                log_info "Gemini exited cleanly but work may not be complete"
                 log_info "Checking if we should continue..."
 
                 # If session was short, might be intentional exit
@@ -270,10 +270,10 @@ cleanup() {
 }
 trap cleanup INT TERM
 
-# Check for claude command
-if ! command -v claude &> /dev/null; then
-    log_error "Claude Code CLI not found. Please install it first."
-    log_info "Visit: https://claude.ai/code"
+# Check for gemini command
+if ! command -v gemini &> /dev/null; then
+    log_error "Gemini CLI CLI not found. Please install it first."
+    log_info "Visit: https://gemini.ai/code"
     exit 1
 fi
 

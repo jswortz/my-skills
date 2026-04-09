@@ -14,7 +14,7 @@ TESTS_PASSED=0
 setup_test() {
   TEST_DIR=$(mktemp -d)
   export HOME="$TEST_DIR"
-  mkdir -p "$HOME/.claude/hooks"
+  mkdir -p "$HOME/.gemini/hooks"
 }
 
 cleanup_test() {
@@ -87,13 +87,13 @@ test_fresh_installation() {
   "$INSTALL_HOOK" 2>&1 || true
 
   # Verify hook was created
-  assert_file_exists "$HOME/.claude/hooks/sessionEnd" || return 1
+  assert_file_exists "$HOME/.gemini/hooks/sessionEnd" || return 1
 
   # Verify hook is executable
-  assert_file_executable "$HOME/.claude/hooks/sessionEnd" || return 1
+  assert_file_executable "$HOME/.gemini/hooks/sessionEnd" || return 1
 
   # Verify hook contains indexer reference
-  assert_file_contains "$HOME/.claude/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
+  assert_file_contains "$HOME/.gemini/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
 
   return 0
 }
@@ -101,28 +101,28 @@ test_fresh_installation() {
 # Test 2: Merge with existing hook (user chooses merge)
 test_merge_with_existing_hook() {
   # Create existing hook
-  cat > "$HOME/.claude/hooks/sessionEnd" <<'EOF'
+  cat > "$HOME/.gemini/hooks/sessionEnd" <<'EOF'
 #!/bin/bash
 # Existing hook content
 echo "Existing hook running"
 EOF
-  chmod +x "$HOME/.claude/hooks/sessionEnd"
+  chmod +x "$HOME/.gemini/hooks/sessionEnd"
 
   # Run installer and choose merge
   echo "m" | "$INSTALL_HOOK" 2>&1 || true
 
   # Verify backup was created
-  local backup_count=$(ls -1 "$HOME/.claude/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
+  local backup_count=$(ls -1 "$HOME/.gemini/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
   if [ "$backup_count" -lt 1 ]; then
     echo "❌ No backup created"
     return 1
   fi
 
   # Verify original content is preserved
-  assert_file_contains "$HOME/.claude/hooks/sessionEnd" "Existing hook running" || return 1
+  assert_file_contains "$HOME/.gemini/hooks/sessionEnd" "Existing hook running" || return 1
 
   # Verify indexer was appended
-  assert_file_contains "$HOME/.claude/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
+  assert_file_contains "$HOME/.gemini/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
 
   return 0
 }
@@ -130,31 +130,31 @@ EOF
 # Test 3: Replace with existing hook (user chooses replace)
 test_replace_with_existing_hook() {
   # Create existing hook
-  cat > "$HOME/.claude/hooks/sessionEnd" <<'EOF'
+  cat > "$HOME/.gemini/hooks/sessionEnd" <<'EOF'
 #!/bin/bash
 # Old hook to be replaced
 echo "Old hook"
 EOF
-  chmod +x "$HOME/.claude/hooks/sessionEnd"
+  chmod +x "$HOME/.gemini/hooks/sessionEnd"
 
   # Run installer and choose replace
   echo "r" | "$INSTALL_HOOK" 2>&1 || true
 
   # Verify backup was created
-  local backup_count=$(ls -1 "$HOME/.claude/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
+  local backup_count=$(ls -1 "$HOME/.gemini/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
   if [ "$backup_count" -lt 1 ]; then
     echo "❌ No backup created"
     return 1
   fi
 
   # Verify old content is gone
-  if grep -q "Old hook" "$HOME/.claude/hooks/sessionEnd"; then
+  if grep -q "Old hook" "$HOME/.gemini/hooks/sessionEnd"; then
     echo "❌ Old hook content still present"
     return 1
   fi
 
   # Verify new hook contains indexer
-  assert_file_contains "$HOME/.claude/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
+  assert_file_contains "$HOME/.gemini/hooks/sessionEnd" "remembering-conversations.*index-conversations" || return 1
 
   return 0
 }
@@ -162,15 +162,15 @@ EOF
 # Test 4: Detection of already-installed indexer (idempotent)
 test_already_installed_detection() {
   # Create hook with indexer already installed
-  cat > "$HOME/.claude/hooks/sessionEnd" <<'EOF'
+  cat > "$HOME/.gemini/hooks/sessionEnd" <<'EOF'
 #!/bin/bash
 # Auto-index conversations (remembering-conversations skill)
-INDEXER="$HOME/.claude/skills/collaboration/remembering-conversations/tool/index-conversations"
+INDEXER="$HOME/.gemini/skills/collaboration/remembering-conversations/tool/index-conversations"
 if [ -n "$SESSION_ID" ] && [ -x "$INDEXER" ]; then
   "$INDEXER" --session "$SESSION_ID" > /dev/null 2>&1 &
 fi
 EOF
-  chmod +x "$HOME/.claude/hooks/sessionEnd"
+  chmod +x "$HOME/.gemini/hooks/sessionEnd"
 
   # Run installer - should detect and exit
   local output=$("$INSTALL_HOOK" 2>&1 || true)
@@ -183,7 +183,7 @@ EOF
   fi
 
   # Verify no backup was created (since nothing changed)
-  local backup_count=$(ls -1 "$HOME/.claude/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
+  local backup_count=$(ls -1 "$HOME/.gemini/hooks/sessionEnd.backup."* 2>/dev/null | wc -l)
   if [ "$backup_count" -gt 0 ]; then
     echo "❌ Backup created when it shouldn't have been"
     return 1
@@ -198,7 +198,7 @@ test_executable_permissions() {
   "$INSTALL_HOOK" 2>&1 || true
 
   # Verify hook is executable
-  assert_file_executable "$HOME/.claude/hooks/sessionEnd" || return 1
+  assert_file_executable "$HOME/.gemini/hooks/sessionEnd" || return 1
 
   return 0
 }

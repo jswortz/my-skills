@@ -15,7 +15,7 @@ class Config:
     """
     Project-local configuration with auto-learning.
 
-    Config file location: .claude/skills/<skill-directory-name>/config.json
+    Config file location: .gemini/skills/<skill-directory-name>/config.json
 
     The skill directory name is auto-detected from the installation location,
     so configs work regardless of what users name the skill directory.
@@ -68,7 +68,7 @@ class Config:
         skill_root = Path(__file__).parent.parent.parent  # xcode/ -> scripts/ -> skill/
         skill_name = skill_root.name
 
-        config_path = project_dir / ".claude" / "skills" / skill_name / "config.json"
+        config_path = project_dir / ".gemini" / "skills" / skill_name / "config.json"
 
         # Load existing config
         if config_path.exists():

@@ -1,8 +1,14 @@
 ---
 name: git-worktrees
-description: "Manage git worktree lifecycle with paired tmx2 sessions. Use when creating, listing, cleaning up, or merging worktree branches. Covers: (1) Creating a worktree with a paired tmx2 session, (2) Listing worktrees and their session status, (3) Cleaning up stale worktrees (removing dirs, pruning, killing sessions, deleting branches), (4) Merging worktree branches back to main with conflict resolution, (5) Resetting worktree branches to main after merge. Triggers on: 'create a worktree', 'git worktree', 'clean up worktrees', 'merge worktree branches', 'tmx2 session for worktree', 'spawn worktree sessions'."
+description: 'Manage git worktree lifecycle with paired tmx2 sessions. Use when creating,
+  listing, cleaning up, or merging worktree branches. Covers: (1) Creating a worktree
+  with a paired tmx2 session, (2) Listing worktrees and their session status, (3)
+  Cleaning up stale worktrees (removing dirs, pruning, killing sessions, deleting
+  branches), (4) Merging worktree branches back to main with conflict resolution,
+  (5) Resetting worktree branches to main after merge. Triggers on: ''create a worktree'',
+  ''git worktree'', ''clean up worktrees'', ''merge worktree branches'', ''tmx2 session
+  for worktree'', ''spawn worktree sessions''.'
 ---
-
 # Git Worktrees with tmx2 Sessions
 
 Manage parallel development via git worktrees paired with tmx2 sessions.
@@ -103,3 +109,6 @@ done
 | `branch already exists` on `-b` | Branch survived cleanup | `git branch -D wt/<name>`, retry |
 | `contains modified or untracked files` | Normal — worktrees accumulate artifacts | Use `--force` on `git worktree remove` |
 | tmx2 session missing after worktree remove | Removing the dir kills the session's cwd | Recreate: `tmx2 new-session -d -s ge_<name> -c <dir>` |
+
+## Evaluation
+For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

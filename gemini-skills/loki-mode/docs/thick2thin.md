@@ -62,7 +62,7 @@ references/ (unchanged)
 | Improvement | Evidence | Impact |
 |-------------|----------|--------|
 | **Context preservation** | 154 lines vs 1,517 = 90% reduction | More room for actual code/reasoning |
-| **Faster initial load** | Claude reads SKILL.md on every turn | 10x faster initial parse |
+| **Faster initial load** | Gemini reads SKILL.md on every turn | 10x faster initial parse |
 | **Task-specific loading** | Load only relevant modules | Fewer irrelevant patterns cluttering context |
 | **Clearer prioritization** | PRIORITY 1, 2, 3 sections | Unambiguous execution order |
 | **System-prompt level writing** | Direct imperatives, IF/THEN conditionals | Less interpretation needed |
@@ -89,7 +89,7 @@ references/ (unchanged)
 
 ## Context Window Math
 
-**Claude's context window:** ~200K tokens
+**Gemini's context window:** ~200K tokens
 
 **Before (v2.38.0):**
 - SKILL.md: ~1,517 lines = ~6,000 tokens = ~3% of context
@@ -163,7 +163,7 @@ tiktoken-cli count /path/to/old/SKILL.md
 tiktoken-cli count /path/to/new/SKILL.md
 
 # Measure load time
-time claude -p "Read SKILL.md and summarize"
+time gemini -p "Read SKILL.md and summarize"
 ```
 
 ---

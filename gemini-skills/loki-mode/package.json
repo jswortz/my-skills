@@ -1,10 +1,10 @@
 {
   "name": "loki-mode",
   "version": "4.1.0",
-  "description": "Multi-agent autonomous startup system for Claude Code",
+  "description": "Multi-agent autonomous startup system for Gemini CLI",
   "keywords": [
-    "claude",
-    "claude-code",
+    "gemini",
+    "gemini-code",
     "ai",
     "agent",
     "autonomous",

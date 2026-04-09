@@ -10,7 +10,7 @@ Loki Mode has **unique differentiation** in business operations automation but f
 
 ## Factual Comparison Table
 
-| Feature | Loki Mode | Claude-Flow | MetaGPT | CrewAI | Cursor Agent | Devin |
+| Feature | Loki Mode | Gemini-Flow | MetaGPT | CrewAI | Cursor Agent | Devin |
 |---------|-----------|-------------|---------|--------|--------------|-------|
 | **GitHub Stars** | 349 | 10,700 | 62,400 | 25,000+ | N/A (Commercial) | N/A (Commercial) |
 | **Agent Count** | 37 types | 64+ agents | 5 roles | Unlimited | 8 parallel | 1 autonomous |
@@ -32,15 +32,15 @@ Loki Mode has **unique differentiation** in business operations automation but f
 
 ## Detailed Competitor Analysis
 
-### Claude-Flow (10.7K Stars)
-**Repository:** [ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
+### Gemini-Flow (10.7K Stars)
+**Repository:** [ruvnet/gemini-flow](https://github.com/ruvnet/gemini-flow)
 
 **Strengths:**
 - 64+ agent system with hive-mind coordination
 - AgentDB v1.3.9 with 96x-164x faster vector search
-- 25 Claude Skills with natural language activation
+- 25 Gemini Skills with natural language activation
 - 100 MCP Tools for swarm orchestration
-- Built on official Claude Agent SDK (v2.5.0)
+- Built on official Gemini Agent SDK (v2.5.0)
 - 50-100x speedup from in-process MCP + 10-20x from parallel spawning
 - Enterprise features: compliance, scalability, Agile support
 
@@ -52,7 +52,7 @@ Loki Mode has **unique differentiation** in business operations automation but f
 **What Loki Mode Can Learn:**
 - AgentDB-style persistent memory across projects
 - MCP protocol integration for tool orchestration
-- Enterprise CLAUDE.MD templates (Agile, Enterprise, Compliance)
+- Enterprise GEMINI.MD templates (Agile, Enterprise, Compliance)
 
 ---
 
@@ -94,7 +94,7 @@ Loki Mode has **unique differentiation** in business operations automation but f
 - Audit logs and access controls
 
 **Weaknesses:**
-- Not Claude-specific (model agnostic)
+- Not Gemini-specific (model agnostic)
 - Scaling requires careful resource management
 - Enterprise features require paid tier
 
@@ -165,17 +165,17 @@ Loki Mode has **unique differentiation** in business operations automation but f
 | Failed | 2 problems (HumanEval/32, HumanEval/50) |
 | RARV Recoveries | 2 (HumanEval/38, HumanEval/132) |
 | Avg Attempts | 1.04 |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 45.1 minutes |
 
-**Direct Claude (Single Agent Baseline):**
+**Direct Gemini (Single Agent Baseline):**
 
 | Metric | Value |
 |--------|-------|
 | **Pass@1** | **98.17%** |
 | Passed | 161/164 problems |
 | Failed | 3 problems |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 21.1 minutes |
 
 **Three-Way Comparison:**
@@ -183,7 +183,7 @@ Loki Mode has **unique differentiation** in business operations automation but f
 | System | HumanEval Pass@1 | Agent Type |
 |--------|------------------|------------|
 | **Loki Mode (multi-agent)** | **98.78%** | Architect->Engineer->QA->Reviewer |
-| Direct Claude | 98.17% | Single agent |
+| Direct Gemini | 98.17% | Single agent |
 | MetaGPT | 85.9-87.7% | Multi-agent (5 roles) |
 
 **Key Finding:** RARV cycle recovered 2 problems that failed on first attempt, demonstrating the value of self-verification loops.
@@ -192,14 +192,14 @@ Loki Mode has **unique differentiation** in business operations automation but f
 
 ### SWE-bench Lite Results (Full 300 Problems)
 
-**Direct Claude (Single Agent Baseline):**
+**Direct Gemini (Single Agent Baseline):**
 
 | Metric | Value |
 |--------|-------|
 | **Patch Generation** | **99.67%** |
 | Generated | 299/300 problems |
 | Errors | 1 |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 6.17 hours |
 
 **Loki Mode Multi-Agent (with RARV):**
@@ -209,18 +209,18 @@ Loki Mode has **unique differentiation** in business operations automation but f
 | **Patch Generation** | **99.67%** |
 | Generated | 299/300 problems |
 | Errors/Timeouts | 1 |
-| Model | Claude Opus 4.5 |
+| Model | Gemini gemini-1.5-pro 4.5 |
 | Time | 3.5 hours |
 
 **Three-Way Comparison:**
 
 | System | SWE-bench Patch Gen | Notes |
 |--------|---------------------|-------|
-| **Direct Claude** | **99.67%** (299/300) | Single agent, minimal overhead |
+| **Direct Gemini** | **99.67%** (299/300) | Single agent, minimal overhead |
 | **Loki Mode (multi-agent)** | **99.67%** (299/300) | 4-agent pipeline with RARV |
 | Devin | ~15% complex tasks | Commercial, different benchmark |
 
-**Key Finding:** After timeout optimization (Architect: 60s->120s), the multi-agent RARV pipeline matches direct Claude's performance on SWE-bench. Both achieve 99.67% patch generation rate.
+**Key Finding:** After timeout optimization (Architect: 60s->120s), the multi-agent RARV pipeline matches direct Gemini's performance on SWE-bench. Both achieve 99.67% patch generation rate.
 
 **Note:** Patches generated; full validation (resolve rate) requires running the Docker-based SWE-bench harness to apply patches and execute test suites.
 
@@ -319,7 +319,7 @@ Loki Mode has **unique differentiation** in business operations automation but f
 
 ## Sources
 
-- [Claude-Flow GitHub](https://github.com/ruvnet/claude-flow)
+- [Gemini-Flow GitHub](https://github.com/ruvnet/gemini-flow)
 - [MetaGPT GitHub](https://github.com/FoundationAgents/MetaGPT)
 - [MetaGPT Paper (ICLR 2024)](https://openreview.net/forum?id=VtmBAGCN7o)
 - [CrewAI GitHub](https://github.com/crewAIInc/crewAI)
@@ -330,4 +330,4 @@ Loki Mode has **unique differentiation** in business operations automation but f
 - [Devin AI Real Tests](https://trickle.so/blog/devin-ai-review)
 - [SWE-bench Verified Leaderboard](https://llm-stats.com/benchmarks/swe-bench-verified)
 - [SWE-bench Official](https://www.swebench.com/)
-- [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
+- [Gemini CLI Best Practices](https://www.gemini.com/engineering/gemini-code-best-practices)

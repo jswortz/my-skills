@@ -1,7 +1,6 @@
 ---
 name: timesfm
-description: >
-    Leverage TimesFM (Time Series Foundation Model) for zero-shot forecasting and anomaly detection on Vertex AI and BigQuery ML.
+description: Leverage TimesFM (Time Series Foundation Model) for zero-shot forecasting and anomaly detection on Vertex AI and BigQuery ML.
     Use when analyzing metrics, forecasting future values, or finding anomalies on time-series datasets.
 ---
 
