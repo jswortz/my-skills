@@ -5,7 +5,7 @@ Quick reference for deploying and maintaining the conversation indexing system.
 ## Initial Deployment
 
 ```bash
-cd ~/.gemini/skills/collaboration/remembering-conversations/tool
+cd ~/.claude/skills/collaboration/remembering-conversations/tool
 
 # 1. Install hook
 ./install-hook
@@ -21,7 +21,7 @@ cd ~/.gemini/skills/collaboration/remembering-conversations/tool
 ```
 
 **Expected results:**
-- Hook installed at `~/.gemini/hooks/sessionEnd`
+- Hook installed at `~/.claude/hooks/sessionEnd`
 - Summaries created for all conversations (50-120 words each)
 - Search returns relevant results in <1 second
 - No verification errors
@@ -39,7 +39,7 @@ cd ~/.gemini/skills/collaboration/remembering-conversations/tool
 ### Weekly Health Check
 
 ```bash
-cd ~/.gemini/skills/collaboration/remembering-conversations/tool
+cd ~/.claude/skills/collaboration/remembering-conversations/tool
 ./index-conversations --verify
 ```
 
@@ -53,9 +53,9 @@ If issues found:
 | Change | Action |
 |--------|--------|
 | Moved conversation archive | Update paths in code, run `--rebuild` |
-| Updated GEMINI.md | Run `--verify` to check for issues |
+| Updated CLAUDE.md | Run `--verify` to check for issues |
 | Changed database schema | Backup DB, run `--rebuild` |
-| Hook not running | Check executable: `chmod +x ~/.gemini/hooks/sessionEnd` |
+| Hook not running | Check executable: `chmod +x ~/.claude/hooks/sessionEnd` |
 
 ## Recovery Scenarios
 
@@ -66,7 +66,7 @@ If issues found:
 | **Outdated indexes** | `--verify` shows "Outdated files: N" | `--repair` re-indexes modified files |
 | **Corrupted database** | Errors during search/verify | `--rebuild` (re-indexes everything, requires confirmation) |
 | **Hook not running** | No summaries for new conversations | See Troubleshooting below |
-| **Slow indexing** | Takes >30 sec per conversation | Check API key, network, gemini-1.5-flash fallback in logs |
+| **Slow indexing** | Takes >30 sec per conversation | Check API key, network, Haiku fallback in logs |
 
 ## Monitoring
 
@@ -74,7 +74,7 @@ If issues found:
 
 ```bash
 # Check hook installed and executable
-ls -l ~/.gemini/hooks/sessionEnd
+ls -l ~/.claude/hooks/sessionEnd
 
 # Check recent conversations
 ls -lt ~/.config/superpowers/conversation-archive/*/*.jsonl | head -5
@@ -129,7 +129,7 @@ Run with --repair to fix these issues.
 **Diagnosis:**
 ```bash
 # 1. Check hook exists and is executable
-ls -l ~/.gemini/hooks/sessionEnd
+ls -l ~/.claude/hooks/sessionEnd
 # Should show: -rwxr-xr-x ... sessionEnd
 
 # 2. Check $SESSION_ID is set during sessions
@@ -137,17 +137,17 @@ echo $SESSION_ID
 # Should show: session ID when in active session
 
 # 3. Check indexer exists
-ls -l ~/.gemini/skills/collaboration/remembering-conversations/tool/index-conversations
+ls -l ~/.claude/skills/collaboration/remembering-conversations/tool/index-conversations
 # Should show: -rwxr-xr-x ... index-conversations
 
 # 4. Test hook manually
-SESSION_ID=test-$(date +%s) ~/.gemini/hooks/sessionEnd
+SESSION_ID=test-$(date +%s) ~/.claude/hooks/sessionEnd
 ```
 
 **Fix:**
 ```bash
 # Make hook executable
-chmod +x ~/.gemini/hooks/sessionEnd
+chmod +x ~/.claude/hooks/sessionEnd
 
 # Reinstall if needed
 ./install-hook
@@ -160,7 +160,7 @@ chmod +x ~/.gemini/hooks/sessionEnd
 **Diagnosis:**
 ```bash
 # Check API key
-echo $GOOGLE_API_KEY
+echo $ANTHROPIC_API_KEY
 # Should show: sk-ant-...
 
 # Try manual indexing with logging
@@ -171,12 +171,12 @@ grep -i error index.log
 **Fix:**
 ```bash
 # Set API key if missing
-export GOOGLE_API_KEY="your-key-here"
+export ANTHROPIC_API_KEY="your-key-here"
 
 # Check for rate limits (wait and retry)
 sleep 60 && ./index-conversations --repair
 
-# Fallback uses gemini-3-gemini-1.5-flash-20240307 (cheaper)
+# Fallback uses claude-3-haiku-20240307 (cheaper)
 # Check logs for: "Summary: N words" to confirm success
 ```
 
@@ -265,7 +265,7 @@ cp ~/.config/superpowers/conversation-index/db.sqlite ~/.config/superpowers/conv
 
 ## Subagent Workflow
 
-**For searching conversations from within Gemini CLI sessions**, use the subagent pattern (see `skills/using-skills` for complete workflow).
+**For searching conversations from within Claude Code sessions**, use the subagent pattern (see `skills/using-skills` for complete workflow).
 
 **Template:** `tool/prompts/search-agent.md`
 
@@ -285,7 +285,7 @@ cp ~/.config/superpowers/conversation-index/db.sqlite ~/.config/superpowers/conv
 ## Files and Directories
 
 ```
-~/.gemini/
+~/.claude/
 ├── hooks/
 │   └── sessionEnd                 # Hook that triggers indexing
 └── skills/collaboration/remembering-conversations/

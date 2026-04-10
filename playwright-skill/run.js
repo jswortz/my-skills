@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Universal Playwright Executor for Gemini CLI
+ * Universal Playwright Executor for Claude Code
  *
  * Executes Playwright automation code from:
  * - File path: node run.js script.js

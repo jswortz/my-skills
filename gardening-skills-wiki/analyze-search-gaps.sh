@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-SKILLS_DIR="${HOME}/.gemini/skills"
+SKILLS_DIR="${HOME}/.claude/skills"
 LOG_FILE="${SKILLS_DIR}/.search-log.jsonl"
 
 if [[ ! -f "$LOG_FILE" ]]; then

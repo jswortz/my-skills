@@ -1,6 +1,6 @@
 ---
 name: gcp-diagram
-description: Generates professional GCP-branded architecture diagrams using Gemini image generation models. Use when asked to create architecture or system diagrams styled like official Google Cloud Platform documentation.
+description: Generate professional GCP-branded architecture diagrams using Gemini image generation models. Use when the user asks to create architecture diagrams, system diagrams, data flow diagrams, deployment diagrams, database schema diagrams, or any technical diagram styled like official Google Cloud Platform documentation. Also use when asked to visualize GCP architectures, agent systems, microservices, or service topologies. Supports gemini-3-pro-image-preview and gemini-2.5-flash-image models via Vertex AI.
 ---
 
 # GCP Architecture Diagram Generator

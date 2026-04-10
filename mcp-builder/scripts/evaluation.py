@@ -1,6 +1,6 @@
 """MCP Server Evaluation Harness
 
-This script evaluates MCP servers by running test questions against them using Gemini.
+This script evaluates MCP servers by running test questions against them using Claude.
 """
 
 import argparse
@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-from gemini import Gemini
+from anthropic import Anthropic
 
 from connections import create_connection
 
@@ -84,7 +84,7 @@ def extract_xml_content(text: str, tag: str) -> str | None:
 
 
 async def agent_loop(
-    client: Gemini,
+    client: Anthropic,
     model: str,
     question: str,
     tools: list[dict[str, Any]],
@@ -152,7 +152,7 @@ async def agent_loop(
 
 
 async def evaluate_single_task(
-    client: Gemini,
+    client: Anthropic,
     model: str,
     qa_pair: dict[str, Any],
     tools: list[dict[str, Any]],
@@ -220,12 +220,12 @@ TASK_TEMPLATE = """
 async def run_evaluation(
     eval_path: Path,
     connection: Any,
-    model: str = "gemini-3-flash-preview",
+    model: str = "claude-3-7-sonnet-20250219",
 ) -> str:
     """Run evaluation with MCP server tools."""
     print("🚀 Starting Evaluation")
 
-    client = Gemini()
+    client = Anthropic()
 
     tools = await connection.list_tools()
     print(f"📋 Loaded {len(tools)} tools from MCP server")
@@ -315,13 +315,13 @@ Examples:
   python evaluation.py -t sse -u https://example.com/mcp -H "Authorization: Bearer token" eval.xml
 
   # Evaluate an HTTP MCP server with custom model
-  python evaluation.py -t http -u https://example.com/mcp -m gemini-3-flash-preview eval.xml
+  python evaluation.py -t http -u https://example.com/mcp -m claude-3-5-sonnet-20241022 eval.xml
         """,
     )
 
     parser.add_argument("eval_file", type=Path, help="Path to evaluation XML file")
     parser.add_argument("-t", "--transport", choices=["stdio", "sse", "http"], default="stdio", help="Transport type (default: stdio)")
-    parser.add_argument("-m", "--model", default="gemini-3-flash-preview", help="Gemini model to use (default: gemini-3-flash-preview)")
+    parser.add_argument("-m", "--model", default="claude-3-7-sonnet-20250219", help="Claude model to use (default: claude-3-7-sonnet-20250219)")
 
     stdio_group = parser.add_argument_group("stdio options")
     stdio_group.add_argument("-c", "--command", help="Command to run MCP server (stdio only)")

@@ -1,6 +1,6 @@
 ---
 name: folder-sync
-description: Keeps two directories synchronized by automatically copying new and modified files between them. Use when syncing skills or code, mirroring directories, or setting up continuous folder synchronization.
+description: Keep two directories synchronized by automatically copying new and modified files between them. Use this skill when you need to (1) Sync skills or code between different locations, (2) Bulk sync all skills from a source directory to target, (3) Maintain backup copies of directories, (4) Keep development and deployment folders in sync, (5) Mirror directory contents with symlink support, or (6) Set up continuous folder synchronization with watch mode.
 ---
 
 # Folder Sync

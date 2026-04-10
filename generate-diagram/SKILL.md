@@ -1,11 +1,11 @@
 ---
+user-invocable: true
 allowed-tools:
-- mcp__paperbanana__generate_diagram
-- Read
-- Bash(paperbanana *)
-name: generate-diagram
-description: Workflow and instructions for generate-diagram.
+  - mcp__paperbanana__generate_diagram
+  - Read
+  - "Bash(paperbanana *)"
 ---
+
 # Generate Diagram
 
 Generate a publication-quality methodology diagram from a text file using PaperBanana.
@@ -33,6 +33,3 @@ paperbanana generate --input <file> --caption "<caption>"
 ```
 /generate-diagram method.txt "Overview of our encoder-decoder architecture"
 ```
-
-## Evaluation
-For evaluation criteria, see [references/evaluate.md](references/evaluate.md).

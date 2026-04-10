@@ -1,5 +1,5 @@
 import { ConversationExchange } from './types.js';
-import { query } from '@gemini-ai/gemini-agent-sdk';
+import { query } from '@anthropic-ai/claude-agent-sdk';
 
 export function formatConversationText(exchanges: ConversationExchange[]): string {
   return exchanges.map(ex => {
@@ -16,8 +16,8 @@ function extractSummary(text: string): string {
   return text.trim();
 }
 
-async function callGemini(prompt: string, useSonnet = false): Promise<string> {
-  const model = useSonnet ? 'gemini-3-flash-preview' : 'gemini-1.5-flash';
+async function callClaude(prompt: string, useSonnet = false): Promise<string> {
+  const model = useSonnet ? 'sonnet' : 'haiku';
 
   for await (const message of query({
     prompt,
@@ -34,10 +34,10 @@ async function callGemini(prompt: string, useSonnet = false): Promise<string> {
       // Check if result is an API error (SDK returns errors as result strings)
       if (typeof result === 'string' && result.includes('API Error') && result.includes('thinking.budget_tokens')) {
         if (!useSonnet) {
-          console.log(`    gemini-1.5-flash hit thinking budget error, retrying with gemini-3-flash-preview`);
-          return await callGemini(prompt, true);
+          console.log(`    Haiku hit thinking budget error, retrying with Sonnet`);
+          return await callClaude(prompt, true);
         }
-        // If gemini-3-flash-preview also fails, return error message
+        // If Sonnet also fails, return error message
         return result;
       }
 
@@ -71,7 +71,7 @@ export async function summarizeConversation(exchanges: ConversationExchange[]): 
   // For short conversations (≤15 exchanges), summarize directly
   if (exchanges.length <= 15) {
     const conversationText = formatConversationText(exchanges);
-    const prompt = `Context: This summary will be shown in a list to help users and Gemini choose which conversations are relevant to a future activity.
+    const prompt = `Context: This summary will be shown in a list to help users and Claude choose which conversations are relevant to a future activity.
 
 Summarize what happened in 2-4 sentences. Be factual and specific. Output in <summary></summary> tags.
 
@@ -93,7 +93,7 @@ Bad:
 
 ${conversationText}`;
 
-    const result = await callGemini(prompt);
+    const result = await callClaude(prompt);
     return extractSummary(result);
   }
 
@@ -115,7 +115,7 @@ ${chunkText}
 Example: <summary>Implemented HID keyboard functionality for ESP32. Hit Bluetooth controller initialization error, fixed by adjusting memory allocation.</summary>`;
 
     try {
-      const summary = await callGemini(prompt);
+      const summary = await callClaude(prompt);
       const extracted = extractSummary(summary);
       chunkSummaries.push(extracted);
       console.log(`  Chunk ${i + 1}/${chunks.length}: ${extracted.split(/\s+/).length} words`);
@@ -129,7 +129,7 @@ Example: <summary>Implemented HID keyboard functionality for ESP32. Hit Bluetoot
   }
 
   // Synthesize chunks into final summary
-  const synthesisPrompt = `Context: This summary will be shown in a list to help users and Gemini choose which past conversations are relevant to a future activity.
+  const synthesisPrompt = `Context: This summary will be shown in a list to help users and Claude choose which past conversations are relevant to a future activity.
 
 Synthesize these part-summaries into one cohesive paragraph. Focus on what was accomplished and any notable technical decisions or challenges. Output in <summary></summary> tags.
 
@@ -146,7 +146,7 @@ Your summary (max 200 words):`;
 
   console.log(`  Synthesizing final summary...`);
   try {
-    const result = await callGemini(synthesisPrompt);
+    const result = await callClaude(synthesisPrompt);
     return extractSummary(result);
   } catch (error) {
     console.log(`  Synthesis failed, using chunk summaries`);

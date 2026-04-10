@@ -39,9 +39,4 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
 
 **IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
 
-Remember: Gemini is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
-
-## Evaluations
-
-To maintain a high standard of aesthetic quality and avoid generic designs, use the self-evaluation rubric:
-- **[assets/ui_eval_rubric.json](assets/ui_eval_rubric.json)**: A JSON rubric for scoring distinctive POV, typography, spatial composition, and code quality.
+Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.

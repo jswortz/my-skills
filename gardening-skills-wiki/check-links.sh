@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check for @ links (force-load context) and validate skill path references
 
-SKILLS_DIR="${1:-$HOME/Documents/GitHub/dotfiles/.gemini/skills}"
+SKILLS_DIR="${1:-$HOME/Documents/GitHub/dotfiles/.claude/skills}"
 
 echo "## Links & References"
 broken_refs=0

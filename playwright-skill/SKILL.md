@@ -1,19 +1,16 @@
 ---
 name: playwright-skill
-description: Complete browser automation with Playwright. Auto-detects dev servers,
-  writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check
-  responsive design, validate UX, test login flows, check links, automate any browser
-  task. Use when user wants to test websites, automate browser interactions, validate
-  web functionality, or perform any browser-based testing.
+description: Complete browser automation with Playwright. Auto-detects dev servers, writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check responsive design, validate UX, test login flows, check links, automate any browser task. Use when user wants to test websites, automate browser interactions, validate web functionality, or perform any browser-based testing.
 ---
+
 **IMPORTANT - Path Resolution:**
 This skill can be installed in different locations (plugin system, manual installation, global, or project-specific). Before executing any commands, determine the skill directory based on where you loaded this SKILL.md file, and use that path in all commands below. Replace `$SKILL_DIR` with the actual discovered path.
 
 Common installation paths:
 
-- Plugin system: `~/.gemini/plugins/marketplaces/playwright-skill/skills/playwright-skill`
-- Manual global: `~/.gemini/skills/playwright-skill`
-- Project-specific: `<project>/.gemini/skills/playwright-skill`
+- Plugin system: `~/.claude/plugins/marketplaces/playwright-skill/skills/playwright-skill`
+- Manual global: `~/.claude/skills/playwright-skill`
+- Project-specific: `<project>/.claude/skills/playwright-skill`
 
 # Playwright Browser Automation
 
@@ -419,7 +416,7 @@ Add wait: `await page.waitForSelector('.element', { timeout: 10000 })`
 ```
 User: "Test if the marketing page looks good"
 
-Gemini: I'll test the marketing page across multiple viewports. Let me first detect running servers...
+Claude: I'll test the marketing page across multiple viewports. Let me first detect running servers...
 [Runs: detectDevServers()]
 [Output: Found server on port 3001]
 I found your dev server running on http://localhost:3001
@@ -432,7 +429,7 @@ I found your dev server running on http://localhost:3001
 ```
 User: "Check if login redirects correctly"
 
-Gemini: I'll test the login flow. First, let me check for running servers...
+Claude: I'll test the login flow. First, let me check for running servers...
 [Runs: detectDevServers()]
 [Output: Found servers on ports 3000 and 3001]
 I found 2 dev servers. Which one should I test?
@@ -454,6 +451,3 @@ User: "Use 3001"
 - Test scripts written to `/tmp` for automatic cleanup (no clutter)
 - Code executes reliably with proper module resolution via `run.js`
 - Progressive disclosure - API_REFERENCE.md loaded only when advanced features needed
-
-## Evaluation
-For evaluation criteria, see [references/evaluate.md](references/evaluate.md).
