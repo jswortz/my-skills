@@ -17,7 +17,7 @@ Your objective is to read a user-provided session transcript and do the followin
 1. **Identify the Loop or Deficiency**: Point out exactly where the agent started repeating itself, failed to answer efficiently, or encountered a recurring context lookup pattern that could be optimized.
 2. **Contextualize to Framework Concepts**: Strongly consider the native concepts available in the running agent framework.
    - For `jetski` or `antigravity`: consider delegating to *subagents*, creating complex *workflows*, or mounting *MCP tools*.
-   - For `claude_code` or `gemini_cli` (Python): consider native configuration hooks and bash scripts.
+   - For `claude_code` or `gemini_cli` (Python): consider native configuration hooks, bash scripts, or packaging workflows as formal extensions (see geminicli.com/extensions).
    - Did the agent lack a tool? Did it misinterpret a command?
 3. **Propose the Fix or Pattern**: 
    - If an existing skill can be improved, propose an exact addition to that skill's `SKILL.md` file.
