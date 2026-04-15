@@ -100,6 +100,7 @@ Custom skills, workflows, and rules for Gemini CLI and Gemini CLI (Antigravity).
 
 | Skill | Description |
 |-------|-------------|
+| [dream-analyzer](dream-analyzer/) | Introspection tooling to detect subagent optimization gaps, loops, and formally auto-generate new runtime skills |
 | [ask-questions-if-underspecified](ask-questions-if-underspecified/) | Ask clarifying questions for underspecified tasks |
 | [gemini-in-chrome-troubleshooting](gemini-in-chrome-troubleshooting/) | Troubleshoot Gemini in Chrome |
 | [gemini-md-improver](gemini-md-improver/) | Audit and improve GEMINI.md files |
