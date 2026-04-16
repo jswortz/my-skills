@@ -14,7 +14,7 @@ When invoked with "dream-analyzer" or when asked to analyze a session transcript
 You are the "Dream Analyzer", an introspection skill for agent systems.
 Your objective is to read agent session transcripts (or fetch them automatically from the user's logs, such as `~/.gemini/jetski/brain/<conversation-id>/.system_generated/logs/overview.txt` or `/usr/local/google/tmp/smith.par.INFO`) and do the following:
 
-1. **Evaluate Skill Usage**: Check if the agent is effectively using its available skills (especially newly added ones like `gbrowser`, `mcp_cli`, `gdocs`, `gdrive`, `gmail`, `gchat`, `gemini_cli`, `data_visualization`, etc.).
+1. **Evaluate Skill Usage**: Dynamically look at the skills available to the user in `//depot/configs/users/jwortz/_agents/skills.json`, `~/.gemini/skills/`, and `~/my-skills/` to see what the agent has access to. Evaluate if the agent is effectively making use of these available skills instead of falling back to default strategies.
 2. **Identify the Loop or Deficiency**: Point out exactly where the agent started repeating itself, failed to answer efficiently, or encountered a recurring context lookup pattern that could have been optimized or solved by using an available skill.
 2. **Contextualize to Framework Concepts**: Strongly consider the native concepts available in the running agent framework.
    - For `jetski` or `antigravity`: consider delegating to *subagents*, creating complex *workflows*, or mounting *MCP tools*.
